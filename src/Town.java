@@ -26,7 +26,7 @@ public class Town {
 			this.virusAmount = 3;
 			outbreakmove = outBreak();
 			return outbreakmove ;
-			//รีเทิร์น เลขเพื่อบอกข้างนอกว่าจะต้องเลื่อน outbreak กี่ครั้ง
+			//๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ ๏ฟฝลข๏ฟฝ๏ฟฝ๏ฟฝอบอก๏ฟฝ๏ฟฝาง๏ฟฝอก๏ฟฝ๏ฟฝาจะต๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน outbreak ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
 		}
 		this.virusAmount = this.virusAmount + c;
 		return 0;
@@ -34,16 +34,16 @@ public class Town {
 	
 	public int outBreak() {
 		int outbreakcount = 1;
-		// ไล่ลูปเพื่อ addVirusAmount(1) ทุกเมือง ที่อยู่ใน adjacentTown
+		// ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝูป๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ addVirusAmount(1) ๏ฟฝุก๏ฟฝ๏ฟฝ๏ฟฝอง ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ adjacentTown
 		for(int i = 0; i<adjacentTowns.size();i++) {
 			outbreakcount+=(adjacentTowns.get(i).addVirusAmount(1));
 		}
-		//นับว่า เกิดเอ้าเบรคซ้อนกี่ครั้ง
+		//๏ฟฝับ๏ฟฝ๏ฟฝ๏ฟฝ ๏ฟฝิด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝรค๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
 		return outbreakcount;
 	}
 	
 	public void setAdjacentTown(ArrayList<Town> towns){
-		this.adjacentTowns = towns;
+		this.adjacentTowns = towns;  
 	}
 	public void addAdjacentTown(Town town) {
 		adjacentTowns.add(town);
