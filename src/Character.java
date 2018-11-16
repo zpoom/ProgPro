@@ -27,6 +27,6 @@ public class Character {
 		currentTown.addVirusAmount(-1);
 	}
 	public void buildStation() {
-		
+		Game.researchStation.add(this.currentTown);
 	}
 }

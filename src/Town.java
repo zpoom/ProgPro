@@ -6,6 +6,7 @@ public class Town {
 	// 1 = Blue ; 2 = Yellow ; 3 = Black; 4 = Red;
 	private ArrayList<Town> adjacentTowns;
 	private int virusAmount;
+	public boolean isReseachStationHere;
 	Town(String name, int color){
 		this.name = name;
 		this.color = color;
@@ -48,6 +49,8 @@ public class Town {
 	public void addAdjacentTown(Town town) {
 		adjacentTowns.add(town);
 		//when u build a research station
+		// may be we won't use this method because 
+		// we add research station to Game.researchStation
 	}
 	public ArrayList<Town> getAdjacentTown(){
 		return this.adjacentTowns;
