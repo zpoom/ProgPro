@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Main {
 
@@ -45,6 +46,25 @@ public class Main {
 		Town Bk11 = new Town("Black11",3);
 		Town Bk12 = new Town("Black12",3);
 		Town Bk13 = new Town("Black13",3);
+		//last is red
+		Town Rd1 = new Town("Red1",4);
+		Town Rd2 = new Town("Red2",4);
+		Town Rd3 = new Town("Red3",4);
+		Town Rd4 = new Town("Red4",4);
+		Town Rd5 = new Town("Red5",4);
+		Town Rd6 = new Town("Red6",4);
+		Town Rd7 = new Town("Red7",4);
+		Town Rd8 = new Town("Red8",4);
+		Town Rd9 = new Town("Red9",4);
+		Town Rd10 = new Town("Red10",4);
+		Town Rd11 = new Town("Red11",4);
+		Town Rd12 = new Town("Red12",4);
+		Town Rd13 = new Town("Red13",4);
+		//add adjacent Town for each town;
+		//Bu1.setAdjacentTown(new ArrayList<Town>() ={Bu2,Bu3}); 
+		//I can not set any AdjacentTown
+		//hope u can fix it
+
 	}
 
 }

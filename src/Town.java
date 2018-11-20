@@ -27,7 +27,7 @@ public class Town {
 			this.virusAmount = 3;
 			outbreakmove = outBreak();
 			return outbreakmove ;
-			//������ �Ţ���ͺ͡��ҧ�͡��Ҩе�ͧ����͹ outbreak ������
+			//return number of outbreak 
 		}
 		this.virusAmount = this.virusAmount + c;
 		return 0;
@@ -35,11 +35,9 @@ public class Town {
 	
 	public int outBreak() {
 		int outbreakcount = 1;
-		// ����ٻ���� addVirusAmount(1) �ء���ͧ �������� adjacentTown
 		for(int i = 0; i<adjacentTowns.size();i++) {
 			outbreakcount+=(adjacentTowns.get(i).addVirusAmount(1));
 		}
-		//�Ѻ��� �Դ�����ä��͹������
 		return outbreakcount;
 	}
 	
@@ -50,7 +48,7 @@ public class Town {
 		adjacentTowns.add(town);
 		//when u build a research station
 		// may be we won't use this method because 
-		// we add research station to Game.researchStation
+		// we add research station to Game.researchStation |ping->"Agreed"
 	}
 	public ArrayList<Town> getAdjacentTown(){
 		return this.adjacentTowns;
