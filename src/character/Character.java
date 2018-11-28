@@ -1,4 +1,9 @@
+package character;
 import java.util.ArrayList;
+
+import card.Card;
+import main.Game;
+import town.Town;
 
 public class Character {
 	private String playerName;
@@ -6,10 +11,11 @@ public class Character {
 	private ArrayList<Card> currentCards;
 	
 	public void giveCard(Card card) {
-		int b;
+
+		return;
 	}
 	public void foundVaccine(ArrayList<Card> cards) {
-		
+		return;
 	}
 	public void setPlayerName(String name) {
 		this.playerName = name;

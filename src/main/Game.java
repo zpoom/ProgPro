@@ -1,6 +1,9 @@
+package main;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import town.Town;
+import town.Town;
 public class Game {
 	public static int redVirus;
 	public static int blueVirus;
@@ -72,6 +75,7 @@ public class Game {
 		//Bu1.setAdjacentTown([Bu2,Bu3]); 
 		//I can not set any AdjacentTown
 		//hope u can fix it
+
 		ArrayList<Town> tmp = new ArrayList<Town>();
 		tmp = (ArrayList<Town>) Arrays.asList(Bu2,Ye1,Rd12,Rd3);
 		Bu1.setAdjacentTown(tmp);
@@ -169,5 +173,6 @@ public class Game {
 		Rd11.setAdjacentTown(tmp);
 		tmp = (ArrayList<Town>) Arrays.asList(Rd11,Rd9,Rd8,Bu1);
 		Rd12.setAdjacentTown(tmp);
+
 	}
 }

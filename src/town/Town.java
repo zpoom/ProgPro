@@ -1,3 +1,4 @@
+package town;
 import java.util.ArrayList;
 
 public class Town {
@@ -7,7 +8,7 @@ public class Town {
 	private ArrayList<Town> adjacentTowns;
 	private int virusAmount;
 	public boolean isReseachStationHere;
-	Town(String name, int color){
+	public Town(String name, int color){
 		this.name = name;
 		this.color = color;
 		virusAmount = 0;

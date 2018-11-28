@@ -1,4 +1,8 @@
+package character;
 import java.util.ArrayList;
+
+import card.Card;
+import town.Town;
 
 public interface CharacterAbility {
 	public void giveCard(Card card);

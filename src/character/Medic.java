@@ -1,3 +1,4 @@
+package character;
 
 public class Medic extends Character implements CharacterAbility {
 	@Override
