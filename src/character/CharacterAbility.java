@@ -13,4 +13,5 @@ public interface CharacterAbility {
 	public void useCard(Card card);
 	public void killVirus();
 	public void buildStation();
+	public void move(Town town);
 }

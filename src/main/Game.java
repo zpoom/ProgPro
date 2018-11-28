@@ -13,12 +13,17 @@ public class Game {
 	public static Town Bu1,Bu2,Bu3,Bu4,Bu5,Bu6,Bu7,Bu8,Bu9,Bu10,Bu11,Bu12,Bu13,Ye1,Ye2,Ye3,Ye4,Ye5,Ye6,
 						Ye7,Ye8,Ye9,Ye10,Ye11,Ye12,Ye13,Bk1,Bk2,Bk3,Bk4,Bk5,Bk6,Bk7,Bk8,Bk9,Bk10,Bk11,Bk12,Bk13
 						,Rd1,Rd2,Rd3,Rd4,Rd5,Rd6,Rd7,Rd8,Rd9,Rd10,Rd11,Rd12,Rd13;
+	public static boolean isFoundBlueVaccine,isFoundRedVaccine,isFoundBlackVaccine,isFoundYellowVaccine;
 	public Game() {
 		Game.blackVirus = 24;
 		Game.blueVirus = 24;
 		Game.redVirus = 24;
 		Game.yellowVirus = 24;
 		researchStation = new ArrayList<Town>();
+		isFoundBlackVaccine = false;
+		isFoundBlueVaccine = false;
+		isFoundRedVaccine = false;
+		isFoundYellowVaccine = false;
 		// 1 = Blue ; 2 = Yellow ; 3 = Black; 4 = Red;
 		Town Bu1 = new Town("Blue1",1);
 		Town Bu2 = new Town("Blue2",1);

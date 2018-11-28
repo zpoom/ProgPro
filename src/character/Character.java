@@ -11,11 +11,17 @@ public class Character {
 	private ArrayList<Card> currentCards;
 	
 	public void giveCard(Card card) {
+<<<<<<< HEAD
 
 		return;
+||||||| merged common ancestors
+		return;
+=======
+		
+>>>>>>> 5bb71b02441c4adee3a81aff8a329b0dffe75446
 	}
 	public void foundVaccine(ArrayList<Card> cards) {
-		return;
+		
 	}
 	public void setPlayerName(String name) {
 		this.playerName = name;
@@ -34,5 +40,8 @@ public class Character {
 	}
 	public void buildStation() {
 		Game.researchStation.add(this.currentTown);
+	}
+	public void move(Town town) {
+		currentTown = town;
 	}
 }
