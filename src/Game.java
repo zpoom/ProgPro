@@ -75,5 +75,6 @@ public class Game {
 		//Bu1.setAdjacentTown([Bu2,Bu3]); 
 		//I can not set any AdjacentTown
 		//hope u can fix it
+
 	}
 }
