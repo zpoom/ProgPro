@@ -13,5 +13,6 @@ public class Game {
 		Game.redVirus = 24;
 		Game.yellowVirus = 24;
 		researchStation = new ArrayList<Town>();
+		
 	}
 }
