@@ -6,7 +6,7 @@ public class Character {
 	private ArrayList<Card> currentCards;
 	
 	public void giveCard(Card card) {
-		
+		int b;
 	}
 	public void foundVaccine(ArrayList<Card> cards) {
 		
