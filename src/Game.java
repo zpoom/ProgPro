@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Game {
 	public static int redVirus;
@@ -28,7 +29,6 @@ public class Game {
 		Town Bu10 = new Town("Blue10",1);
 		Town Bu11 = new Town("Blue11",1);
 		Town Bu12 = new Town("Blue12",1);
-		Town Bu13 = new Town("Blue13",1);
 		//next is yellow
 		Town Ye1 = new Town("Yellow1",2);
 		Town Ye2 = new Town("Yellow2",2);
@@ -42,7 +42,6 @@ public class Game {
 		Town Ye10 = new Town("Yellow10",2);
 		Town Ye11 = new Town("Yellow11",2);
 		Town Ye12= new Town("Yellow12",2);
-		Town Ye13 = new Town("Yellow13",2);
 		//next is Black
 		Town Bk1 = new Town("Black1",3);
 		Town Bk2 = new Town("Black2",3);
@@ -56,7 +55,6 @@ public class Game {
 		Town Bk10 = new Town("Blac10",3);
 		Town Bk11 = new Town("Black11",3);
 		Town Bk12 = new Town("Black12",3);
-		Town Bk13 = new Town("Black13",3);
 		//last is red
 		Town Rd1 = new Town("Red1",4);
 		Town Rd2 = new Town("Red2",4);
@@ -70,11 +68,108 @@ public class Game {
 		Town Rd10 = new Town("Red10",4);
 		Town Rd11 = new Town("Red11",4);
 		Town Rd12 = new Town("Red12",4);
-		Town Rd13 = new Town("Red13",4);
 		//add adjacent Town for each town;
 		//Bu1.setAdjacentTown([Bu2,Bu3]); 
 		//I can not set any AdjacentTown
 		//hope u can fix it
-		
+
+		ArrayList<Town> tmp = new ArrayList<Town>();
+		tmp = (ArrayList<Town>) Arrays.asList(Bu2,Ye1,Rd12,Rd3);
+		Bu1.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bu1,Bu3,Ye1,Ye2,Bu5);
+		Bu2.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bu2,Bu4);
+		Bu3.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bu3,Bu6,Bu7,Bu10);
+		Bu4.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bu2,Bu6,Ye3);
+		Bu5.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bu5,Bu3,Bu4,Ye3);
+		Bu6.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bu8,Bu4,Bu11,Bu10);
+		Bu7.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bu7,Bu9,Bu11,Bu12);
+		Bu8.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bu8,Bk2,Bk12);
+		Bu9.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bu7,Bu4,Bu11,Bk1,Ye8);
+		Bu10.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bu8,Bu7,Bu10,Bk1,Bu12);
+		Bu11.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bu8,Bu11,Bk2);
+		Bu12.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Ye2,Rd2,Bu1,Bu2);
+		Ye1.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Ye1,Ye3,Ye4,Ye5,Bu2);
+		Ye2.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bu6,Bu6,Ye2,Ye4);
+		Ye3.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Ye2,Ye3,Ye5,Ye7,Ye8);
+		Ye4.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Ye2,Ye4,Ye6);
+		Ye5.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Ye5);
+		Ye6.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Ye4,Ye8);
+		Ye7.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Ye4,Ye7,Ye9,Bu10);
+		Ye8.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Ye8,Ye10,Ye11);
+		Ye9.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Ye9,Ye11,Ye12);
+		Ye10.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Ye9,Ye10,Ye12,Bk3);
+		Ye11.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Ye10,Ye11);
+		Ye12.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bu10,Bu11,Bk2,Bk3);
+		Bk1.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bk1,Bk12,Bk3,Bk4,Bu12,Bu9);
+		Bk2.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bk1,Bk2,Bk4,Bk5,Ye11);
+		Bk3.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bk2,Bk3,Bk11,Bk6,Bk5);
+		Bk4.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bk3,Bk4,Bk6);
+		Bk5.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bk4,Bk5,Bk7,Bk11,Bk10);
+		Bk6.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bk6,Bk8,Bk10);
+		Bk7.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bk7,Bk10,Bk9,Rd6,Rd1);
+		Bk8.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bk10,Bk8,Rd6,Rd6);
+		Bk9.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bk11,Bk6,Bk7,Bk8,Bk9);
+		Bk10.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bk12,Bk4,Bk6,Bk10);
+		Bk11.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bu9,Bk2,Bk11);
+		Bk12.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bk8,Rd5,Rd4,Rd2);
+		Rd1.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Rd1,Rd3,Ye1);
+		Rd2.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Rd4,Rd6,Rd7,Bu1);
+		Rd3.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Rd1,Rd3,Rd5,Rd6);
+		Rd4.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Rd1,Rd4,Rd6,Bk8,Bk9);
+		Rd5.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Bk9,Rd5,Rd4,Rd3,Rd7,Rd9);
+		Rd6.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Rd6,Rd3,Rd8,Rd9);
+		Rd7.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Rd7,Rd12);
+		Rd8.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Rd10,Rd11,Rd12,Rd7,Rd6);
+		Rd9.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Rd9,Rd11);
+		Rd10.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Rd9,Rd10,Rd12);
+		Rd11.setAdjacentTown(tmp);
+		tmp = (ArrayList<Town>) Arrays.asList(Rd11,Rd9,Rd8,Bu1);
+		Rd12.setAdjacentTown(tmp);
+
 	}
 }
