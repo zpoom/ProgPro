@@ -11,10 +11,10 @@ public class Character {
 	private ArrayList<Card> currentCards;
 	
 	public void giveCard(Card card) {
-		return;
+		
 	}
 	public void foundVaccine(ArrayList<Card> cards) {
-		return;
+		
 	}
 	public void setPlayerName(String name) {
 		this.playerName = name;
@@ -33,5 +33,8 @@ public class Character {
 	}
 	public void buildStation() {
 		Game.researchStation.add(this.currentTown);
+	}
+	public void move(Town town) {
+		currentTown = town;
 	}
 }

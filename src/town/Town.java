@@ -54,4 +54,7 @@ public class Town {
 	public ArrayList<Town> getAdjacentTown(){
 		return this.adjacentTowns;
 	}
+	public int getColor() {
+		return this.color;
+	}
 }
