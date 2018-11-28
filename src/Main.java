@@ -61,10 +61,10 @@ public class Main {
 		Town Rd12 = new Town("Red12",4);
 		Town Rd13 = new Town("Red13",4);
 		//add adjacent Town for each town;
-		//Bu1.setAdjacentTown(new ArrayList<Town>() ={Bu2,Bu3}); 
+		//Bu1.setAdjacentTown([Bu2,Bu3]); 
 		//I can not set any AdjacentTown
 		//hope u can fix it
-
+		System.out.println();
 	}
 
 }
