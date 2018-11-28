@@ -1,6 +1,9 @@
+package main;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import town.Town;
+import town.Town;
 public class Game {
 	public static int redVirus;
 	public static int blueVirus;
