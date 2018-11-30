@@ -11,7 +11,7 @@ public class Character {
 	private ArrayList<Card> currentCards;
 	
 	public void giveCard(Card card) {
-		
+		return;
 	}
 	public void foundVaccine(ArrayList<Card> cards) {
 		

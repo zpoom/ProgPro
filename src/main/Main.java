@@ -53,7 +53,7 @@ public class Main extends Application {
         return root;
     }
     private void addBackground() {
-        ImageView imageView = new ImageView(new Image(getClass().getResource("res/Civ6_bg.png").toExternalForm()));
+        ImageView imageView = new ImageView(new Image(getClass().getResource("Civ6_bg.png").toExternalForm()));
         imageView.setFitWidth(WIDTH);
         imageView.setFitHeight(HEIGHT);
 

@@ -33,7 +33,7 @@ public class MenuItem extends Pane {
         text = new Text(name);
         text.setTranslateX(5);
         text.setTranslateY(20);
-        text.setFont(Font.loadFont(Main.class.getResource("res/Penumbra-HalfSerif-Std_35114.ttf").toExternalForm(), 14));
+        text.setFont(Font.loadFont(Main.class.getResource("Penumbra-HalfSerif-Std_35114.ttf").toExternalForm(), 14));
         text.setFill(Color.WHITE);
 
         text.effectProperty().bind(
