@@ -21,7 +21,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -42,10 +44,10 @@ public class GameMenu extends Application {
 		menu = new Menu();
 		//menu.setVisible(false);
 		
-		root.getChildren().addAll(imgView, menu);
+		root.getChildren().addAll(imgView,menu);
 		
 		Scene scene = new Scene(root);
-		scene.setOnKeyPressed(event -> {
+		/*scene.setOnKeyPressed(event -> {
 			if(event.getCode() == KeyCode.ESCAPE) {
 				if(!menu.isVisible()) {
 					FadeTransition ft = new FadeTransition(Duration.seconds(0.5),menu);
@@ -63,7 +65,7 @@ public class GameMenu extends Application {
 					ft.play();
 				}
 			}
-		});
+		});*/
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
@@ -72,28 +74,26 @@ public class GameMenu extends Application {
 		
 		public MenuButton(String name) {
 			text = new Text(name);
-			text.setFont(text.getFont().font(20));
+			text.getFont();
+			text.setFont(Font.font("Papyrus",25));
 			text.setFill(Color.WHITE);
+			text.setTranslateX(20);
+			text.setTranslateY(4);
 			
 			Rectangle bg = new Rectangle(250,30);
 			bg.setOpacity(0.6);
 			bg.setFill(Color.BLACK);
-			bg.setEffect(new GaussianBlur(3.5));
+			bg.setEffect(new GaussianBlur(5));
 			
-			setAlignment(Pos.CENTER_LEFT);
-			setRotate(-0.5);
-			getChildren().addAll(bg,text);
 			
-			setOnMouseDragEntered(event -> {
+			this.setOnMouseDragEntered(event -> {
 				bg.setTranslateX(10);
-				text.setTranslateX(10);
 				bg.setFill(Color.WHITE);
 				text.setFill(Color.BLACK);
 			});
 			
-			setOnMouseExited(event -> {
+			this.setOnMouseExited(event -> {
 				bg.setTranslateX(0);
-				text.setTranslateX(0);
 				bg.setFill(Color.BLACK);
 				text.setFill(Color.WHITE);
 			});
@@ -101,83 +101,56 @@ public class GameMenu extends Application {
 			DropShadow drop = new DropShadow(50, Color.WHITE);
 			drop.setInput(new Glow());
 			
-			setOnMousePressed(event -> setEffect(drop));
-			setOnMouseReleased(event -> setEffect(null));
+			this.setOnMousePressed(event -> setEffect(drop));
+			this.setOnMouseReleased(event -> setEffect(null));
+			setAlignment(Pos.CENTER_LEFT);
+			setRotate(-0.5);
+			getChildren().addAll(bg,text);
 		}
 	}
 	private class Menu extends Parent {
 		public Menu() {
-			VBox menu0 = new VBox(10);
+			//use VBox as pane to contain each menu page.
 			VBox menu1 = new VBox(10);
-			VBox menu2 = new VBox(10);
-			
-			menu0.setTranslateX(100);
-			menu0.setTranslateY(200);
 			
 			menu1.setTranslateX(100);
 			menu1.setTranslateY(200);
 			
-			menu2.setTranslateX(100);
-			menu2.setTranslateY(200);
-			
 			final int offset = 400;
-			
-			//menu1.setTranslateX(offset);
 			
 			MenuButton btnStart = new MenuButton("START");
 			btnStart.setOnMouseClicked(event -> {
-				
+				// start game
 			});
 			
-			MenuButton btnCredits = new MenuButton("CREDITS");
-			btnCredits.setOnMouseClicked(event -> {
-				
-			});
-			
-			
-			MenuButton btnResume = new MenuButton("RESUME");
-			btnResume.setOnMouseClicked(event -> {
-				FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
-				ft.setFromValue(1);
-				ft.setToValue(0);
-				ft.setOnFinished(evt -> setVisible(false));
-				ft.play();
-			});
-			
-			MenuButton btnOptions = new MenuButton("OPTIONS");
-			btnOptions.setOnMouseClicked(event -> {
-				getChildren().add(menu1);
-				
-				TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25),menu0);
-				tt.setToX(menu0.getTranslateX() - offset);
-				
-				TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5),menu1);
-				tt1.setToX(menu0.getTranslateX());
-				
-				TranslateTransition tt2 = new TranslateTransition(Duration.seconds(0.25),menu2);
-				tt2.setToX(menu2.getTranslateX() - offset);
-				
-				tt.play();
-				tt1.play();
-				tt2.play();
-				
-				tt.setOnFinished(evt -> {
-					getChildren().removeAll(menu0,menu2);
+			MenuButton btnHowTo = new MenuButton("HOW TO PLAY");
+			btnHowTo.setOnMouseClicked(event -> {
+				// how to play
+				VBox howToPlay = new VBox(20);
+				PlainTextPage howTo = new PlainTextPage("How to play");
+				MenuButton btnBack = new MenuButton("BACK");
+				btnBack.setOnMouseClicked(e -> {
+					getChildren().add(menu1);
+;					TranslateTransition t = new TranslateTransition(Duration.seconds(0.25),howToPlay);
+					t.setToX(howToPlay.getTranslateX() + offset);
+					
+					TranslateTransition t1 = new TranslateTransition(Duration.seconds(0.5),menu1);
+					t1.setToX(howToPlay.getTranslateX());
+					
+					t.play();
+					t1.play();
+					
+					t.setOnFinished(evt -> {
+						getChildren().remove(howToPlay);
+					});
 				});
-			});
-			
-			MenuButton btnExit = new MenuButton("EXIT");
-			btnExit.setOnMouseClicked(event -> {
-				System.exit(0);
-			});
-			
-			MenuButton btnBack = new MenuButton("Back");
-			btnBack.setOnMouseClicked(event -> {
-				getChildren().add(menu0);
+				btnBack.setTranslateY(90);
+				howToPlay.getChildren().addAll(howTo,btnBack);
+				getChildren().add(howToPlay);
 				TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25),menu1);
 				tt.setToX(menu1.getTranslateX() + offset);
 				
-				TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menu0);
+				TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), howToPlay);
 				tt1.setToX(menu1.getTranslateX());
 				
 				tt.play();
@@ -187,18 +160,44 @@ public class GameMenu extends Application {
 					getChildren().remove(menu1);
 				});
 			});
-			MenuButton btnSound = new MenuButton("SOUND");
-			MenuButton btnVideo = new MenuButton("VIDEO");
 			
-			menu0.getChildren().addAll(btnResume,btnOptions,btnExit);
-			menu1.getChildren().addAll(btnBack,btnSound,btnVideo);
-			menu2.getChildren().addAll(btnStart,btnOptions,btnCredits,btnExit);
+			MenuButton btnOption = new MenuButton("OPTIONS");
+			btnOption.setOnMouseClicked(event -> {
+				// option
+			});
 			
+			MenuButton btnCredit = new MenuButton("CREDITS");
+			btnCredit.setOnMouseClicked(event -> {
+				// credits
+			});
+			
+			MenuButton btnExit = new MenuButton("EXIT");
+			btnExit.setOnMouseClicked(event ->{
+				// exit
+				System.exit(0);
+			});
+			menu1.getChildren().addAll(btnStart,btnHowTo,btnOption,btnCredit,btnExit);
 			Rectangle bg = new Rectangle(800,600);
 			bg.setFill(Color.GREY);
 			bg.setOpacity(0.4);
 			
-			getChildren().addAll(bg, menu2);
+			getChildren().addAll(bg,menu1);
+		}
+	}
+	private class PlainTextPage extends StackPane {
+		public PlainTextPage(String data) {
+			Rectangle bg = new Rectangle(560,420);
+			bg.setFill(Color.BLACK);
+			bg.setOpacity(0.8);
+			
+			Text text = new Text(data);
+			text.setFont(Font.font("Papyrus", 20));
+			text.setFill(Color.WHITE);
+			
+			setTranslateY(90);
+			setPrefSize(560, 420);
+			setAlignment(Pos.CENTER);
+			getChildren().addAll(bg,text);
 		}
 	}
 	public static void main(String[] args) {
