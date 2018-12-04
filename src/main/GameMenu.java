@@ -34,7 +34,7 @@ public class GameMenu extends Application {
 	private Menu menu;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		/*Pane root = new Pane();
+		Pane root = new Pane();
 		root.setPrefSize(800,600);
 		InputStream is = Files.newInputStream(Paths.get("res/survive_bg.png"));
 		Image img = new Image(is);
@@ -50,6 +50,8 @@ public class GameMenu extends Application {
 		root.getChildren().addAll(imgView,menu);
 		
 		Scene scene = new Scene(root);
+		primaryStage.setScene(scene);
+		primaryStage.show();
 		/*scene.setOnKeyPressed(event -> {
 			if(event.getCode() == KeyCode.ESCAPE) {
 				if(!menu.isVisible()) {
@@ -70,8 +72,8 @@ public class GameMenu extends Application {
 			}
 		});
 		primaryStage.setScene(scene);
-		primaryStage.show();*/
-		Game t = new Game();
+		primaryStage.show();
+		/*Game t = new Game();
 		Game t2 = new Game();
 		t2.vBoxTest.setTranslateY(-Space.x*Math.sqrt(3)/2);
 		t2.vBoxTest.setTranslateX(-Space.x/2);
@@ -79,7 +81,7 @@ public class GameMenu extends Application {
 		ei.getChildren().addAll(t.vBoxTest,t2.vBoxTest);
 		Scene scene = new Scene(ei);
 		primaryStage.setScene(scene);
-		primaryStage.show();
+		primaryStage.show();*/
 		
 	}
 	private static class MenuButton extends StackPane {
@@ -99,7 +101,7 @@ public class GameMenu extends Application {
 			bg.setEffect(new GaussianBlur(5));
 			
 			
-			this.setOnMouseDragEntered(event -> {
+			this.setOnMouseEntered(event -> {
 				bg.setTranslateX(10);
 				bg.setFill(Color.WHITE);
 				text.setFill(Color.BLACK);
