@@ -45,7 +45,9 @@ public class Space extends StackPane {
 		setOnMouseClicked(event -> {
 			bg.setFill(Color.RED);
 		});
-		getChildren().addAll(bg);
-		
+		getChildren().addAll(bg);	
+	}
+	public void addAdjacentSpace(Space sp) {
+		adjacentSpace.add(sp);
 	}
 }
