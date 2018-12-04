@@ -47,7 +47,9 @@ public class Space extends StackPane {
 		});
 		getChildren().addAll(bg);	
 	}
-	public void addAdjacentSpace(Space sp) {
-		adjacentSpace.add(sp);
+	public void addAdjacentSpace(ArrayList<Space> sp) {
+		for(int i=0;i<sp.size();i++) {
+			adjacentSpace.add(sp.get(i));
+		}
 	}
 }
