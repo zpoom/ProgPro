@@ -11,14 +11,9 @@ public class Character {
 	private ArrayList<Card> currentCards;
 	
 	public void giveCard(Card card) {
-<<<<<<< HEAD
+
 
 		return;
-||||||| merged common ancestors
-		return;
-=======
-		
->>>>>>> 5bb71b02441c4adee3a81aff8a329b0dffe75446
 	}
 	public void foundVaccine(ArrayList<Card> cards) {
 		
