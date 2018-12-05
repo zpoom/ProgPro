@@ -73,13 +73,17 @@ public class GameMenu extends Application {
 		});
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		/*Game t = new Game();
+		Game t = new Game();
 		Game t2 = new Game();
 		t2.vBoxTest.setTranslateY(-Space.x*Math.sqrt(3)/2);
 		t2.vBoxTest.setTranslateX(-Space.x/2);
-		HBox ei = new HBox();
-		ei.getChildren().addAll(t.vBoxTest,t2.vBoxTest);
-		Scene scene = new Scene(ei);
+		*/
+		/*Game game = new Game();
+		VBox test = new VBox();
+		for(int i=0;i<game.hSpace.size();i++) {
+			test.getChildren().addAll(game.hSpace.get(i));
+		}
+		Scene scene = new Scene(test);
 		primaryStage.setScene(scene);
 		primaryStage.show();*/
 		
@@ -136,6 +140,10 @@ public class GameMenu extends Application {
 			MenuButton btnStart = new MenuButton("START");
 			btnStart.setOnMouseClicked(event -> {
 				// start game
+				Game startGame = new Game();
+				
+				getChildren().add(Game.vSpace);
+				getChildren().remove(menu1);
 			});
 			
 			MenuButton btnHowTo = new MenuButton("HOW TO PLAY");

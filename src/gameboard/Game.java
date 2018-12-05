@@ -2,14 +2,30 @@ package gameboard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import javafx.geometry.Insets;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class Game {
-	public VBox vBoxTest;
+	public HBox hSpace;
+	public static VBox vSpace;
+	
 	public Game() {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
 		ArrayList<Space> tmp;
+		Space A48 = new Space(1);
+		Space A39 = new Space(1);
+		Space A40 = new Space(1);
+		Space A41 = new Space(1);
+		Space A42 = new Space(1);
+		Space A43 = new Space(1);
+		Space A44 = new Space(1);
+		Space A45 = new Space(1);
+		Space A46 = new Space(1);
+		Space A47 = new Space(1);
+		
 		Space A49 = new Space(1);
 		Space A50 = new Space(1);
 		Space A51 = new Space(3);
@@ -59,151 +75,201 @@ public class Game {
 		Space A95 = new Space(1);
 		Space A96 = new Space(1);
 		Space A97 = new Space(1);
-		tmp = (ArrayList<Space>) Arrays.asList(A48,A39,A40,A50,A59,A58);
-		A49.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A51,A49,A40,A41,A59,A60);
+		//tmp = (ArrayList<Space>) Arrays.asList(A48,A39,A40,A50,A59,A58);
+		//A49.adjacentSpace.add(A48);
+		
+		/*
+		tmp = Arrays.asList(A51,A49,A40,A41,A59,A60);
 		A50.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A50,A41,A42,A52,A60,A61);
+		tmp = Arrays.asList(A50,A41,A42,A52,A60,A61);
 		A51.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A51,A42,A43,A53,A61,A62);
+		tmp = Arrays.asList(A51,A42,A43,A53,A61,A62);
 		A52.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A52,A43,A44,A62,A63);
+		tmp = Arrays.asList(A52,A43,A44,A62,A63);
 		A53.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A45,A55,A64);
+		tmp = Arrays.asList(A45,A55,A64);
 		A54.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A45,A46,A54,A56,A64,A65);
+		tmp = Arrays.asList(A45,A46,A54,A56,A64,A65);
 		A55.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A55,A46,A47,A57,A65,A66);
+		tmp = Arrays.asList(A55,A46,A47,A57,A65,A66);
 		A56.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A56,A47,A48,A58,A66,A67);
+		tmp = Arrays.asList(A56,A47,A48,A58,A66,A67);
 		A57.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A57,A48,A49,A67,A58,A59);
+		tmp = Arrays.asList(A57,A48,A49,A67,A58,A59);
 		A58.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A58,A49,A50,A60,A69,A68);
+		tmp = Arrays.asList(A58,A49,A50,A60,A69,A68);
 		A59.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A59,A50,A51,A61,A69,A70);
+		tmp = Arrays.asList(A59,A50,A51,A61,A69,A70);
 		A60.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A60,A51,A52,A62,A70,A71);
+		tmp = Arrays.asList(A60,A51,A52,A62,A70,A71);
 		A61.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A61,A52,A53,A63,A71,A72);
+		tmp = Arrays.asList(A61,A52,A53,A63,A71,A72);
 		A62.addAdjacentSpace(tmp);
 
-		tmp = (ArrayList<Space>) Arrays.asList(A62,A53,A72);
+		tmp = Arrays.asList(A62,A53,A72);
 		A63.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A54,A55,A65,A73);
+		tmp = Arrays.asList(A54,A55,A65,A73);
 		A64.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A64,A55,A56,A66,A73,A74);
+		tmp = Arrays.asList(A64,A55,A56,A66,A73,A74);
 		A65.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A65,A56,A57,A67,A74,A75);
+		tmp = Arrays.asList(A65,A56,A57,A67,A74,A75);
 		A66.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A66,A57,A58,A68,A75,A76);
+		tmp = Arrays.asList(A66,A57,A58,A68,A75,A76);
 		A67.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A67,A58,A59,A69,A76,A77);
+		tmp = Arrays.asList(A67,A58,A59,A69,A76,A77);
 		A68.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>)Arrays.asList(A68,A59,A60,A70,A77,A78);
+		tmp = Arrays.asList(A68,A59,A60,A70,A77,A78);
 		A69.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A69,A60,A61,A71,A78,A79);
+		tmp = Arrays.asList(A69,A60,A61,A71,A78,A79);
 		A70.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A70,A61,A62,A72,A79,A80);
+		tmp = Arrays.asList(A70,A61,A62,A72,A79,A80);
 		A71.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A71,A62,A63,A80);
+		tmp = Arrays.asList(A71,A62,A63,A80);
 		A72.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A81,A64,A65,A74,A82);
+		tmp = Arrays.asList(A81,A64,A65,A74,A82);
 		A73.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A73,A65,A66,A75,A82,A83);
+		tmp = Arrays.asList(A73,A65,A66,A75,A82,A83);
 		A74.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A74,A66,A67,A76,A83,A84);
+		tmp = Arrays.asList(A74,A66,A67,A76,A83,A84);
 		A75.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A75,A67,A68,A77,A84,A85);
+		tmp = Arrays.asList(A75,A67,A68,A77,A84,A85);
 		A76.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A76,A68,A69,A78,A85,A86);
+		tmp = Arrays.asList(A76,A68,A69,A78,A85,A86);
 		A77.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A77,A69,A70,A79,A86,A87);
+		tmp = Arrays.asList(A77,A69,A70,A79,A86,A87);
 		A78.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A78,A70,A71,A80,A87,A88);
+		tmp = Arrays.asList(A78,A70,A71,A80,A87,A88);
 		A79.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A79,A71,A72,A89,A88);
+		tmp = Arrays.asList(A79,A71,A72,A89,A88);
 		A80.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A73,A82,A90);
+		tmp = Arrays.asList(A73,A82,A90);
 		A81.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A81,A73,A74,A90,A83,A91);
+		tmp = Arrays.asList(A81,A73,A74,A90,A83,A91);
 		A82.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A82,A74,A75,A84,A91,A92);
+		tmp = Arrays.asList(A82,A74,A75,A84,A91,A92);
 		A83.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A83,A75,A76,A85,A92,A93);
+		tmp = Arrays.asList(A83,A75,A76,A85,A92,A93);
 		A84.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A84,A76,A77,A86,A93,A94);
+		tmp = Arrays.asList(A84,A76,A77,A86,A93,A94);
 		A85.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A85,A77,A78,A87,A94,A95);
+		tmp = Arrays.asList(A85,A77,A78,A87,A94,A95);
 		A86.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A86,A78,A79,A88,A95,A96);
+		tmp = Arrays.asList(A86,A78,A79,A88,A95,A96);
 		A87.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A87,A79,A80,A89,A96,A97);
+		tmp = Arrays.asList(A87,A79,A80,A89,A96,A97);
 		A88.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A88,A80,A97);
+		tmp = Arrays.asList(A88,A80,A97);
 		A89.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A81,A82,A91);
+		tmp = Arrays.asList(A81,A82,A91);
 		A90.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A90,A82,A83,A92);
+		tmp = Arrays.asList(A90,A82,A83,A92);
 		A91.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A91,A83,A84,A93);
+		tmp = Arrays.asList(A91,A83,A84,A93);
 		A92.addAdjacentSpace(tmp);
 
-		tmp = (ArrayList<Space>) Arrays.asList(A92,A84,A85,A94);
+		tmp = Arrays.asList(A92,A84,A85,A94);
 		A93.addAdjacentSpace(tmp);
 		
-		tmp =(ArrayList<Space>)  Arrays.asList(A93,A85,A86,A95);
+		tmp = Arrays.asList(A93,A85,A86,A95);
 		A94.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A94,A86,A87,A96);
+		tmp = Arrays.asList(A94,A86,A87,A96);
 		A95.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A95,A87,A88,A97);
+		tmp = Arrays.asList(A95,A87,A88,A97);
 		A96.addAdjacentSpace(tmp);
 		
-		tmp = (ArrayList<Space>) Arrays.asList(A96,A98,A99);
-		A97.addAdjacentSpace(tmp);
+		tmp = Arrays.asList(A96,A88,A89);
+		A97.addAdjacentSpace(tmp);*/
+		
+		//HBox temp = new HBox();
+		//temp.getChildren().addAll(A54,A55,A56,A57,A58,A59,A60,A61,A62,A63);
+		//hSpace.add(new HBox(A54,A55,A56,A57,A58,A59,A60,A61,A62,A63));
+		/*
+		temp = new HBox();
+		temp.getChildren().addAll(A64,A65,A66,A67,A68,A69,A70,A71,A72);
+		hSpace.add(temp);
+		
+		temp = new HBox();
+		temp.getChildren().addAll(A73,A74,A75,A76,A77,A78,A79,A80);
+		hSpace.add(temp);
+		
+		temp = new HBox();
+		temp.getChildren().addAll(A81,A82,A83,A84,A85,A86,A87,A88,A89);
+		hSpace.add(temp);
+		
+		temp = new HBox();
+		temp.getChildren().addAll(A90,A91,A92,A93,A94,A95,A96,A97);
+		hSpace.add(temp);*/
+		hSpace = new HBox();
+		hSpace.getChildren().addAll(A54,A55,A56,A57,A58,A59,A60,A61,A62,A63);
+		vSpace = new VBox();
+		vSpace.getChildren().addAll(hSpace);
+		
+		hSpace = new HBox();
+		hSpace.getChildren().addAll(A64,A65,A66,A67,A68,A69,A70,A71,A72);
+		hSpace.setTranslateX(Space.x*Math.sqrt(3)/2);
+		hSpace.setTranslateY(-25);
+		vSpace.getChildren().addAll(hSpace);
+		
+		hSpace = new HBox();
+		hSpace.getChildren().addAll(A73,A74,A75,A76,A77,A78,A79,A80);
+		hSpace.setTranslateY(-50);
+		vSpace.getChildren().addAll(hSpace);
+		
+		hSpace = new HBox();
+		hSpace.getChildren().addAll(A81,A82,A83,A84,A85,A86,A87,A88,A89);
+		hSpace.setTranslateX(Space.x*Math.sqrt(3)/2);
+		hSpace.setTranslateY(-75);
+		vSpace.getChildren().addAll(hSpace);
+		
+		hSpace = new HBox();
+		hSpace.getChildren().addAll(A90,A91,A92,A93,A94,A95,A96,A97);
+		hSpace.setTranslateY(-100);
+		vSpace.getChildren().addAll(hSpace);
+		
+		vSpace.setSpacing(0.0);
 	}
 }
