@@ -4,8 +4,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import gameboard.Game;
-import gameboard.Space;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
@@ -18,7 +16,6 @@ import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -50,8 +47,6 @@ public class GameMenu extends Application {
 		root.getChildren().addAll(imgView,menu);
 		
 		Scene scene = new Scene(root);
-		primaryStage.setScene(scene);
-		primaryStage.show();
 		/*scene.setOnKeyPressed(event -> {
 			if(event.getCode() == KeyCode.ESCAPE) {
 				if(!menu.isVisible()) {
@@ -70,19 +65,9 @@ public class GameMenu extends Application {
 					ft.play();
 				}
 			}
-		});
+		});*/
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		/*Game t = new Game();
-		Game t2 = new Game();
-		t2.vBoxTest.setTranslateY(-Space.x*Math.sqrt(3)/2);
-		t2.vBoxTest.setTranslateX(-Space.x/2);
-		HBox ei = new HBox();
-		ei.getChildren().addAll(t.vBoxTest,t2.vBoxTest);
-		Scene scene = new Scene(ei);
-		primaryStage.setScene(scene);
-		primaryStage.show();*/
-		
 	}
 	private static class MenuButton extends StackPane {
 		private Text text;
@@ -101,7 +86,7 @@ public class GameMenu extends Application {
 			bg.setEffect(new GaussianBlur(5));
 			
 			
-			this.setOnMouseEntered(event -> {
+			this.setOnMouseDragEntered(event -> {
 				bg.setTranslateX(10);
 				bg.setFill(Color.WHITE);
 				text.setFill(Color.BLACK);
