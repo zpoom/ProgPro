@@ -33,7 +33,7 @@ public class GameMenu extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Pane root = new Pane();
-		root.setPrefSize(800,600);
+		root.setPrefSize(1280,720);
 		InputStream is = Files.newInputStream(Paths.get("res/survive_bg.png"));
 		Image img = new Image(is);
 		is.close();
@@ -97,7 +97,7 @@ public class GameMenu extends Application {
 			bg.setEffect(new GaussianBlur(5));
 			
 			
-			this.setOnMouseDragEntered(event -> {
+			this.setOnMouseEntered(event -> {
 				bg.setTranslateX(10);
 				bg.setFill(Color.WHITE);
 				text.setFill(Color.BLACK);

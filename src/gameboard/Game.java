@@ -67,7 +67,7 @@ public class Game {
 		//test
 
 		Space A49 = new Space(1);
-		Space A50 = new Space(1);
+		Space A50 = new Space(4);
 		Space A51 = new Space(3);
 		Space A52 = new Space(3);
 		Space A53 = new Space(1);
@@ -116,13 +116,7 @@ public class Game {
 		Space A96 = new Space(1);
 		Space A97 = new Space(1);
 
-		tmp = (ArrayList<Space>) Arrays.asList(A48,A39,A40,A50,A59,A58);
-		A49.addAdjacentSpace(tmp);
-
-		Space A98 = new Space(1);
-		Space A99 = new Space(1);
-
-		tmp = (ArrayList<Space>) Arrays.asList(A2,A9,A10);
+		/*tmp = (ArrayList<Space>) Arrays.asList(A2,A9,A10);
 		A1.addAdjacentSpace(tmp);
 		
 		tmp = (ArrayList<Space>) Arrays.asList(A1,A3,A10,A9,A11);
@@ -415,8 +409,7 @@ public class Game {
 		
 		tmp = Arrays.asList(A95,A87,A88,A97);
 		A96.addAdjacentSpace(tmp);
-		
-<<<<<<< HEAD
+
 		tmp = Arrays.asList(A96,A88,A89);
 		A97.addAdjacentSpace(tmp);*/
 		
@@ -439,31 +432,72 @@ public class Game {
 		temp = new HBox();
 		temp.getChildren().addAll(A90,A91,A92,A93,A94,A95,A96,A97);
 		hSpace.add(temp);*/
+		double offY = Space.x/2;
+		hSpace = new HBox();
+		hSpace.getChildren().addAll(A1,A2,A3,A4,A5,A6,A7,A8);
+		hSpace.setTranslateX(Space.x*Math.sqrt(3));
+		vSpace = new VBox();
+		vSpace.getChildren().addAll(hSpace);
+		
+		hSpace = new HBox();
+		hSpace.getChildren().addAll(A9,A10,A11,A12,A13,A14,A15,A16,A17);
+		hSpace.setTranslateX(Space.x*Math.sqrt(3)/2);
+		hSpace.setTranslateY(-offY);
+		vSpace.getChildren().addAll(hSpace);
+		
+		hSpace = new HBox();
+		hSpace.getChildren().addAll(A18,A19,A20,A21,A22,A23,A24,A25);
+		hSpace.setTranslateX(Space.x*Math.sqrt(3));
+		hSpace.setTranslateY(-offY*2);
+		vSpace.getChildren().addAll(hSpace);
+		
+		hSpace = new HBox();
+		hSpace.getChildren().addAll(A26,A27,A28,A29,A30,A31,A32,A33,A34);
+		hSpace.setTranslateX(Space.x*Math.sqrt(3)/2);
+		hSpace.setTranslateY(-offY*3);
+		vSpace.getChildren().addAll(hSpace);
+		
+		hSpace = new HBox();
+		hSpace.getChildren().addAll(A35,A36,A37,A38,A39,A40,A41,A42,A43,A44);
+		hSpace.setTranslateY(-offY*4);
+		vSpace.getChildren().addAll(hSpace);
+		
+		hSpace = new HBox();
+		hSpace.getChildren().addAll(A45,A46,A47,A48,A49,A50,A51,A52,A53);
+		hSpace.setTranslateX(Space.x*Math.sqrt(3)/2);
+		hSpace.setTranslateY(-offY*5);
+		vSpace.getChildren().addAll(hSpace);
+		
 		hSpace = new HBox();
 		hSpace.getChildren().addAll(A54,A55,A56,A57,A58,A59,A60,A61,A62,A63);
-		vSpace = new VBox();
+		hSpace.setTranslateY(-offY*6);
 		vSpace.getChildren().addAll(hSpace);
 		
 		hSpace = new HBox();
 		hSpace.getChildren().addAll(A64,A65,A66,A67,A68,A69,A70,A71,A72);
 		hSpace.setTranslateX(Space.x*Math.sqrt(3)/2);
-		hSpace.setTranslateY(-25);
+		hSpace.setTranslateY(-offY*7);
 		vSpace.getChildren().addAll(hSpace);
 		
 		hSpace = new HBox();
 		hSpace.getChildren().addAll(A73,A74,A75,A76,A77,A78,A79,A80);
-		hSpace.setTranslateY(-50);
+		hSpace.setTranslateY(-offY*8);
+		hSpace.setTranslateX(Space.x*Math.sqrt(3));
 		vSpace.getChildren().addAll(hSpace);
 		
 		hSpace = new HBox();
 		hSpace.getChildren().addAll(A81,A82,A83,A84,A85,A86,A87,A88,A89);
 		hSpace.setTranslateX(Space.x*Math.sqrt(3)/2);
-		hSpace.setTranslateY(-75);
+		hSpace.setTranslateY(-offY*9);
 		vSpace.getChildren().addAll(hSpace);
 		
 		hSpace = new HBox();
 		hSpace.getChildren().addAll(A90,A91,A92,A93,A94,A95,A96,A97);
-		hSpace.setTranslateY(-100);
+		hSpace.setTranslateY(-offY*10);
+		hSpace.setTranslateX(Space.x*Math.sqrt(3));
 		vSpace.getChildren().addAll(hSpace);
+		
+		vSpace.setTranslateX(100);
+		vSpace.setTranslateY(25);
 	}
 }
