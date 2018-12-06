@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import player.Player;
 
 public class Game {
 	public HBox hSpace;
@@ -499,5 +500,8 @@ public class Game {
 		
 		vSpace.setTranslateX(100);
 		vSpace.setTranslateY(25);
+		
+		Player p1 = new Player("");
+		
 	}
 }
