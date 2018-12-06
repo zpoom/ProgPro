@@ -49,10 +49,12 @@ public class Space extends StackPane {
 			
 		});
 		setOnMouseClicked(event -> {
-			
+			for(Space a : Game.AllAdj.get(this)) {
+				a.setEffect(drop);
+			}
 		});
-		this.setOnMousePressed(event -> setEffect(drop));
-		this.setOnMouseReleased(event -> setEffect(null));
+		//this.setOnMousePressed(event -> setEffect(drop));
+		//this.setOnMouseReleased(event -> setEffect(null));
 		getChildren().addAll(bg);	
 	}
 	public void addAdjacentSpace(List<Space> sp) {

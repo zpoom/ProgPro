@@ -192,13 +192,25 @@ public class GameMenu extends Application {
 				btnOk.setTranslateY(50);
 				btnOk.setOnMouseClicked(evt -> {
 					// TODO start here
+					Game game = new Game();
+					getChildren().addAll(Game.vSpace);
+					TranslateTransition t = new TranslateTransition(Duration.seconds(0.25),name);
+					t.setToX(menu1.getTranslateX() + 400);
+					
+					TranslateTransition t1 = new TranslateTransition(Duration.seconds(0.5),Game.vSpace);
+					t1.setToX(choosePlayer.getTranslateX());
+					
+					t.play();
+					t1.play();
+					
+					t.setOnFinished(e -> {
+						getChildren().remove(name);
+					});
 				});
 				name.getChildren().addAll(btnOk);
-				enterNamePage.getChildren().addAll(name);
-				getChildren().addAll(enterNamePage);
+				getChildren().addAll(name);
 			});
 			btn3Players.setOnMouseClicked(event -> {
-				//TODO start game with 3 players
 				getChildren().remove(imgView);
 				getChildren().remove(bg);
 				getChildren().remove(choosePlayer);

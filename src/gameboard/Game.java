@@ -16,7 +16,7 @@ import player.Player;
 public class Game {
 	public HBox hSpace;
 	public static VBox vSpace;
-	public Map<Space,Set<Space> > AllAdj;
+	public static Map<Space,Set<Space> > AllAdj;
 	public ArrayList<Space> tmp;
 	public Set<Space> tmp2;
 	public Game() {
