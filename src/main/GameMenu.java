@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import gameboard.Game;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
@@ -31,8 +32,9 @@ public class GameMenu extends Application {
 	private Menu menu;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		StackPane root = new StackPane();
-		root.setPrefSize(800,600);
+		
+		Pane root = new Pane();
+		root.setPrefSize(1280,720);
 		InputStream is = Files.newInputStream(Paths.get("res/survive_bg.png"));
 		Image img = new Image(is);
 		is.close();
@@ -68,6 +70,16 @@ public class GameMenu extends Application {
 		});*/
 		primaryStage.setScene(scene);
 		primaryStage.show();
+
+		/*Game game = new Game();
+		VBox test = new VBox();
+		for(int i=0;i<game.hSpace.size();i++) {
+			test.getChildren().addAll(game.hSpace.get(i));
+		}
+		Scene scene = new Scene(test);
+		primaryStage.setScene(scene);
+		primaryStage.show();*/
+		
 	}
 	private static class MenuButton extends StackPane {
 		private Text text;
@@ -86,7 +98,7 @@ public class GameMenu extends Application {
 			bg.setEffect(new GaussianBlur(5));
 			
 			
-			this.setOnMouseDragEntered(event -> {
+			this.setOnMouseEntered(event -> {
 				bg.setTranslateX(10);
 				bg.setFill(Color.WHITE);
 				text.setFill(Color.BLACK);
@@ -121,6 +133,10 @@ public class GameMenu extends Application {
 			MenuButton btnStart = new MenuButton("START");
 			btnStart.setOnMouseClicked(event -> {
 				// start game
+				Game startGame = new Game();
+				
+				getChildren().add(Game.vSpace);
+				getChildren().remove(menu1);
 			});
 			
 			MenuButton btnHowTo = new MenuButton("HOW TO PLAY");
