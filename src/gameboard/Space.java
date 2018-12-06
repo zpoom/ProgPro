@@ -14,7 +14,6 @@ import javafx.scene.text.Text;
 
 public class Space extends StackPane {
 	public static final double x = 30;
-	public ArrayList<Space> adjacentSpace;
 	private int type;
 	public SpaceEffect eff;
 	public Space (int t) {
@@ -40,7 +39,7 @@ public class Space extends StackPane {
 		setOnDragExited(event ->{
 			bg.setFill(Color.TRANSPARENT);
 		});*/
-		DropShadow drop = new DropShadow(50, Color.WHITE);
+		DropShadow drop = new DropShadow(1000, Color.WHITE);
 		drop.setInput(new Glow());
 		setOnMouseEntered(event -> {
 			
@@ -56,10 +55,5 @@ public class Space extends StackPane {
 		//this.setOnMousePressed(event -> setEffect(drop));
 		//this.setOnMouseReleased(event -> setEffect(null));
 		getChildren().addAll(bg);	
-	}
-	public void addAdjacentSpace(List<Space> sp) {
-		for(int i=0;i<sp.size();i++) {
-			adjacentSpace.add((Space) sp.get(i));
-		}
 	}
 }
