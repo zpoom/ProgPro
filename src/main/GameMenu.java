@@ -36,6 +36,7 @@ public class GameMenu extends Application {
 	private Menu menu;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		
 		Pane root = new Pane();
 		root.setPrefSize(1280,720);
 		/*InputStream is = Files.newInputStream(Paths.get("res/survive_bg.png"));

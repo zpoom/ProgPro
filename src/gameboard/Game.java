@@ -2,7 +2,11 @@ package gameboard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
@@ -12,10 +16,11 @@ import player.Player;
 public class Game {
 	public HBox hSpace;
 	public static VBox vSpace;
-	
+	public Map<Space,Set<Space> > AllAdj;
+	public ArrayList<Space> tmp;
+	public Set<Space> tmp2;
 	public Game() {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
-		ArrayList<Space> tmp;
 		Space A1 = new Space(1);
 		Space A2 = new Space(1);
 		Space A3 = new Space(1);
@@ -116,303 +121,302 @@ public class Game {
 		Space A95 = new Space(1);
 		Space A96 = new Space(1);
 		Space A97 = new Space(1);
+		//new way to collect all adjacent  geb nai game tan la gun
+		AllAdj = new HashMap<Space,Set<Space>>();
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A2,A9,A10)) ;
+		AllAdj.put(A1,tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A1,A3,A10,A9,A11)) ;
+		AllAdj.put(A2, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A2,A4,A11,A12)) ;
+		AllAdj.put(A3, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A3,A12,A13,A5)) ;
+		AllAdj.put(A4, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A4,A13,A14,A6)) ;
+		AllAdj.put(A5, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A5,A14,A15,A7)) ;
+		AllAdj.put(A6, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A6,A15,A16,A8)) ;
+		AllAdj.put(A7, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A7,A16,A17)) ;
+		AllAdj.put(A8, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A1,A10,A18)) ;
+		AllAdj.put(A9, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A1,A2,A9,A11,A18,A19)) ;
+		AllAdj.put(A10, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A2,A3,A10,A12,A19,A20)) ;
+		AllAdj.put(A11, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A3,A4,A11,A13,A20,A21)) ;
+		AllAdj.put(A12, tmp2);
 
-		/*tmp = (ArrayList<Space>) Arrays.asList(A2,A9,A10);
-		A1.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A1,A3,A10,A9,A11);
-		A2.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A2,A4,A11,A12);
-		A3.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A3,A12,A13,A5);
-		A4.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A4,A13,A14,A6);
-		A5.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A5,A14,A15,A7);
-		A6.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A6,A15,A16,A8);
-		A7.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A7,A16,A17);
-		A8.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A1,A10,A18);
-		A9.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A1,A2,A9,A11,A18,A19);
-		A10.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A2,A3,A10,A12,A19,A20);
-		A11.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A3,A4,A11,A13,A20,A21);
-		A12.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A4,A5,A12,A14,A21,A22);
-		A13.addAdjacentSpace(tmp);
 
-		tmp = (ArrayList<Space>) Arrays.asList(A5,A6,A13,A15,A22,A23);
-		A14.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A6,A7,A14,A16,A23,A24);
-		A15.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A7,A8,A15,A17,A24,A25);
-		A16.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A8,A16,A25);
-		A17.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A9,A10,A19,A26,A27);
-		A18.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A10,A11,A18,A20,A27,A28);
-		A19.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A11,A12,A19,A21,A28,A29);
-		A20.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A12,A13,A20,A22,A29,A30);
-		A21.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A13,A14,A21,A23,A30,A31);
-		A22.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A14,A15,A22,A24,A31,A32);
-		A23.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A15,A16,A23,A25,A32,A33);
-		A24.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A16,A17,A24,A33,A34);
-		A25.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A18,A27,A35,A36);
-		A26.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A18,A19,A26,A28,A36,A37);
-		A27.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A19,A20,A27,A29,A37,A38);
-		A28.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A20,A21,A28,A30,A38,A39);
-		A29.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A21,A22,A29,A31,A39,A40);
-		A30.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A22,A23,A30,A32,A40,A41);
-		A31.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A23,A24,A31,A33,A41,A42);
-		A32.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A24,A25,A32,A34,A42,A43);
-		A33.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A25,A33,A43,A44);
-		A34.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A26,A36,A45);
-		A35.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A26,A27,A35,A37,A45,A46);
-		A36.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A27,A28,A36,A38,A46,A47);
-		A37.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A28,A29,A37,A39,A47,A48);
-		A38.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A29,A30,A38,A40,A48,A49);
-		A39.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A30,A31,A39,A41,A49,A50);
-		A40.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A31,A32,A40,A42,A50,A51);
-		A41.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A32,A33,A41,A43,A51,A52);
-		A42.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A33,A34,A42,A44,A52,A53);
-		A43.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A34,A43,A53);
-		A44.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A35,A36,A46,A54,A55);
-		A45.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A36,A37,A45,A47,A55,A56);
-		A46.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A37,A38,A46,A48,A56,A57);
-		A47.addAdjacentSpace(tmp);
-		
-		tmp = (ArrayList<Space>) Arrays.asList(A38,A39,A47,A49,A57,A58);
-		A48.addAdjacentSpace(tmp);
-				
-		//FIRST PART DONE
-		tmp = (ArrayList<Space>) Arrays.asList(A48,A39,A40,A50,A59,A58);
-		A49.addAdjacentSpace(tmp);
+		tmp2 = new HashSet<Space>(Arrays.asList(A4,A5,A12,A14,A21,A22)) ;
+		AllAdj.put(A13, tmp2);
 
-		
-		//tmp = (ArrayList<Space>) Arrays.asList(A48,A39,A40,A50,A59,A58);
-		//A49.adjacentSpace.add(A48);
-		
-		/*
-		tmp = Arrays.asList(A51,A49,A40,A41,A59,A60);
-		A50.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A50,A41,A42,A52,A60,A61);
-		A51.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A51,A42,A43,A53,A61,A62);
-		A52.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A52,A43,A44,A62,A63);
-		A53.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A45,A55,A64);
-		A54.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A45,A46,A54,A56,A64,A65);
-		A55.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A55,A46,A47,A57,A65,A66);
-		A56.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A56,A47,A48,A58,A66,A67);
-		A57.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A57,A48,A49,A67,A58,A59);
-		A58.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A58,A49,A50,A60,A69,A68);
-		A59.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A59,A50,A51,A61,A69,A70);
-		A60.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A60,A51,A52,A62,A70,A71);
-		A61.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A61,A52,A53,A63,A71,A72);
-		A62.addAdjacentSpace(tmp);
+		tmp2 = new HashSet<Space>(Arrays.asList(A5,A6,A13,A15,A22,A23)) ;
+		AllAdj.put(A14, tmp2);
 
-		tmp = Arrays.asList(A62,A53,A72);
-		A63.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A54,A55,A65,A73);
-		A64.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A64,A55,A56,A66,A73,A74);
-		A65.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A65,A56,A57,A67,A74,A75);
-		A66.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A66,A57,A58,A68,A75,A76);
-		A67.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A67,A58,A59,A69,A76,A77);
-		A68.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A68,A59,A60,A70,A77,A78);
-		A69.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A69,A60,A61,A71,A78,A79);
-		A70.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A70,A61,A62,A72,A79,A80);
-		A71.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A71,A62,A63,A80);
-		A72.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A81,A64,A65,A74,A82);
-		A73.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A73,A65,A66,A75,A82,A83);
-		A74.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A74,A66,A67,A76,A83,A84);
-		A75.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A75,A67,A68,A77,A84,A85);
-		A76.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A76,A68,A69,A78,A85,A86);
-		A77.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A77,A69,A70,A79,A86,A87);
-		A78.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A78,A70,A71,A80,A87,A88);
-		A79.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A79,A71,A72,A89,A88);
-		A80.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A73,A82,A90);
-		A81.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A81,A73,A74,A90,A83,A91);
-		A82.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A82,A74,A75,A84,A91,A92);
-		A83.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A83,A75,A76,A85,A92,A93);
-		A84.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A84,A76,A77,A86,A93,A94);
-		A85.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A85,A77,A78,A87,A94,A95);
-		A86.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A86,A78,A79,A88,A95,A96);
-		A87.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A87,A79,A80,A89,A96,A97);
-		A88.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A88,A80,A97);
-		A89.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A81,A82,A91);
-		A90.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A90,A82,A83,A92);
-		A91.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A91,A83,A84,A93);
-		A92.addAdjacentSpace(tmp);
+		tmp2 = new HashSet<Space>(Arrays.asList(A6,A7,A14,A16,A23,A24)) ;
+		AllAdj.put(A15, tmp2);
 
-		tmp = Arrays.asList(A92,A84,A85,A94);
-		A93.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A93,A85,A86,A95);
-		A94.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A94,A86,A87,A96);
-		A95.addAdjacentSpace(tmp);
-		
-		tmp = Arrays.asList(A95,A87,A88,A97);
-		A96.addAdjacentSpace(tmp);
+		tmp2 = new HashSet<Space>(Arrays.asList(A7,A8,A15,A17,A24,A25)) ;
+		AllAdj.put(A16, tmp2);
 
-		tmp = Arrays.asList(A96,A88,A89);
-		A97.addAdjacentSpace(tmp);*/
+		tmp2 = new HashSet<Space>(Arrays.asList(A8,A16,A25)) ;
+		AllAdj.put(A17, tmp2);
+
+		tmp2 = new HashSet<Space>(Arrays.asList(A9,A10,A19,A26,A27)) ;
+		AllAdj.put(A18, tmp2);
+
+		tmp2 = new HashSet<Space>(Arrays.asList(A10,A11,A18,A20,A27,A28)) ;
+		AllAdj.put(A19, tmp2);
+
+		tmp2 = new HashSet<Space>(Arrays.asList(A11,A12,A19,A21,A28,A29)) ;
+		AllAdj.put(A20, tmp2);
+
+		tmp2 = new HashSet<Space>(Arrays.asList(A12,A13,A20,A22,A29,A30)) ;
+		AllAdj.put(A21, tmp2);
+
+		tmp2 = new HashSet<Space>(Arrays.asList(A13,A14,A21,A23,A30,A31)) ;
+		AllAdj.put(A22, tmp2);
+
+		tmp2 = new HashSet<Space>(Arrays.asList(A14,A15,A22,A24,A31,A32)) ;
+		AllAdj.put(A23, tmp2);
+
+		tmp2 = new HashSet<Space>(Arrays.asList(A15,A16,A23,A25,A32,A33)) ;
+		AllAdj.put(A24, tmp2);
+
+		tmp2 = new HashSet<Space>(Arrays.asList(A16,A17,A24,A33,A34)) ;
+		AllAdj.put(A25, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A18,A27,A35,A36)) ;
+		AllAdj.put(A26, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A18,A19,A26,A28,A36,A37)) ;
+		AllAdj.put(A27, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A19,A20,A27,A29,A37,A38)) ;
+		AllAdj.put(A28, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A20,A21,A28,A30,A38,A39)) ;
+		AllAdj.put(A29, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A21,A22,A29,A31,A39,A40)) ;
+		AllAdj.put(A30, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A22,A23,A30,A32,A40,A41)) ;
+		AllAdj.put(A31, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A23,A24,A31,A33,A41,A42)) ;
+		AllAdj.put(A32, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A24,A25,A32,A34,A42,A43)) ;
+		AllAdj.put(A33, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A25,A33,A43,A44)) ;
+		AllAdj.put(A34, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A26,A36,A45)) ;
+		AllAdj.put(A35, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A26,A27,A35,A37,A45,A46)) ;
+		AllAdj.put(A36, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A27,A28,A36,A38,A46,A47)) ;
+		AllAdj.put(A37, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A28,A29,A37,A39,A47,A48)) ;
+		AllAdj.put(A38, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A29,A30,A38,A40,A48,A49)) ;
+		AllAdj.put(A39, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A30,A31,A39,A41,A49,A50)) ;
+		AllAdj.put(A40, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A31,A32,A40,A42,A50,A51)) ;
+		AllAdj.put(A41, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A32,A33,A41,A43,A51,A52)) ;
+		AllAdj.put(A42, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A33,A34,A42,A44,A52,A53)) ;
+		AllAdj.put(A43, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A34,A43,A53)) ;
+		AllAdj.put(A44, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A35,A36,A46,A54,A55)) ;
+		AllAdj.put(A45, tmp2);
+		
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A36,A37,A45,A47,A55,A56)) ;
+		AllAdj.put(A46, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A37,A38,A46,A48,A56,A57)) ;
+		AllAdj.put(A47, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A38,A39,A47,A49,A57,A58)) ;
+		AllAdj.put(A48, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A48,A39,A40,A50,A59,A58)) ;
+		AllAdj.put(A49, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A51,A49,A40,A41,A59,A60)) ;
+		AllAdj.put(A50, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A50,A41,A42,A52,A60,A61)) ;
+		AllAdj.put(A51, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A51,A42,A43,A53,A61,A62)) ;
+		AllAdj.put(A52, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A52,A43,A44,A62,A63)) ;
+		AllAdj.put(A53, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A45,A55,A64)) ;
+		AllAdj.put(A54, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A45,A46,A54,A56,A64,A65)) ;
+		AllAdj.put(A55, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A55,A46,A47,A57,A65,A66)) ;
+		AllAdj.put(A56, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A56,A47,A48,A58,A66,A67)) ;
+		AllAdj.put(A57, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A57,A48,A49,A67,A58,A59)) ;
+		AllAdj.put(A58, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A58,A49,A50,A60,A69,A68)) ;
+		AllAdj.put(A59, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A59,A50,A51,A61,A69,A70)) ;
+		AllAdj.put(A60, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A60,A51,A52,A62,A70,A71)) ;
+		AllAdj.put(A61, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A61,A52,A53,A63,A71,A72)) ;
+		AllAdj.put(A62, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A62,A53,A72)) ;
+		AllAdj.put(A63, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A54,A55,A65,A73)) ;
+		AllAdj.put(A64, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A64,A55,A56,A66,A73,A74)) ;
+		AllAdj.put(A65, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A65,A56,A57,A67,A74,A75)) ;
+		AllAdj.put(A66, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A66,A57,A58,A68,A75,A76)) ;
+		AllAdj.put(A67, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A67,A58,A59,A69,A76,A77)) ;
+		AllAdj.put(A68, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A68,A59,A60,A70,A77,A78)) ;
+		AllAdj.put(A69, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A69,A60,A61,A71,A78,A79)) ;
+		AllAdj.put(A70, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A70,A61,A62,A72,A79,A80)) ;
+		AllAdj.put(A71, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A71,A62,A63,A80)) ;
+		AllAdj.put(A72, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A81,A64,A65,A74,A82)) ;
+		AllAdj.put(A73, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A73,A65,A66,A75,A82,A83)) ;
+		AllAdj.put(A74, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A74,A66,A67,A76,A83,A84)) ;
+		AllAdj.put(A75, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A75,A67,A68,A77,A84,A85)) ;
+		AllAdj.put(A76, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A76,A68,A69,A78,A85,A86)) ;
+		AllAdj.put(A77, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A77,A69,A70,A79,A86,A87)) ;
+		AllAdj.put(A78, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A78,A70,A71,A80,A87,A88)) ;
+		AllAdj.put(A79, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A79,A71,A72,A89,A88)) ;
+		AllAdj.put(A80, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A73,A82,A90)) ;
+		AllAdj.put(A81, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A81,A73,A74,A90,A83,A91)) ;
+		AllAdj.put(A82, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A82,A74,A75,A84,A91,A92)) ;
+		AllAdj.put(A83, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A83,A75,A76,A85,A92,A93)) ;
+		AllAdj.put(A84, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A84,A76,A77,A86,A93,A94)) ;
+		AllAdj.put(A85, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A85,A77,A78,A87,A94,A95)) ;
+		AllAdj.put(A86, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A86,A78,A79,A88,A95,A96)) ;
+		AllAdj.put(A87, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A87,A79,A80,A89,A96,A97)) ;
+		AllAdj.put(A88, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A88,A80,A97)) ;
+		AllAdj.put(A89, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A81,A82,A91)) ;
+		AllAdj.put(A90, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A90,A82,A83,A92)) ;
+		AllAdj.put(A91, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A91,A83,A84,A93)) ;
+		AllAdj.put(A92, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A92,A84,A85,A94)) ;
+		AllAdj.put(A93, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A93,A85,A86,A95)) ;
+		AllAdj.put(A94, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A94,A86,A87,A96)) ;
+		AllAdj.put(A95, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A95,A87,A88,A97)) ;
+		AllAdj.put(A96, tmp2);
+		
+		tmp2 = new HashSet<Space>(Arrays.asList(A96,A88,A89)) ;
+		AllAdj.put(A97, tmp2);
+		
 		
 		//HBox temp = new HBox();
 		//temp.getChildren().addAll(A54,A55,A56,A57,A58,A59,A60,A61,A62,A63);
@@ -504,4 +508,5 @@ public class Game {
 		Player p1 = new Player("");
 		
 	}
+	
 }
