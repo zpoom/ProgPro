@@ -6,6 +6,7 @@ import creatures.Meeple;
 
 public class Player {
 	private String name;
+	public int color;
 	public ArrayList<Meeple> meeple;
 	private int score;
 	private int action;

@@ -12,4 +12,5 @@ public class Meeple implements Moveable {
 	public void moveTo(Space destination) {
 		now = destination;
 	}
+	
 }

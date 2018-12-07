@@ -74,16 +74,6 @@ public class Main extends Application {
 		});*/
 		primaryStage.setScene(scene);
 		primaryStage.show();
-
-		/*Game game = new Game();
-		VBox test = new VBox();
-		for(int i=0;i<game.hSpace.size();i++) {
-			test.getChildren().addAll(game.hSpace.get(i));
-		}
-		Scene scene = new Scene(test);
-		primaryStage.setScene(scene);
-		primaryStage.show();*/
-		
 	}
 	public static void main(String[] args) {
 		launch(args);

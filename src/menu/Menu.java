@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import gameboard.Game;
 import javafx.animation.TranslateTransition;
@@ -18,6 +19,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import player.Player;
 
 public class Menu extends Parent {
 	public Menu() throws IOException {
@@ -76,7 +78,7 @@ public class Menu extends Parent {
 			TextField p1Name = new TextField();
 			p1Name.setFont(Font.font("Papyrus",40));
 			tx1.setText("PLAYER1'S NAME :");
-			p1Name.setStyle("-fx-background-color: rgba(225, 225, 225, 225);");
+			p1Name.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
 			p1Name.setTranslateY(-30);
 			p1Name.setMaxWidth(5000.0);
 			hLine1.getChildren().addAll(tx1,p1Name);
@@ -84,7 +86,7 @@ public class Menu extends Parent {
 			HBox hLine2 = new HBox(20);
 			TextField p2Name = new TextField();
 			p2Name.setFont(Font.font("Papyrus",40));
-			p2Name.setStyle("-fx-background-color: rgba(225,225, 225, 225);");
+			p2Name.setStyle("-fx-background-color: rgba(0,0, 0, 0);");
 			tx2.setText("PLAYER2'S NAME :");
 			p2Name.setTranslateY(-30);
 			p2Name.setMaxWidth(5000.0);
@@ -101,7 +103,12 @@ public class Menu extends Parent {
 			btnOk.setTranslateY(50);
 			btnOk.setOnMouseClicked(evt -> {
 				// TODO start here
-				Game game = new Game();
+				Player p1 = new Player(tx1.getText());
+				Player p2 = new Player(tx2.getText());
+				ArrayList<Player> temp = new ArrayList<Player>();
+				temp.add(p1);
+				temp.add(p2);
+				Game game = new Game(2,temp);
 				getChildren().addAll(Game.vSpace);
 				TranslateTransition t = new TranslateTransition(Duration.seconds(0.5),name);
 				t.setToX(menu1.getTranslateX() + 400);
@@ -109,7 +116,6 @@ public class Menu extends Parent {
 				TranslateTransition t1 = new TranslateTransition(Duration.seconds(0.5),Game.vSpace);
 				t1.setToX(choosePlayer.getTranslateX()+240);
 				t1.setToY(choosePlayer.getTranslateY()-120);
-				
 				t.play();
 				t1.play();
 				

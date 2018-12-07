@@ -3,7 +3,10 @@ package gameboard;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
+import creatures.Meeple;
+import creatures.Monster;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.layout.StackPane;
@@ -13,11 +16,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class Space extends StackPane {
-	public static final double x = 30;
+	public static final double x = 35;
 	private int type;
 	public SpaceEffect eff;
+	public Map<Integer,Integer> mp;  // 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
 	public Space (int t) {
+		eff = new SpaceEffect();
 		Polygon bg = new Polygon();
+		meepleHere = 0;
 		bg.setStroke(Color.BLACK);
 		bg.setStrokeWidth(2.0);
 		bg.getPoints().addAll(new Double[]{
@@ -47,13 +53,17 @@ public class Space extends StackPane {
 		setOnMouseExited(event -> {
 			
 		});
-		setOnMouseClicked(event -> {
-			for(Space a : Game.AllAdj.get(this)) {
-				a.setEffect(drop);
-			}
-		});
 		//this.setOnMousePressed(event -> setEffect(drop));
 		//this.setOnMouseReleased(event -> setEffect(null));
 		getChildren().addAll(bg);	
+	}
+	public void addMeeple(Meeple meeple) {
+		// TODO
+	}
+	public void addMonster(Monster monster) {
+		// TODO
+	}
+	public void update() {
+		// TODO
 	}
 }
