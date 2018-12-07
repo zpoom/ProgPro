@@ -510,6 +510,8 @@ public class Game {
 		vSpace.setTranslateX(100);
 		vSpace.setTranslateY(-50);
 		
+		startTile = new ArrayList<Space>();
+		
 		startTile.add(A20);
 		startTile.add(A21);
 		startTile.add(A22);
@@ -552,13 +554,14 @@ public class Game {
 		startTile.add(A78);
 		
 	}
-	private void randomPosition(int n,int color) {
+	public void randomPosition(int n,int color) {
 		ArrayList<Space> temp = new ArrayList<Space>();
 		temp.addAll(startTile);
 		for(int i=0;i<n;i++){
 			Random rd = new Random();
 			int idx = rd.nextInt(temp.size());
 			temp.get(idx).addObject(color);
+			temp.get(idx).update();
 			temp.remove(idx);
 		}
 	}

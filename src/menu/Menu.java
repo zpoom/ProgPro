@@ -109,6 +109,8 @@ public class Menu extends Parent {
 				temp.add(p1);
 				temp.add(p2);
 				Game game = new Game(2,temp);
+				game.randomPosition(10, 1);
+				game.randomPosition(10, 2);
 				getChildren().addAll(Game.vSpace);
 				TranslateTransition t = new TranslateTransition(Duration.seconds(0.5),name);
 				t.setToX(menu1.getTranslateX() + 400);

@@ -23,7 +23,13 @@ public class Space extends StackPane {
 	public Map<Integer,Integer> mp;  // 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
 	
 	public Space (int t) {
-		mp = new HashMap<>();
+		mp = new HashMap<Integer,Integer>();
+		mp.put(1, 0);
+		mp.put(2, 0);
+		mp.put(3, 0);
+		mp.put(4, 0);
+		mp.put(5, 0);
+		mp.put(6, 0);
 		Polygon bg = new Polygon();
 		bg.setStroke(Color.BLACK);
 		bg.setStrokeWidth(2.0);
@@ -62,8 +68,16 @@ public class Space extends StackPane {
 		// TODO
 		mp.put(creature, mp.get(creature)+1);
 	}
+	public void deleteObject(Integer creature) {
+		mp.put(creature, mp.get(creature)-1);
+	}
 	
 	public void update() {
 		// TODO
+		for(int i=1;i<=6;i++) {
+			for(int j=0;j<mp.get(i);j++) {
+				getChildren().add(new Meeple(i));
+			}
+		}
 	}
 }
