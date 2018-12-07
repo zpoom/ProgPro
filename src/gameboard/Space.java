@@ -6,8 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import creatures.Bigo;
+import creatures.Bigpom;
+import creatures.Bigtu;
 import creatures.Meeple;
 import creatures.Monster;
+import creatures.Moveable;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.layout.StackPane;
@@ -21,7 +25,8 @@ public class Space extends StackPane {
 	private int type;
 	public SpaceEffect eff;
 	public Map<Integer,Integer> mp;  // 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
-	
+	public ArrayList<Meeple> p1 ,p2;
+	public boolean boat,tu,pom,bigO;
 	public Space (int t) {
 		mp = new HashMap<Integer,Integer>();
 		mp.put(1, 0);
@@ -30,6 +35,8 @@ public class Space extends StackPane {
 		mp.put(4, 0);
 		mp.put(5, 0);
 		mp.put(6, 0);
+		p1 = new ArrayList<Meeple>();
+		p2 = new ArrayList<Meeple>();
 		Polygon bg = new Polygon();
 		bg.setStroke(Color.BLACK);
 		bg.setStrokeWidth(2.0);
@@ -64,20 +71,57 @@ public class Space extends StackPane {
 		//this.setOnMouseReleased(event -> setEffect(null));
 		getChildren().addAll(bg);	
 	}
-	public void addObject(Integer creature) {
+	// 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
+	public void addObject(Moveable creature) {
 		// TODO
-		mp.put(creature, mp.get(creature)+1);
+		if(creature instanceof Meeple ) {
+			Meeple tmp = (Meeple) creature;
+			if(tmp.getColor()==1) p1.add(tmp);
+			else p2.add(tmp);
+		}
+		else if(creature instanceof Bigo) {
+			bigO = true;
+		}
+		else if (creature instanceof Bigpom) {
+			pom = true;
+		}
+		else if(creature instanceof Bigtu) {
+			tu = true;
+		}
+		else {
+			boat = true;
+		}
 	}
-	public void deleteObject(Integer creature) {
-		mp.put(creature, mp.get(creature)-1);
+	// 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
+	public void deleteObject(Moveable creature) {
+		if(creature instanceof Meeple ) {
+			Meeple tmp = (Meeple) creature;
+			if(tmp.getColor()==1) {
+				p1.remove(creature);
+			}
+			else p2.remove(creature);
+		}
+		else if(creature instanceof Bigo) {
+			bigO = false;
+		}
+		else if (creature instanceof Bigpom) {
+			pom = false;
+		}
+		else if(creature instanceof Bigtu) {
+			tu = false;
+		}
+		else {
+			boat = false;
+		}
 	}
 	
 	public void update() {
 		// TODO
-		for(int i=1;i<=6;i++) {
+		/*for(int i=1;i<=6;i++) {
 			for(int j=0;j<mp.get(i);j++) {
 				getChildren().add(new Meeple(i));
 			}
-		}
+		}*/
+		
 	}
 }
