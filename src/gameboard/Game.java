@@ -22,9 +22,11 @@ public class Game {
 	public static int turn;
 	public static int playerAmount;
 	private ArrayList<Space> startTile;
+	public static int step;
 	public Game(int player,ArrayList<Player> players) {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
 		turn = 0;
+		step = 0;
 		this.playerAmount = player;
 		Space A1 = new Space(1);
 		Space A2 = new Space(1);
@@ -506,9 +508,6 @@ public class Game {
 		hSpace.setTranslateY(-offY*10);
 		hSpace.setTranslateX(Space.x*Math.sqrt(3));
 		vSpace.getChildren().addAll(hSpace);
-		
-		vSpace.setTranslateX(100);
-		vSpace.setTranslateY(-50);
 		
 		startTile = new ArrayList<Space>();
 		

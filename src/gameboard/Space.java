@@ -21,7 +21,8 @@ public class Space extends StackPane {
 	private int type;
 	public SpaceEffect eff;
 	public Map<Integer,Integer> mp;  // 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
-	
+	public ArrayList<Meeple> meeple;
+	public Polygon bg;
 	public Space (int t) {
 		mp = new HashMap<Integer,Integer>();
 		mp.put(1, 0);
@@ -30,7 +31,7 @@ public class Space extends StackPane {
 		mp.put(4, 0);
 		mp.put(5, 0);
 		mp.put(6, 0);
-		Polygon bg = new Polygon();
+		bg = new Polygon();
 		bg.setStroke(Color.BLACK);
 		bg.setStrokeWidth(2.0);
 		bg.getPoints().addAll(new Double[]{
@@ -46,22 +47,31 @@ public class Space extends StackPane {
 		if(t == 2) bg.setFill(Color.GREEN);
 		if(t == 3) bg.setFill(Color.BURLYWOOD);
 		if(t == 4) bg.setFill(Color.GREY);
-		/*setOnMouseDragEntered(event -> {
-			bg.setFill(Color.BLACK);
-		});
-		setOnDragExited(event ->{
-			bg.setFill(Color.TRANSPARENT);
-		});*/
 		DropShadow drop = new DropShadow(1000, Color.WHITE);
 		drop.setInput(new Glow());
-		setOnMouseEntered(event -> {
-			
+		setOnMouseClicked(event ->{
+			if(Game.step == 0) {
+				Game.step = 1;
+				for(Space a : Game.AllAdj.get(this)) {
+					a.bg.setFill(Color.WHITE);
+					a.setOnMouseClicked(evt ->{
+						//TODO set onclick for move to this space
+					});
+				}
+			}
+			else {
+				Game.step = 0;
+				for(Space a : Game.AllAdj.get(this)) {
+					if(a.type == 1) a.bg.setFill(Color.TRANSPARENT);
+					if(a.type == 2) a.bg.setFill(Color.GREEN);
+					if(a.type == 3) a.bg.setFill(Color.BURLYWOOD);
+					if(a.type == 4) a.bg.setFill(Color.GREY);
+					a.setOnMouseClicked(evt ->{
+						//TODO set onclick for move to this space
+					});
+				}
+			}
 		});
-		setOnMouseExited(event -> {
-			
-		});
-		//this.setOnMousePressed(event -> setEffect(drop));
-		//this.setOnMouseReleased(event -> setEffect(null));
 		getChildren().addAll(bg);	
 	}
 	public void addObject(Integer creature) {

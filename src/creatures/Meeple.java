@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class Meeple  extends Circle implements Moveable{
-	private int color;
+	private int color; // 1 = p1   2 = p2
 	private Space now;
 	public Meeple(int color) {
 		this.color = color;
@@ -19,7 +19,9 @@ public class Meeple  extends Circle implements Moveable{
 		// random space
 	}
 	public void moveTo(Space destination) {
+		now.deleteObject(color);
 		now = destination;
+		now.addObject(color);
 	}
 	
 }
