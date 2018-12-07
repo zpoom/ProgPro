@@ -2,6 +2,7 @@ package gameboard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,8 +21,9 @@ public class Space extends StackPane {
 	private int type;
 	public SpaceEffect eff;
 	public Map<Integer,Integer> mp;  // 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
+	
 	public Space (int t) {
-		//eff = new SpaceEffect();
+		mp = new HashMap<>();
 		Polygon bg = new Polygon();
 		bg.setStroke(Color.BLACK);
 		bg.setStrokeWidth(2.0);
@@ -56,12 +58,11 @@ public class Space extends StackPane {
 		//this.setOnMouseReleased(event -> setEffect(null));
 		getChildren().addAll(bg);	
 	}
-	public void addMeeple(Meeple meeple) {
+	public void addObject(Integer creature) {
 		// TODO
+		mp.put(creature, mp.get(creature)+1);
 	}
-	public void addMonster(Monster monster) {
-		// TODO
-	}
+	
 	public void update() {
 		// TODO
 	}
