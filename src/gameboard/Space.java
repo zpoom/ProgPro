@@ -63,6 +63,9 @@ public class Space extends StackPane {
 		// TODO
 		mp.put(creature, mp.get(creature)+1);
 	}
+	public void deleteObject(Integer creature) {
+		mp.put(creature, mp.get(creature)-1);
+	}
 	
 	public void update() {
 		// TODO
