@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import creatures.Meeple;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -22,12 +23,62 @@ public class Game {
 	public static int turn;
 	public static int playerAmount;
 	private ArrayList<Space> startTile;
+<<<<<<< HEAD
 	public static int step;
+||||||| merged common ancestors
+=======
+	protected ArrayList<Meeple> player1 , player2;
+>>>>>>> c293053ffb55b94acc07f415e89bc2baab685fe7
 	public Game(int player,ArrayList<Player> players) {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
 		turn = 0;
 		step = 0;
 		this.playerAmount = player;
+		player1 = new ArrayList<Meeple>();
+		player2 = new ArrayList<Meeple>();
+		
+		Meeple m1 = new Meeple(1);
+		Meeple m2 = new Meeple(1);
+		Meeple m3 = new Meeple(1);
+		Meeple m4 = new Meeple(1);
+		Meeple m5 = new Meeple(1);
+		Meeple m6 = new Meeple(1);
+		Meeple m7 = new Meeple(1);
+		Meeple m8 = new Meeple(1);
+		Meeple m9 = new Meeple(1);
+		Meeple m10 = new Meeple(1);
+		player1.add(m1);
+		player1.add(m2);
+		player1.add(m3);
+		player1.add(m4);
+		player1.add(m5);
+		player1.add(m6);
+		player1.add(m7);
+		player1.add(m8);
+		player1.add(m9);
+		player1.add(m10);
+		
+		Meeple m11 = new Meeple(2);
+		Meeple m12= new Meeple(2);
+		Meeple m13 = new Meeple(2);
+		Meeple m14 = new Meeple(2);
+		Meeple m15 = new Meeple(2);
+		Meeple m16 = new Meeple(2);
+		Meeple m17 = new Meeple(2);
+		Meeple m18 = new Meeple(2);
+		Meeple m19 = new Meeple(2);
+		Meeple m20 = new Meeple(2);
+		
+		player2.add(m11);
+		player2.add(m12);
+		player2.add(m13);
+		player2.add(m14);
+		player2.add(m15);
+		player2.add(m16);
+		player2.add(m17);
+		player2.add(m18);
+		player2.add(m19);
+		player2.add(m20);
 		Space A1 = new Space(1);
 		Space A2 = new Space(1);
 		Space A3 = new Space(1);
@@ -553,15 +604,26 @@ public class Game {
 		startTile.add(A78);
 		
 	}
-	public void randomPosition(int n,int color) {
+	public void randomPosition1() {
+		
 		ArrayList<Space> temp = new ArrayList<Space>();
 		temp.addAll(startTile);
-		for(int i=0;i<n;i++){
+		for(int i = 0 ; i< 10;i++) {
 			Random rd = new Random();
 			int idx = rd.nextInt(temp.size());
-			temp.get(idx).addObject(color);
-			temp.get(idx).update();
-			temp.remove(idx);
+			temp.get(idx).addObject(player1.get(i));
 		}
+		
+	}
+	public void randomPosition2() {
+		
+		ArrayList<Space> temp = new ArrayList<Space>();
+		temp.addAll(startTile);
+		for(int i = 0 ; i< 10;i++) {
+			Random rd = new Random();
+			int idx = rd.nextInt(temp.size());
+			temp.get(idx).addObject(player2.get(i));
+		}
+		
 	}
 }
