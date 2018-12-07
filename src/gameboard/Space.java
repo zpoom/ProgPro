@@ -14,6 +14,7 @@ import creatures.Monster;
 import creatures.Moveable;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -22,13 +23,14 @@ import javafx.scene.text.Text;
 
 public class Space extends StackPane {
 	public static final double x = 35;
-	private int type;
+	public int type;
 	public SpaceEffect eff;
 	public Map<Integer,Integer> mp;  // 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
 	public ArrayList<Meeple> meeple;
 	public Polygon bg;
 	public ArrayList<Meeple> p1 ,p2;
-	public boolean boat,tu,pom,bigO;
+	public static Space justClicked;
+public boolean boat,tu,pom,bigO;
 	public Space (int t) {
 		mp = new HashMap<Integer,Integer>();
 		mp.put(1, 0);
@@ -59,21 +61,10 @@ public class Space extends StackPane {
 		drop.setInput(new Glow());
 		setOnMouseClicked(event ->{
 			if(Game.step == 0) {
+				justClicked = this;
 				Game.step = 1;
 				for(Space a : Game.AllAdj.get(this)) {
 					a.bg.setFill(Color.WHITE);
-					a.setOnMouseClicked(evt ->{
-						//TODO set onclick for move to this space
-					});
-				}
-			}
-			else {
-				Game.step = 0;
-				for(Space a : Game.AllAdj.get(this)) {
-					if(a.type == 1) a.bg.setFill(Color.TRANSPARENT);
-					if(a.type == 2) a.bg.setFill(Color.GREEN);
-					if(a.type == 3) a.bg.setFill(Color.BURLYWOOD);
-					if(a.type == 4) a.bg.setFill(Color.GREY);
 					a.setOnMouseClicked(evt ->{
 						//TODO set onclick for move to this space
 					});

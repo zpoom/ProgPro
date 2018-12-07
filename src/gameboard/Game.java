@@ -23,7 +23,7 @@ public class Game {
 	public static int turn;
 	public static int playerAmount;
 	private ArrayList<Space> startTile;
-	public static int step;
+	public static int step = -1;
 	protected ArrayList<Meeple> player1 , player2;
 	public Game(int player,ArrayList<Player> players) {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
