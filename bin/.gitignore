@@ -2,4 +2,11 @@
 /gameboard/
 /main/
 /menu/
+<<<<<<< HEAD
 /player/
+||||||| merged common ancestors
+/creatures/
+=======
+/creatures/
+/main/
+>>>>>>> 1cd9fdc4935645d353f561803c91bc2d70b94ac1

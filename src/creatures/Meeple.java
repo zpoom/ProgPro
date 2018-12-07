@@ -1,5 +1,7 @@
 package creatures;
 
+import java.io.IOException;
+
 import gameboard.Space;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -9,7 +11,7 @@ public class Meeple  extends Circle implements Moveable{
 	private Space now;
 	public Meeple(int color) {
 		this.color = color;
-		setRadius(7.5);
+		setRadius(10);
 		if(color==1) {
 			setFill(Color.RED);
 		}
@@ -18,7 +20,7 @@ public class Meeple  extends Circle implements Moveable{
 		}
 		// random space
 	}
-	public void moveTo(Space destination) {
+	public void moveTo(Space destination) throws IOException {
 		now.deleteObject(this);
 		now = destination;
 		now.addObject(this);

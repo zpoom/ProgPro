@@ -112,7 +112,12 @@ public class Menu extends Parent {
 				t.play();
 				t1.play();
 				
-				startGame();
+				try {
+					startGame();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				t.setOnFinished(e -> {
 					getChildren().remove(name);
@@ -158,7 +163,7 @@ public class Menu extends Parent {
 		menu1.getChildren().addAll(btnStart,btnExit);
 		getChildren().addAll(imgView,bg,menu1);
 	}
-	private void startGame() {
+	private void startGame() throws IOException {
 		Player p1 = new Player(tx1.getText());
 		Player p2 = new Player(tx2.getText());
 		ArrayList<Player> temp = new ArrayList<Player>();

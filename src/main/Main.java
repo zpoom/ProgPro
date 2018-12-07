@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import gameboard.Game;
+import gameboard.Space;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
@@ -53,25 +54,29 @@ public class Main extends Application {
 		root.getChildren().addAll(menu);
 		
 		Scene scene = new Scene(root);
-		/*scene.setOnKeyPressed(event -> {
-			if(event.getCode() == KeyCode.ESCAPE) {
-				if(!menu.isVisible()) {
-					FadeTransition ft = new FadeTransition(Duration.seconds(0.5),menu);
-					ft.setFromValue(0);
-					ft.setToValue(1);
-					
-					menu.setVisible(true);
-					ft.play();
-				}
-				else {
-					FadeTransition ft = new FadeTransition(Duration.seconds(0.5),menu);
-					ft.setFromValue(1);
-					ft.setToValue(0);
-					ft.setOnFinished(evt -> menu.setVisible(false));
-					ft.play();
+		scene.setOnKeyPressed(event -> {
+			if(event.getCode() == KeyCode.ESCAPE && Game.step == 1) {
+				Game.step = 0;
+				for(Space a : Game.AllAdj.get(Space.justClicked)) {
+					if(a.type == 1) a.bg.setFill(Color.TRANSPARENT);
+					if(a.type == 2) a.bg.setFill(Color.GREEN);
+					if(a.type == 3) a.bg.setFill(Color.BURLYWOOD);
+					if(a.type == 4) a.bg.setFill(Color.GREY);
+					a.setOnMouseClicked(evt -> {
+						if(Game.step == 0) {
+							Space.justClicked = a;
+							Game.step = 1;
+							for(Space x : Game.AllAdj.get(a)) {
+								x.bg.setFill(Color.WHITE);
+								x.setOnMouseClicked(e ->{
+									//TODO set onclick for move to this space
+								});
+							}
+						}
+					});
 				}
 			}
-		});*/
+		});
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

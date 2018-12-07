@@ -1,5 +1,6 @@
 package gameboard;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -9,6 +10,10 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import creatures.Bigo;
+import creatures.Bigpom;
+import creatures.Bigtu;
+import creatures.Boat;
 import creatures.Meeple;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
@@ -23,9 +28,9 @@ public class Game {
 	public static int turn;
 	public static int playerAmount;
 	private ArrayList<Space> startTile;
-	public static int step;
+	public static int step = -1;
 	protected ArrayList<Meeple> player1 , player2;
-	public Game(int player,ArrayList<Player> players) {
+	public Game(int player,ArrayList<Player> players) throws IOException {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
 		turn = 0;
 		step = 0;
@@ -76,6 +81,9 @@ public class Game {
 		player2.add(m19);
 		player2.add(m20);
 		Space A1 = new Space(1);
+		
+		A1.addObject(new Bigo(A1));
+		
 		Space A2 = new Space(1);
 		Space A3 = new Space(1);
 		Space A4 = new Space(1);
@@ -87,11 +95,17 @@ public class Game {
 		Space A10 = new Space(1);
 		Space A11 = new Space(1);
 		Space A12 = new Space(1);
+		
+		A12.addObject(new Bigtu(A12));
+		
 		Space A13 = new Space(1);
 		Space A14 = new Space(1);
 		Space A15 = new Space(1);
 		Space A16 = new Space(1);
 		Space A17 = new Space(1);
+
+		A17.addObject(new Bigo(A17));
+		
 		Space A18 = new Space(1);
 		Space A19 = new Space(1);
 		Space A20 = new Space(3);
@@ -118,6 +132,9 @@ public class Game {
 		Space A40 = new Space(3);
 		Space A41 = new Space(2);
 		Space A42 = new Space(2);
+		
+		
+		
 		Space A43 = new Space(2);
 		Space A44 = new Space(1);
 		Space A45 = new Space(1);
@@ -127,6 +144,9 @@ public class Game {
 		//test
 
 		Space A49 = new Space(1);
+
+		A49.addObject(new Bigo(A49));
+		
 		Space A50 = new Space(4);
 		Space A51 = new Space(3);
 		Space A52 = new Space(3);
@@ -143,6 +163,14 @@ public class Game {
 		Space A63 = new Space(1);
 		Space A64 = new Space(1);
 		Space A65 = new Space(1);
+		
+		//A65.addObject(new Bigtu(A65));
+		//A65.addObject(new Bigpom(A65));
+		//A65.addObject(new Boat(A65));
+		A65.addObject(new Meeple(2));
+		A65.addObject(new Meeple(1));
+		A65.addObject(new Meeple(2));
+		
 		Space A66 = new Space(2);
 		Space A67 = new Space(4);
 		Space A68 = new Space(3);
@@ -150,6 +178,7 @@ public class Game {
 		Space A70 = new Space(2);
 		Space A71 = new Space(1);
 		Space A72 = new Space(1);
+		A72.addObject(new Boat(A72));
 		Space A73 = new Space(1);
 		Space A74 = new Space(1);
 		Space A75 = new Space(3);
@@ -159,13 +188,18 @@ public class Game {
 		Space A79 = new Space(1);
 		Space A80 = new Space(1);
 		Space A81 = new Space(1);
+
+		A81.addObject(new Bigo(A81));
+		
 		Space A82 = new Space(1);
 		Space A83 = new Space(1);
 		Space A84 = new Space(1);
 		Space A85 = new Space(1);
 		Space A86 = new Space(1);
+		A86.addObject(new Bigtu(A86));
 		Space A87 = new Space(1);
 		Space A88 = new Space(1);
+		A88.addObject(new Bigpom(A88));
 		Space A89 = new Space(1);
 		Space A90 = new Space(1);
 		Space A91 = new Space(1);
@@ -175,6 +209,9 @@ public class Game {
 		Space A95 = new Space(1);
 		Space A96 = new Space(1);
 		Space A97 = new Space(1);
+
+		A97.addObject(new Bigo(A97));
+		
 		//new way to collect all adjacent  geb nai game tan la gun
 		AllAdj = new HashMap<Space,Set<Space>>();
 		
@@ -600,7 +637,7 @@ public class Game {
 		startTile.add(A78);
 		
 	}
-	public void randomPosition1() {
+	public void randomPosition1() throws IOException {
 		
 		ArrayList<Space> temp = new ArrayList<Space>();
 		temp.addAll(startTile);
@@ -611,7 +648,7 @@ public class Game {
 		}
 		
 	}
-	public void randomPosition2() {
+	public void randomPosition2() throws IOException {
 		
 		ArrayList<Space> temp = new ArrayList<Space>();
 		temp.addAll(startTile);
