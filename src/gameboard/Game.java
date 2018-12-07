@@ -513,7 +513,5 @@ public class Game {
 	public static void update() {
 		
 	}
-	private void randomPosition(int n,int color) {
-		arratlist[idx].addMeeple(new Meeple(color));
-	}
+	
 }
