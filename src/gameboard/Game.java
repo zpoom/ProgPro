@@ -23,12 +23,8 @@ public class Game {
 	public static int turn;
 	public static int playerAmount;
 	private ArrayList<Space> startTile;
-<<<<<<< HEAD
 	public static int step;
-||||||| merged common ancestors
-=======
 	protected ArrayList<Meeple> player1 , player2;
->>>>>>> c293053ffb55b94acc07f415e89bc2baab685fe7
 	public Game(int player,ArrayList<Player> players) {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
 		turn = 0;

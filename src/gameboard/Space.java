@@ -25,15 +25,10 @@ public class Space extends StackPane {
 	private int type;
 	public SpaceEffect eff;
 	public Map<Integer,Integer> mp;  // 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
-<<<<<<< HEAD
 	public ArrayList<Meeple> meeple;
 	public Polygon bg;
-||||||| merged common ancestors
-	
-=======
 	public ArrayList<Meeple> p1 ,p2;
 	public boolean boat,tu,pom,bigO;
->>>>>>> c293053ffb55b94acc07f415e89bc2baab685fe7
 	public Space (int t) {
 		mp = new HashMap<Integer,Integer>();
 		mp.put(1, 0);
@@ -42,15 +37,9 @@ public class Space extends StackPane {
 		mp.put(4, 0);
 		mp.put(5, 0);
 		mp.put(6, 0);
-<<<<<<< HEAD
 		bg = new Polygon();
-||||||| merged common ancestors
-		Polygon bg = new Polygon();
-=======
 		p1 = new ArrayList<Meeple>();
 		p2 = new ArrayList<Meeple>();
-		Polygon bg = new Polygon();
->>>>>>> c293053ffb55b94acc07f415e89bc2baab685fe7
 		bg.setStroke(Color.BLACK);
 		bg.setStrokeWidth(2.0);
 		bg.getPoints().addAll(new Double[]{

@@ -19,9 +19,9 @@ public class Meeple  extends Circle implements Moveable{
 		// random space
 	}
 	public void moveTo(Space destination) {
-		now.deleteObject(color);
+		now.deleteObject(this);
 		now = destination;
-		now.addObject(color);
+		now.addObject(this);
 	}
 	public int getColor() {
 		return this.color;

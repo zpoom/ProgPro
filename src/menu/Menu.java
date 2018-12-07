@@ -103,28 +103,6 @@ public class Menu extends Parent {
 			btnOk.setTranslateY(50);
 			btnOk.setOnMouseClicked(evt -> {
 				// TODO start here
-<<<<<<< HEAD
-||||||| merged common ancestors
-				Player p1 = new Player(tx1.getText());
-				Player p2 = new Player(tx2.getText());
-				ArrayList<Player> temp = new ArrayList<Player>();
-				temp.add(p1);
-				temp.add(p2);
-				Game game = new Game(2,temp);
-				game.randomPosition(10, 1);
-				game.randomPosition(10, 2);
-				getChildren().addAll(Game.vSpace);
-=======
-				Player p1 = new Player(tx1.getText());
-				Player p2 = new Player(tx2.getText());
-				ArrayList<Player> temp = new ArrayList<Player>();
-				temp.add(p1);
-				temp.add(p2);
-				Game game = new Game(2,temp);
-				game.randomPosition1();
-				game.randomPosition2();
-				getChildren().addAll(Game.vSpace);
->>>>>>> c293053ffb55b94acc07f415e89bc2baab685fe7
 				TranslateTransition t = new TranslateTransition(Duration.seconds(0.5),name);
 				t.setToX(menu1.getTranslateX() + 400);
 				
@@ -187,8 +165,8 @@ public class Menu extends Parent {
 		temp.add(p1);
 		temp.add(p2);
 		Game game = new Game(2,temp);
-		game.randomPosition(10, 1);
-		game.randomPosition(10, 2);
+		game.randomPosition1();
+		game.randomPosition2();
 		getChildren().addAll(Game.vSpace);
 		Game.vSpace.setTranslateX(300);
 		Game.vSpace.setTranslateY(20);
