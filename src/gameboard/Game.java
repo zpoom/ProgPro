@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import javafx.geometry.Insets;
@@ -20,6 +21,7 @@ public class Game {
 	public Set<Space> tmp;
 	public static int turn;
 	public static int playerAmount;
+	private ArrayList<Space> startTile;
 	public Game(int player,ArrayList<Player> players) {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
 		turn = 0;
@@ -508,12 +510,56 @@ public class Game {
 		vSpace.setTranslateX(100);
 		vSpace.setTranslateY(-50);
 		
-		
-	}
-	public static void update() {
+		startTile.add(A20);
+		startTile.add(A21);
+		startTile.add(A22);
+		startTile.add(A23);
+		startTile.add(A28);
+		startTile.add(A29);
+		startTile.add(A30);
+		startTile.add(A31);
+		startTile.add(A32);
+		startTile.add(A36);
+		startTile.add(A37);
+		startTile.add(A38);
+		startTile.add(A39);
+		startTile.add(A40);
+		startTile.add(A41);
+		startTile.add(A42);
+		startTile.add(A43);
+		startTile.add(A46);
+		startTile.add(A47);
+		startTile.add(A48);
+		startTile.add(A50);
+		startTile.add(A51);
+		startTile.add(A52);
+		startTile.add(A55);
+		startTile.add(A56);
+		startTile.add(A57);
+		startTile.add(A58);
+		startTile.add(A59);
+		startTile.add(A60);
+		startTile.add(A61);
+		startTile.add(A62);
+		startTile.add(A66);
+		startTile.add(A67);
+		startTile.add(A68);
+		startTile.add(A69);
+		startTile.add(A70);
+		startTile.add(A75);
+		startTile.add(A76);
+		startTile.add(A77);
+		startTile.add(A78);
 		
 	}
 	private void randomPosition(int n,int color) {
-		arratlist[idx].addMeeple(new Meeple(color));
+		ArrayList<Space> temp = new ArrayList<Space>();
+		temp.addAll(startTile);
+		for(int i=0;i<n;i++){
+			Random rd = new Random();
+			int idx = rd.nextInt(temp.size());
+			temp.get(idx).addObject(color);
+			temp.remove(idx);
+		}
 	}
 }

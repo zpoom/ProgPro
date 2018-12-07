@@ -21,9 +21,8 @@ public class Space extends StackPane {
 	public SpaceEffect eff;
 	public Map<Integer,Integer> mp;  // 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
 	public Space (int t) {
-		eff = new SpaceEffect();
+		//eff = new SpaceEffect();
 		Polygon bg = new Polygon();
-		meepleHere = 0;
 		bg.setStroke(Color.BLACK);
 		bg.setStrokeWidth(2.0);
 		bg.getPoints().addAll(new Double[]{
