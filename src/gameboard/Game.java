@@ -717,71 +717,8 @@ public class Game {
 		}
 		
 	}
-	/*public void gameLoop(Space sp) {
-		setPressAbleSpace();
-		//if(sp == null) return;
-	}*/
-	public void setPressAbleSpace() {
-		/*if(Game.step == 0) {
-			if(Game.turn % 2 == 1) {
-				// p1 turn
-				for(Space sp : allTile) {
-					if(sp.p1.size() > 0) {
-						sp.bg.setStroke(Color.RED);
-						sp.setOnMouseClicked(event->{
-							Game.step = 1;
-							for(Space a : allTile) {
-								a.bg.setStroke(Color.BLACK);
-								a.setOnMouseClicked(e -> {});
-							}
-							for(Space a : Game.AllAdj.get(sp)) {
-								if(a.p1.size()+a.p2.size() < 3) {
-									a.bg.setStroke(Color.RED);
-									a.setOnMouseClicked(e -> {
-										if(sp.boat!=null) {
-											try {
-												sp.boat.moveTo(a);
-											} catch (IOException e1) {
-												// TODO Auto-generated catch block
-												e1.printStackTrace();
-											}
-										}
-										else {
-											try {
-												sp.p1.get(0).moveTo(a);
-											} catch (IOException e1) {
-												// TODO Auto-generated catch block
-												e1.printStackTrace();
-											}
-										}
-									});
-								}
-							}
-						});
-					}
-					else if(sp.boat != null && sp.p1.size() >= sp.p2.size()) {
-						sp.bg.setStroke(Color.RED);
-						sp.setOnMouseClicked(event->{
-							Game.step = 1;
-						});
-					}
-					else {
-						sp.setOnMouseClicked(event ->{});
-					}
-				}
-			}
-			else if(Game.turn % 2 == 0) {
-				for(Space sp : allTile) {
-					if(sp.p2.size() > 0) {
-						sp.bg.setStroke(Color.RED);
-					}
-					else if(sp.boat != null && sp.p2.size() >= sp.p1.size()) {
-						sp.bg.setStroke(Color.RED);
-					}
-				}
-			}
-		}*/
-		  t = new Thread(() -> {
+	public void start() {
+		  /*t = new Thread(() -> {
 			clearAllSpace();
 			try {
 				showMoveable();
@@ -809,8 +746,8 @@ public class Game {
 			}
 			
 		});
-		t.start();
-		
+		t.start();*/
+		moveMonster();
 	}
 	public void clearAllSpace() {
 		for(Space x : allTile) {
@@ -818,7 +755,6 @@ public class Game {
 			x.setOnMouseClicked(event -> {});
 		}
 	}
-	@SuppressWarnings("static-access")
 	public void showMoveable() throws InterruptedException {
 		if(Game.turn % 2 == 1) {
 			// p1 turn
@@ -832,7 +768,6 @@ public class Game {
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
 								// move to sp
-								t.interrupt();
 								if(space.boat!=null) {
 									// move boat
 									try {
@@ -851,6 +786,7 @@ public class Game {
 										
 									}
 								}
+								t.interrupt();
 							});
 						}
 					});
@@ -871,6 +807,147 @@ public class Game {
 			if(temp.get(idx).boat != null) continue;
 			temp.get(idx).addObject(new Boat(temp.get(idx)));
 			x++;
+		}
+	}
+	public void moveMonster() {
+		clearAllSpace();
+		if(Game.turn % 2 == 1) {
+			for(Space space : allTile) {
+				if(space.bigO || space.pom || space.tu) {
+					boolean hasAdj = false;
+					for(Space sp : Game.AllAdj.get(space)) {
+						if(sp.type == 1 && (!sp.bigO && !sp.pom && !sp.tu)) {
+							hasAdj = true;
+						}
+					}
+					if(hasAdj) {
+					space.bg.setStroke(Color.RED);
+					space.setOnMouseClicked(event -> {
+						clearAllSpace();
+						for(Space sp : Game.AllAdj.get(space)) {
+							if((!(sp.bigO || sp.pom || sp.tu)) && sp.type==1) {
+								sp.bg.setStroke(Color.RED);
+								sp.setOnMouseClicked(evt -> {
+									clearAllSpace();
+									if(space.bigO) {
+										try {
+											space.deleteObject(new Bigo(space));
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+										try {
+											sp.addObject(new Bigo(sp));
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									}
+									else if(space.pom) {
+										try {
+											space.deleteObject(new Bigpom(space));
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+										try {
+											sp.addObject(new Bigpom(sp));
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									}
+									else if(space.tu) {
+										try {
+											space.deleteObject(new Bigtu(space));
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+										try {
+											sp.addObject(new Bigtu(sp));
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									}
+								});
+							}
+							
+						}
+					});
+				}
+				}
+			}
+		}
+		else {
+			for(Space space : allTile) {
+				if(space.bigO || space.pom || space.tu) {
+					boolean hasAdj = false;
+					for(Space sp : Game.AllAdj.get(space)) {
+						if(sp.type == 1 && (!sp.bigO && !sp.pom && !sp.tu)) {
+							hasAdj = true;
+						}
+					}
+					if(hasAdj) {
+					space.bg.setStroke(Color.WHITE);
+					space.setOnMouseClicked(event -> {
+						clearAllSpace();
+						for(Space sp : Game.AllAdj.get(space)) {
+							if((!(sp.bigO || sp.pom || sp.tu)) && sp.type==1) {
+								sp.bg.setStroke(Color.WHITE);
+								sp.setOnMouseClicked(evt -> {
+									clearAllSpace();
+									if(space.bigO) {
+										try {
+											space.deleteObject(new Bigo(space));
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+										try {
+											sp.addObject(new Bigo(sp));
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									}
+									else if(space.pom) {
+										try {
+											space.deleteObject(new Bigpom(space));
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+										try {
+											sp.addObject(new Bigpom(sp));
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									}
+									else if(space.tu) {
+										try {
+											space.deleteObject(new Bigtu(space));
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+										try {
+											sp.addObject(new Bigtu(sp));
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									}
+								});
+							}
+							
+						}
+					});
+				}
+				}
+			}
 		}
 	}
 }

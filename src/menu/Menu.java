@@ -181,6 +181,6 @@ public class Menu extends Parent {
 		getChildren().addAll(Game.vSpace);
 		Game.vSpace.setTranslateX(300);
 		Game.vSpace.setTranslateY(20);
-		game.setPressAbleSpace();
+		game.start();
 	}
 }

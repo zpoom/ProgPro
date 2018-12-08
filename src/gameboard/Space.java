@@ -116,8 +116,9 @@ public class Space extends StackPane {
 		if(creature instanceof Meeple ) {
 			if(((Meeple) creature).getColor()==1) {
 				p1.remove(0);
+				n1--;
 			}
-			else p2.remove(0);
+			else {p2.remove(0);n2--;}
 		}
 		else if(creature instanceof Bigo) {
 			bigO = false;
