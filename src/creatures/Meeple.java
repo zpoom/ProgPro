@@ -27,6 +27,9 @@ public class Meeple  extends Circle implements Moveable{
 		now = destination;
 		now.addObject(this);
 	}
+	public void setInit(Space init) {
+		now = init;
+	}
 	public int getColor() {
 		return this.color;
 	}

@@ -206,7 +206,6 @@ public class Game {
 		Space A97 = new Space(1);
 
 		A97.addObject(new Bigo(A97));
-		
 		//new way to collect all adjacent  geb nai game tan la gun
 		AllAdj = new HashMap<Space,Set<Space>>();
 		
@@ -383,7 +382,7 @@ public class Game {
 		tmp = new HashSet<Space>(Arrays.asList(A56,A47,A48,A58,A66,A67)) ;
 		AllAdj.put(A57, tmp);
 		
-		tmp = new HashSet<Space>(Arrays.asList(A57,A48,A49,A67,A58,A59)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A57,A48,A49,A67,A68,A59)) ;
 		AllAdj.put(A58, tmp);
 		
 		tmp = new HashSet<Space>(Arrays.asList(A58,A49,A50,A60,A69,A68)) ;
@@ -590,6 +589,7 @@ public class Game {
 		
 		startTile = new ArrayList<Space>();
 		
+		
 		startTile.add(A20);
 		startTile.add(A21);
 		startTile.add(A22);
@@ -700,6 +700,7 @@ public class Game {
 			Random rd = new Random();
 			int idx = rd.nextInt(temp.size());
 			temp.get(idx).addObject(player1.get(i));
+			player1.get(i).setInit(temp.get(idx));
 		}
 		
 	}
@@ -711,6 +712,7 @@ public class Game {
 			Random rd = new Random();
 			int idx = rd.nextInt(temp.size());
 			temp.get(idx).addObject(player2.get(i));
+			player2.get(i).setInit(temp.get(idx));
 		}
 		
 	}
@@ -719,7 +721,7 @@ public class Game {
 		//if(sp == null) return;
 	}*/
 	public void setPressAbleSpace() {
-		if(Game.step == 0) {
+		/*if(Game.step == 0) {
 			if(Game.turn % 2 == 1) {
 				// p1 turn
 				for(Space sp : allTile) {
@@ -777,17 +779,89 @@ public class Game {
 					}
 				}
 			}
+		}*/
+		Thread t = new Thread(() -> {
+			clearAllSpace();
+			showMoveable();
+			System.out.println(1);
+			
+		});
+		t.start();
+		/*try {
+			t.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		t = new Thread(() -> {
+			clearAllSpace();
+			showMoveable();
+			System.out.println(2);
+		});
+		t.start();
+		try {
+			t.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+	}
+	public void clearAllSpace() {
+		for(Space x : allTile) {
+			x.bg.setStroke(Color.BLACK);
+			x.setOnMouseClicked(event -> {});
+		}
+	}
+	public void showMoveable() {
+		if(Game.turn % 2 == 1) {
+			// p1 turn
+			for(Space space : allTile) {
+				if(space.n1 > 0 || (space.n1 >= space.n2 && space.boat!=null)) {
+					space.bg.setStroke(Color.RED);
+					space.setOnMouseClicked(event -> {
+						clearAllSpace();
+						for(Space sp : Game.AllAdj.get(space)) {
+							sp.bg.setStroke(Color.RED);
+							sp.setOnMouseClicked(evt -> {
+								clearAllSpace();
+								// move to sp
+								if(space.boat!=null) {
+									// move boat
+									try {
+										space.boat.moveTo(sp);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+								else {
+									try {
+										space.p1.get(0).moveTo(sp);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+							});
+						}
+					});
+				}
+			}
+		}
+		else {
+			// p2 turn
 		}
 	}
 	public void randomPositionBoat() throws IOException{
 		ArrayList<Space> temp = new ArrayList<Space>();
 		temp.addAll(riverTile);
 		int x = 0;
-		while(x!=4) {
+		while(x!=5) {
 			Random rd = new Random();
 			int idx = rd.nextInt(temp.size());
 			if(temp.get(idx).boat != null) continue;
-			temp.get(idx).addObject(new Boat());
+			temp.get(idx).addObject(new Boat(temp.get(idx)));
 			x++;
 		}
 	}

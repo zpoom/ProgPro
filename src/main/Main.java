@@ -54,7 +54,7 @@ public class Main extends Application {
 		root.getChildren().addAll(menu);
 		
 		Scene scene = new Scene(root);
-		scene.setOnKeyPressed(event -> {
+		/*scene.setOnKeyPressed(event -> {
 			if(event.getCode() == KeyCode.ESCAPE && Game.step == 1) {
 				Game.step = 0;
 				for(Space a : Game.AllAdj.get(Space.justClicked)) {
@@ -77,7 +77,7 @@ public class Main extends Application {
 					});
 				}
 			}
-		});
+		});*/
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
