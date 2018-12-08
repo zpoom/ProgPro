@@ -15,9 +15,8 @@ public class Boat  implements Moveable{
 	public Space now;
 	public ImageView boat;
 	public boolean canMove;
-	public Boat(Space space) throws IOException {
+	public Boat() throws IOException {
 		canMove = true;
-		now = space;
 		InputStream bt = Files.newInputStream(Paths.get("res/Boat.png"));
 		Image enternamebg = new Image(bt);
 		bt.close();

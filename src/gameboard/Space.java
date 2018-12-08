@@ -73,16 +73,29 @@ public class Space extends StackPane {
 					a.bg.setFill(Color.WHITE);
 					a.setOnMouseClicked(evt ->{
 						//TODO set onclick for move to this space
-						if(a.boat) {
-							for(int i = 0; i < this.p1.size();i++) {
-								this.p1.get(i).moveTo(a);
+						if(this.boat!=null) {
+							try {
+								this.boat.moveTo(a);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
 							}
-							for(int i = 0; i < now.p2.size();i++) {
-								this.p2.get(i).moveTo(a);
+						}
+						else if(Game.turn % 2 == 1) {
+							try {
+								this.p1.get(0).moveTo(a);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
 							}
-							now.deleteObject(new boat());
-							now = destination;
-							now.addObject(this);
+						}
+						else if(Game.turn % 2 == 0) {
+							try {
+								this.p2.get(0).moveTo(a);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 					});
 				}
@@ -108,7 +121,7 @@ public class Space extends StackPane {
 			tu = true;
 		}
 		else {
-			boat = new Boat(this);
+			boat = new Boat();
 		}
 		update();
 	}
@@ -131,7 +144,7 @@ public class Space extends StackPane {
 			tu = false;
 		}
 		else {
-			boat = false;
+			boat = null;
 		}
 		update();
 		
@@ -145,24 +158,23 @@ public class Space extends StackPane {
 			// only BigO in Space;
 			p1.clear();
 			p2.clear();
-			boat = false;
+			boat = null;
 			Bigo tmp = new Bigo(this);
 			getChildren().add(tmp.dragon);
 		}
 		// tu = shark , pom = whale , bigo = dragon
-		else if(tu && !boat) {
+		else if(tu && boat==null) {
 			// only tu here
 			p1.clear();
 			p2.clear();
 			Bigtu tmp = new Bigtu(this);
 			getChildren().add(tmp.shark);
-			
 		}
-		else if(tu && boat) {
+		else if(tu && boat!=null) {
 			//meeple on boat next to bigtu
 			//shark at left side and boat with meeple right side
 			Bigtu tmp1 = new Bigtu(this);
-			Boat tmp2 = new Boat(this);
+			Boat tmp2 = new Boat();
 			tmp1.shark.setTranslateX(-15);
 			tmp1.shark.setFitHeight(30);
 			tmp1.shark.setFitWidth(30);
@@ -186,7 +198,7 @@ public class Space extends StackPane {
 			}
 		}
 		else if (pom) {
-			boat = false;
+			boat = null;
 			int x = 0;
 			Bigpom tmp = new Bigpom(this);
 			if(p1.size()!=0||p2.size()!= 0) {
@@ -210,8 +222,8 @@ public class Space extends StackPane {
 				x+=13;
 			}
 		}
-		else if (boat) {
-			Boat tmp = new Boat(this);
+		else if (boat!=null) {
+			Boat tmp = new Boat();
 			int x = 0;
 			getChildren().add(tmp.boat);
 			for(int i = 0;i<p1.size();i++) {
@@ -286,6 +298,28 @@ public class Space extends StackPane {
 				p1.get(0).setTranslateX(0);
 				p1.get(0).setTranslateY(-15);
 				getChildren().add(p1.get(0));
+			}
+			else if(p1.size()==3&&p2.size()==0) {
+				p1.get(0).setTranslateX(+15);
+				p1.get(0).setTranslateY(5);
+				getChildren().add(p1.get(0));
+				p1.get(1).setTranslateX(-15);
+				p1.get(1).setTranslateY(5);
+				getChildren().add(p1.get(1));
+				p1.get(2).setTranslateX(0);
+				p1.get(2).setTranslateY(-15);
+				getChildren().add(p1.get(2));
+			}
+			else if(p1.size()==0&&p2.size()==3) {
+				p2.get(0).setTranslateX(+15);
+				p2.get(0).setTranslateY(5);
+				getChildren().add(p2.get(0));
+				p2.get(1).setTranslateX(-15);
+				p2.get(1).setTranslateY(5);
+				getChildren().add(p2.get(1));
+				p2.get(2).setTranslateX(0);
+				p2.get(2).setTranslateY(-15);
+				getChildren().add(p2.get(2));
 			}
 			
 		}

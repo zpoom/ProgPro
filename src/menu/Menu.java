@@ -172,6 +172,12 @@ public class Menu extends Parent {
 		Game game = new Game(2,temp);
 		game.randomPosition1();
 		game.randomPosition2();
+		try{
+			game.randomPositionBoat();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
 		getChildren().addAll(Game.vSpace);
 		Game.vSpace.setTranslateX(300);
 		Game.vSpace.setTranslateY(20);
