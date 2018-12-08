@@ -70,6 +70,7 @@ public class Main extends Application {
 								x.bg.setFill(Color.WHITE);
 								x.setOnMouseClicked(e ->{
 									//TODO set onclick for move to this space
+									x.eff.effect(x.type);
 								});
 							}
 						}

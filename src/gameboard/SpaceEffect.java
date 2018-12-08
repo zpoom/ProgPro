@@ -7,6 +7,7 @@ public class SpaceEffect {
 	public static ArrayList<Integer> effectsWildCount;
 	public static ArrayList<Integer> effectsMtCount;
 	public SpaceEffect() {
+		effectsSandCount = new ArrayList<Integer>();
 		effectsSandCount.add(4);
 		effectsSandCount.add(2);
 		effectsSandCount.add(3);
@@ -17,6 +18,7 @@ public class SpaceEffect {
 		effectsSandCount.add(2);
 		effectsSandCount.add(1);
 		
+		effectsWildCount = new ArrayList<Integer>();
 		effectsWildCount.add(3);
 		effectsWildCount.add(3);
 		effectsWildCount.add(4);
@@ -27,6 +29,7 @@ public class SpaceEffect {
 		effectsWildCount.add(2);
 		effectsWildCount.add(1);
 		
+		effectsMtCount = new ArrayList<Integer>();
 		effectsMtCount.add(0);
 		effectsMtCount.add(0);
 		effectsMtCount.add(0);

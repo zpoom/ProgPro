@@ -26,12 +26,12 @@ public class Space extends StackPane {
 	public int type;
 	public SpaceEffect eff;
 	public Map<Integer,Integer> mp;  // 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
-	public ArrayList<Meeple> meeple;
 	public Polygon bg;
 	public ArrayList<Meeple> p1 ,p2;
 	public static Space justClicked;
 public boolean boat,tu,pom,bigO;
 	public Space (int t) {
+		eff = new SpaceEffect();
 		mp = new HashMap<Integer,Integer>();
 		mp.put(1, 0);
 		mp.put(2, 0);
@@ -67,6 +67,7 @@ public boolean boat,tu,pom,bigO;
 					a.bg.setFill(Color.WHITE);
 					a.setOnMouseClicked(evt ->{
 						//TODO set onclick for move to this space
+						justClicked.eff.effect(justClicked.type);
 					});
 				}
 			}
