@@ -18,7 +18,7 @@ public class Bigtu extends Monster {
 		Image enternamebg = new Image(Bigtu);
 		Bigtu.close();
 		shark = new ImageView(enternamebg);
-		shark.setFitHeight(50);
+		shark.setFitHeight(45);
 		shark.setFitWidth(50);
 	}
 }

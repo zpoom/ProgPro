@@ -30,6 +30,7 @@ public class Game {
 	private ArrayList<Space> startTile;
 	public static int step = -1;
 	protected ArrayList<Meeple> player1 , player2;
+	private ArrayList<Space> riverTile,allTile;
 	public Game(int player,ArrayList<Player> players) throws IOException {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
 		turn = 0;
@@ -37,7 +38,8 @@ public class Game {
 		this.playerAmount = player;
 		player1 = new ArrayList<Meeple>();
 		player2 = new ArrayList<Meeple>();
-		
+		riverTile = new ArrayList<Space>();
+		allTile = new ArrayList<Space>();
 		Meeple m1 = new Meeple(1);
 		Meeple m2 = new Meeple(1);
 		Meeple m3 = new Meeple(1);
@@ -96,7 +98,6 @@ public class Game {
 		Space A11 = new Space(1);
 		Space A12 = new Space(1);
 		
-		A12.addObject(new Bigtu(A12));
 		
 		Space A13 = new Space(1);
 		Space A14 = new Space(1);
@@ -164,12 +165,6 @@ public class Game {
 		Space A64 = new Space(1);
 		Space A65 = new Space(1);
 		
-		//A65.addObject(new Bigtu(A65));
-		//A65.addObject(new Bigpom(A65));
-		//A65.addObject(new Boat(A65));
-		A65.addObject(new Meeple(2));
-		A65.addObject(new Meeple(1));
-		A65.addObject(new Meeple(2));
 		
 		Space A66 = new Space(2);
 		Space A67 = new Space(4);
@@ -178,7 +173,6 @@ public class Game {
 		Space A70 = new Space(2);
 		Space A71 = new Space(1);
 		Space A72 = new Space(1);
-		A72.addObject(new Boat(A72));
 		Space A73 = new Space(1);
 		Space A74 = new Space(1);
 		Space A75 = new Space(3);
@@ -196,10 +190,10 @@ public class Game {
 		Space A84 = new Space(1);
 		Space A85 = new Space(1);
 		Space A86 = new Space(1);
-		A86.addObject(new Bigtu(A86));
+	
 		Space A87 = new Space(1);
 		Space A88 = new Space(1);
-		A88.addObject(new Bigpom(A88));
+	
 		Space A89 = new Space(1);
 		Space A90 = new Space(1);
 		Space A91 = new Space(1);
@@ -636,6 +630,66 @@ public class Game {
 		startTile.add(A77);
 		startTile.add(A78);
 		
+		riverTile.add(A1);
+		riverTile.add(A2);
+		riverTile.add(A3);
+		riverTile.add(A4);
+		riverTile.add(A5);
+		riverTile.add(A6);
+		riverTile.add(A7);
+		riverTile.add(A8);
+		riverTile.add(A9);
+		riverTile.add(A10);
+		riverTile.add(A11);
+		riverTile.add(A12);
+		riverTile.add(A13);
+		riverTile.add(A14);
+		riverTile.add(A15);
+		riverTile.add(A16);
+		riverTile.add(A17);
+		riverTile.add(A18);
+		riverTile.add(A19);
+		riverTile.add(A24);
+		riverTile.add(A25);
+		riverTile.add(A26);
+		riverTile.add(A27);
+		riverTile.add(A33);
+		riverTile.add(A34);
+		riverTile.add(A35);
+		riverTile.add(A44);
+		riverTile.add(A45);
+		riverTile.add(A53);
+		riverTile.add(A54);
+		riverTile.add(A63);
+		riverTile.add(A64);
+		riverTile.add(A65);
+		riverTile.add(A49);
+		riverTile.add(A71);
+		riverTile.add(A72);
+		riverTile.add(A73);
+		riverTile.add(A74);
+		riverTile.add(A79);
+		riverTile.add(A80);
+		riverTile.add(A81);
+		riverTile.add(A82);
+		riverTile.add(A83);
+		riverTile.add(A84);
+		riverTile.add(A85);
+		riverTile.add(A86);
+		riverTile.add(A87);
+		riverTile.add(A88);
+		riverTile.add(A89);
+		riverTile.add(A90);
+		riverTile.add(A91);
+		riverTile.add(A92);
+		riverTile.add(A93);
+		riverTile.add(A94);
+		riverTile.add(A95);
+		riverTile.add(A96);
+		riverTile.add(A97);
+		riverTile.add(A86);
+		allTile.addAll(riverTile);
+		allTile.addAll(startTile);
 	}
 	public void randomPosition1() throws IOException {
 		
@@ -658,5 +712,17 @@ public class Game {
 			temp.get(idx).addObject(player2.get(i));
 		}
 		
+	}
+	public void randomPositionBoat() throws IOException{
+		ArrayList<Space> temp = new ArrayList<Space>();
+		temp.addAll(riverTile);
+		int x = 0;
+		while(x!=4) {
+			Random rd = new Random();
+			int idx = rd.nextInt(temp.size());
+			if(temp.get(idx).boat) continue;
+			temp.get(idx).addObject(new Boat());
+			x++;
+		}
 	}
 }

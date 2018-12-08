@@ -14,8 +14,7 @@ import gameboard.Space;
 public class Boat  implements Moveable{
 	public Space now;
 	public ImageView boat;
-	public Boat(Space space) throws IOException {
-		now = space;
+	public Boat() throws IOException {
 		InputStream bt = Files.newInputStream(Paths.get("res/Boat.png"));
 		Image enternamebg = new Image(bt);
 		bt.close();
