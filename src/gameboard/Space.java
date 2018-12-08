@@ -31,20 +31,16 @@ public class Space extends StackPane {
 	public ArrayList<Meeple> meeple;
 	public Polygon bg;
 	public ArrayList<Meeple> p1 ,p2;
+	public int n1,n2;
 	public static Space justClicked;
 	public boolean tu,pom,bigO;
 	public Boat boat;
 	
 	public Space (int t) {
 		eff = new SpaceEffect();
+		n1 = 0;
+		n2 = 0;
 		boat = null;
-		mp = new HashMap<Integer,Integer>();
-		mp.put(1, 0);
-		mp.put(2, 0);
-		mp.put(3, 0);
-		mp.put(4, 0);
-		mp.put(5, 0);
-		mp.put(6, 0);
 		bg = new Polygon();
 		p1 = new ArrayList<Meeple>();
 		p2 = new ArrayList<Meeple>();
@@ -107,9 +103,18 @@ public class Space extends StackPane {
 	public void addObject(Moveable creature) throws IOException {
 		// TODO
 		if(creature instanceof Meeple ) {
-			Meeple tmp = (Meeple) creature;
-			if(tmp.getColor()==1) p1.add(tmp);
-			else p2.add(tmp);
+			if(n1+n2>=3) return;
+			if(((Meeple) creature).getColor()==1) {
+				p1.add(((Meeple) creature));
+				n1++;
+			}
+			
+			else {
+				p2.add(((Meeple) creature));
+				n2++;
+			}
+			
+			
 		}
 		else if(creature instanceof Bigo) {
 			bigO = true;
@@ -121,15 +126,16 @@ public class Space extends StackPane {
 			tu = true;
 		}
 		else {
-			boat = new Boat();
+			boat = (Boat) creature;
 		}
 		update();
 	}
 	// 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
+	
 	public void deleteObject(Moveable creature) throws IOException {
 		if(creature instanceof Meeple ) {
-			Meeple tmp = (Meeple) creature;
-			if(tmp.getColor()==1) {
+			
+			if(((Meeple) creature).getColor()==1) {
 				p1.remove(creature);
 			}
 			else p2.remove(creature);
@@ -174,13 +180,12 @@ public class Space extends StackPane {
 			//meeple on boat next to bigtu
 			//shark at left side and boat with meeple right side
 			Bigtu tmp1 = new Bigtu(this);
-			Boat tmp2 = new Boat();
 			tmp1.shark.setTranslateX(-15);
 			tmp1.shark.setFitHeight(30);
 			tmp1.shark.setFitWidth(30);
-			tmp2.boat.setTranslateX(15);
+			boat.boat.setTranslateX(15);
 			int x = 0;
-			getChildren().addAll(tmp1.shark,tmp2.boat);
+			getChildren().addAll(tmp1.shark,boat.boat);
 			for(int i = 0;i<p1.size();i++) {
 				p1.get(i).setRadius(6);
 				p1.get(i).setTranslateY(-13+x);
@@ -223,9 +228,8 @@ public class Space extends StackPane {
 			}
 		}
 		else if (boat!=null) {
-			Boat tmp = new Boat();
 			int x = 0;
-			getChildren().add(tmp.boat);
+			getChildren().add(boat.boat);
 			for(int i = 0;i<p1.size();i++) {
 				p1.get(i).setRadius(7);
 				p1.get(i).setTranslateY(-18+x);
