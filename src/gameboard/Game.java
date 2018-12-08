@@ -718,11 +718,11 @@ public class Game {
 		
 	}
 	public void start() {
-		  /*t = new Thread(() -> {
+		  t = new Thread(() -> {
 			clearAllSpace();
 			try {
 				showMoveable();
-				Thread.sleep(3000);
+				Thread.sleep(30000);
 			} catch (InterruptedException e3) {
 				// TODO Auto-generated catch block
 				e3.printStackTrace();
@@ -730,7 +730,7 @@ public class Game {
 			clearAllSpace();
 			try {
 				showMoveable();
-				Thread.sleep(3000);
+				Thread.sleep(30000);
 			} catch (InterruptedException e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
@@ -739,20 +739,154 @@ public class Game {
 			clearAllSpace();
 			try {
 				showMoveable();
-				Thread.sleep(3000);
+				Thread.sleep(30000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			clearAllSpace();
+			try {
+				// Phase 2  destroy island
+				Showdestroyable();
+				Thread.sleep(300000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
 		});
-		t.start();*/
-		moveMonster();
+		t.start();
 	}
 	public void clearAllSpace() {
 		for(Space x : allTile) {
 			x.bg.setStroke(Color.BLACK);
 			x.setOnMouseClicked(event -> {});
+		}
+	}
+	public void Showdestroyable() {
+		boolean isAdjWater = false;
+		if(Game.turn %2 == 0) {
+		if(Game.turn<=16) {
+			for(Space space : startTile) {
+				if(space.type == 3) {
+					for(Space sp : Game.AllAdj.get(space)) {
+						if(sp.type==1) {
+							space.bg.setStroke(Color.RED);
+							space.setOnMouseClicked(evt -> {
+								clearAllSpace();
+								space.type = 1;
+								try {
+									space.update();
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								space.eff.effect(3);
+								t.interrupt();
+							});
+						break;
+					}
+				}
+			}
+			}
+		}
+		else if(Game.turn<=32) {
+			for(Space space : startTile) {
+				if(space.type == 2) {
+					for(Space sp : Game.AllAdj.get(space)) {
+						if(sp.type==1) {
+							space.bg.setStroke(Color.RED);
+							space.setOnMouseClicked(evt -> {
+								clearAllSpace();
+								space.type = 1;
+								space.eff.effect(2);
+								t.interrupt();
+							});
+					}
+				}
+			}
+			}
+		
+			
+		}
+		else {
+			for(Space space : startTile) {
+				if(space.type == 4) {
+					for(Space sp : Game.AllAdj.get(space)) {
+						if(sp.type==1) {
+							space.bg.setStroke(Color.RED);
+							space.setOnMouseClicked(evt -> {
+								clearAllSpace();
+								space.type = 1;
+								space.eff.effect(4);
+								t.interrupt();
+							});
+					}
+				}
+			}
+			}
+		
+			
+		}
+		}
+		else {
+			if(Game.turn<=16) {
+				for(Space space : startTile) {
+					if(space.type == 3) {
+						for(Space sp : Game.AllAdj.get(space)) {
+							if(sp.type==1) {
+								space.bg.setStroke(Color.WHITE);
+								space.setOnMouseClicked(evt -> {
+									clearAllSpace();
+									space.type = 1;
+									space.eff.effect(3);
+									t.interrupt();
+								});
+						}
+					}
+				}
+				}
+			}
+			else if(Game.turn<=32) {
+				for(Space space : startTile) {
+					if(space.type == 2) {
+						for(Space sp : Game.AllAdj.get(space)) {
+							if(sp.type==1) {
+								space.bg.setStroke(Color.WHITE);
+								space.setOnMouseClicked(evt -> {
+									clearAllSpace();
+									space.type = 1;
+									space.eff.effect(2);
+									t.interrupt();
+								});
+						}
+					}
+				}
+				}
+			
+				
+			}
+			else {
+				for(Space space : startTile) {
+					if(space.type == 4) {
+						for(Space sp : Game.AllAdj.get(space)) {
+							if(sp.type==1) {
+								space.bg.setStroke(Color.WHITE);
+								space.setOnMouseClicked(evt -> {
+									clearAllSpace();
+									space.type = 1;
+									space.eff.effect(4);
+									t.interrupt();
+								});
+						}
+					}
+				}
+				}
+			
+				
+			}
+			
+			
 		}
 	}
 	public void showMoveable() throws InterruptedException {

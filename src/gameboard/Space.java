@@ -139,6 +139,10 @@ public class Space extends StackPane {
 	public void update() throws IOException {
 		// TODO
 		getChildren().clear();
+		if(type == 1) bg.setFill(Color.TRANSPARENT);
+		else if(type == 2) bg.setFill(Color.GREEN);
+		else if(type == 3) bg.setFill(Color.BURLYWOOD);
+		else if(type == 4) bg.setFill(Color.GREY);
 		getChildren().add(bg);
 		if(bigO) {
 			// only BigO in Space;
