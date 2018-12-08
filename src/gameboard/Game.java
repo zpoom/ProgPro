@@ -753,7 +753,13 @@ public class Game {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
+			try {
+				moveMonster();
+				Thread.sleep(300000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		});
 		t.start();
 	}
@@ -765,7 +771,7 @@ public class Game {
 	}
 	public void Showdestroyable() {
 		boolean isAdjWater = false;
-		if(Game.turn %2 == 0) {
+		if(Game.turn %2 == 1) {
 		if(Game.turn<=16) {
 			for(Space space : startTile) {
 				if(space.type == 3) {
@@ -775,12 +781,14 @@ public class Game {
 							space.setOnMouseClicked(evt -> {
 								clearAllSpace();
 								space.type = 1;
-								try {
-									space.update();
-								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
+							
+									try {
+										space.update();
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								
 								space.eff.effect(3);
 								t.interrupt();
 							});
@@ -799,15 +807,22 @@ public class Game {
 							space.setOnMouseClicked(evt -> {
 								clearAllSpace();
 								space.type = 1;
+							
+									try {
+										space.update();
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								
 								space.eff.effect(2);
 								t.interrupt();
 							});
+						break;
 					}
 				}
 			}
 			}
-		
-			
 		}
 		else {
 			for(Space space : startTile) {
@@ -818,15 +833,22 @@ public class Game {
 							space.setOnMouseClicked(evt -> {
 								clearAllSpace();
 								space.type = 1;
+							
+									try {
+										space.update();
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								
 								space.eff.effect(4);
 								t.interrupt();
 							});
+						break;
 					}
 				}
 			}
 			}
-		
-			
 		}
 		}
 		else {
@@ -839,9 +861,18 @@ public class Game {
 								space.setOnMouseClicked(evt -> {
 									clearAllSpace();
 									space.type = 1;
+								
+										try {
+											space.update();
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									
 									space.eff.effect(3);
 									t.interrupt();
 								});
+							break;
 						}
 					}
 				}
@@ -856,15 +887,22 @@ public class Game {
 								space.setOnMouseClicked(evt -> {
 									clearAllSpace();
 									space.type = 1;
+								
+										try {
+											space.update();
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									
 									space.eff.effect(2);
 									t.interrupt();
 								});
+							break;
 						}
 					}
 				}
 				}
-			
-				
 			}
 			else {
 				for(Space space : startTile) {
@@ -875,15 +913,22 @@ public class Game {
 								space.setOnMouseClicked(evt -> {
 									clearAllSpace();
 									space.type = 1;
+								
+										try {
+											space.update();
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									
 									space.eff.effect(4);
 									t.interrupt();
 								});
+							break;
 						}
 					}
 				}
 				}
-			
-				
 			}
 			
 			
