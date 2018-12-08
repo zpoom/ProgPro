@@ -30,6 +30,7 @@ public class Game {
 	public static int playerAmount;
 	private ArrayList<Space> startTile;
 	public static int step = -1;
+	public Thread t;
 	protected ArrayList<Meeple> player1 , player2;
 	private ArrayList<Space> riverTile,allTile;
 	public Game(int player,ArrayList<Player> players) throws IOException {
@@ -780,32 +781,36 @@ public class Game {
 				}
 			}
 		}*/
-		Thread t = new Thread(() -> {
+		  t = new Thread(() -> {
 			clearAllSpace();
-			showMoveable();
-			System.out.println(1);
+			try {
+				showMoveable();
+				Thread.sleep(3000);
+			} catch (InterruptedException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			}
+			clearAllSpace();
+			try {
+				showMoveable();
+				Thread.sleep(3000);
+			} catch (InterruptedException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+				
+			}
+			clearAllSpace();
+			try {
+				showMoveable();
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 		});
 		t.start();
-		/*try {
-			t.join();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		t = new Thread(() -> {
-			clearAllSpace();
-			showMoveable();
-			System.out.println(2);
-		});
-		t.start();
-		try {
-			t.join();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
+		
 	}
 	public void clearAllSpace() {
 		for(Space x : allTile) {
@@ -813,7 +818,8 @@ public class Game {
 			x.setOnMouseClicked(event -> {});
 		}
 	}
-	public void showMoveable() {
+	@SuppressWarnings("static-access")
+	public void showMoveable() throws InterruptedException {
 		if(Game.turn % 2 == 1) {
 			// p1 turn
 			for(Space space : allTile) {
@@ -826,6 +832,7 @@ public class Game {
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
 								// move to sp
+								t.interrupt();
 								if(space.boat!=null) {
 									// move boat
 									try {
@@ -841,6 +848,7 @@ public class Game {
 									} catch (IOException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();
+										
 									}
 								}
 							});
