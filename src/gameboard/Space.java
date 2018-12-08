@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import menu.Menu;
 
 public class Space extends StackPane {
 	public static final double x = 35;
@@ -65,51 +66,30 @@ public class Space extends StackPane {
 		if(t == 4) bg.setFill(Color.GREY);
 		DropShadow drop = new DropShadow(1000, Color.WHITE);
 		drop.setInput(new Glow());
-		setOnMouseClicked(event ->{
-			if(Game.step == 0) {
+		/*setOnMouseClicked(event ->{
+			Menu.game.gameLoop(this);
+			/*if(Game.step == 0) {
 				justClicked = this;
 				Game.step = 1;
 				for(Space a : Game.AllAdj.get(this)) {
 					a.bg.setFill(Color.WHITE);
 					a.setOnMouseClicked(evt ->{
 						//TODO set onclick for move to this space
-						if(this.boat!=null) {
-							try {
-								this.boat.moveTo(a);
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-						else if(Game.turn % 2 == 1) {
-							try {
-								this.p1.get(0).moveTo(a);
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-						else if(Game.turn % 2 == 0) {
-							try {
-								this.p2.get(0).moveTo(a);
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
+						// move to a
+						
 					});
 				}
 			}
-		});
+		});*/
 		getChildren().addAll(bg);	
 	}
 	// 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
 	public void addObject(Moveable creature) throws IOException {
 		// TODO
 		if(creature instanceof Meeple ) {
-			Meeple tmp = (Meeple) creature;
-			if(tmp.getColor()==1) p1.add(tmp);
-			else p2.add(tmp);
+			
+			if(((Meeple) creature).getColor()==1) p1.add(((Meeple) creature));
+			else p2.add(((Meeple) creature));
 		}
 		else if(creature instanceof Bigo) {
 			bigO = true;
@@ -128,11 +108,11 @@ public class Space extends StackPane {
 	// 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
 	public void deleteObject(Moveable creature) throws IOException {
 		if(creature instanceof Meeple ) {
-			Meeple tmp = (Meeple) creature;
-			if(tmp.getColor()==1) {
-				p1.remove(creature);
+			
+			if(((Meeple) creature).getColor()==1) {
+				p1.remove(0);
 			}
-			else p2.remove(creature);
+			else p2.remove(0);
 		}
 		else if(creature instanceof Bigo) {
 			bigO = false;

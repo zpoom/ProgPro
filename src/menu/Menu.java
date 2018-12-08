@@ -23,7 +23,7 @@ import player.Player;
 
 public class Menu extends Parent {
 	private Text tx1,tx2;
-	
+	public static Game game;
 	public Menu() throws IOException {
 		//use VBox as pane to contain each menu page.
 		
@@ -169,7 +169,7 @@ public class Menu extends Parent {
 		ArrayList<Player> temp = new ArrayList<Player>();
 		temp.add(p1);
 		temp.add(p2);
-		Game game = new Game(2,temp);
+		game = new Game(2,temp);
 		game.randomPosition1();
 		game.randomPosition2();
 		try{
@@ -181,6 +181,6 @@ public class Menu extends Parent {
 		getChildren().addAll(Game.vSpace);
 		Game.vSpace.setTranslateX(300);
 		Game.vSpace.setTranslateY(20);
-		game.gameLoop();
+		game.setPressAbleSpace();
 	}
 }
