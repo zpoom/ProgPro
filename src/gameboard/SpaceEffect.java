@@ -22,41 +22,9 @@ public class SpaceEffect {
 	public static ArrayList<Integer> effectsSandCount;
 	public static ArrayList<Integer> effectsWildCount;
 	public static ArrayList<Integer> effectsMtCount;
-	public static Thread boat;
+	public static Thread boat,dragon,whale,shark;
 	public SpaceEffect() {
-
-		  boat = new Thread(() -> {
-			Game.clearAllSpace();
-			try {
-				Game.showBoatmoveable();
-				Thread.sleep(30000);
-			} catch (InterruptedException e3) {
-				// TODO Auto-generated catch block
-				//e3.printStackTrace();
-				System.out.println("Boat Event");
-			}
-			Game.clearAllSpace();
-			try {
-				Game.showBoatmoveable();
-				Thread.sleep(30000);
-			} catch (InterruptedException e3) {
-				// TODO Auto-generated catch block
-				//e3.printStackTrace();
-				System.out.println("Boat Event");
-			}
-			Game.clearAllSpace();
-			try {
-				Game.showBoatmoveable();
-				Thread.sleep(30000);
-			} catch (InterruptedException e3) {
-				// TODO Auto-generated catch block
-				//e3.printStackTrace();
-				System.out.println("Boat Event");
-			}
-			Game.clearAllSpace();
-			Game.t.interrupt();
-			
-		  });
+		  
 		effectsSandCount = new ArrayList<Integer>();
 		effectsSandCount.add(4);
 		effectsSandCount.add(2);
@@ -111,7 +79,7 @@ public class SpaceEffect {
 			if (effectsSandCount.get(idx)==0) continue;
 			break;
 			}
-			return showEffect(5,space);
+			return showEffect(6,space);
 			
 		}
 		else{
@@ -183,20 +151,28 @@ public class SpaceEffect {
 		else if(t==5) {
 			//boat move 3 action 
 			showWarningAlert("The winds favor you!", "Life Saver??!!", "Move a Ship you control 1 to 3 sea spaces.");
-			boat.start();
+			runThread(5);
 			return 5;
 		}
 		else if(t==6) {
+			//dragon relocate
+			showWarningAlert("The Mother of dragon", "I'm your mother , BigO", "The dragon will move to a empty space of your choices");
+			runThread(6);
 			return 6;
 		}
 		else if(t==7) {
+			//shark relocate
+			showWarningAlert("Bloody shark","Shark navigator","The Shark of your choices will move to a empty space of your choices");
+			runThread(7);
 			return 7;
 		}
-		
+		//whale relocate
+		showWarningAlert("Whale teacher","Follow me, little whale","The whale of your choices will move to a empty space of your choices");
+		runThread(8);
 			return 8;
 		
 	}
-	public void showWarningAlert(String header,String title, String content , Image img ) {
+	public static void showWarningAlert(String header,String title, String content , Image img ) {
         Alert alert = new Alert(AlertType.WARNING);
         ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(img);
         alert.setTitle(title);
@@ -205,7 +181,7 @@ public class SpaceEffect {
         alert.showAndWait();
         
     }
-	public void showWarningAlert(String title,String header, String content ) {
+	public static void showWarningAlert(String title,String header, String content ) {
         Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle(title);
         alert.setHeaderText(header);
@@ -213,5 +189,91 @@ public class SpaceEffect {
         alert.showAndWait();
         
     }
+	public static void runThread(int n) {
+		if(n == 5) {
+			boat = new Thread(() -> {
+				Game.clearAllSpace();
+				try {
+					Game.showBoatmoveable();
+					Thread.sleep(30000);
+				} catch (InterruptedException e3) {
+					// TODO Auto-generated catch block
+					//e3.printStackTrace();
+					System.out.println("Boat Event");
+				}
+				Game.clearAllSpace();
+				try {
+					Game.showBoatmoveable();
+					Thread.sleep(30000);
+				} catch (InterruptedException e3) {
+					// TODO Auto-generated catch block
+					//e3.printStackTrace();
+					System.out.println("Boat Event");
+				}
+				Game.clearAllSpace();
+				try {
+					Game.showBoatmoveable();
+					Thread.sleep(30000);
+				} catch (InterruptedException e3) {
+					// TODO Auto-generated catch block
+					//e3.printStackTrace();
+					System.out.println("Boat Event");
+				}
+				Game.clearAllSpace();
+				Game.t.interrupt();
+				
+			  });
+			boat.start();
+		}
+		else if(n==6) {
+			dragon = new Thread(() -> {
+				Game.clearAllSpace();
+				Game.showDragonMoveable();
+				System.out.println("Dragon relocate");
+				try {
+					Thread.sleep(30000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Game.clearAllSpace();
+				Game.t.interrupt();
+				
+			  });
+			dragon.start();
+		}
+		else if (n==7) {
+			shark = new Thread(() -> {
+				Game.clearAllSpace();
+				Game.showSharkMoveable();
+				try {
+					Thread.sleep(30000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Game.clearAllSpace();
+				Game.t.interrupt();
+				
+			  });
+			shark.start();
+		}
+		else if (n==8) {
+			whale = new Thread(() -> {
+				Game.clearAllSpace();
+				Game.showWhaleMoveable();
+				try {
+					Thread.sleep(30000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Game.clearAllSpace();
+				Game.t.interrupt();
+				
+			  });
+			whale.start();
+		}
+		}
+	}
 	
-}

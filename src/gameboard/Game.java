@@ -17,6 +17,8 @@ import creatures.Boat;
 import creatures.Meeple;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -725,7 +727,7 @@ public class Game {
 			clearAllSpace();
 			try {
 				showMoveable();
-				Thread.sleep(30000);
+				Thread.sleep(300000);
 			} catch (InterruptedException e3) {
 				// TODO Auto-generated catch block
 				//e3.printStackTrace();
@@ -734,7 +736,7 @@ public class Game {
 			clearAllSpace();
 			try {
 				showMoveable();
-				Thread.sleep(30000);
+				Thread.sleep(300000);
 			} catch (InterruptedException e2) {
 				// TODO Auto-generated catch block
 				//e2.printStackTrace();
@@ -744,7 +746,7 @@ public class Game {
 			clearAllSpace();
 			try {
 				showMoveable();
-				Thread.sleep(30000);
+				Thread.sleep(300000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				//e1.printStackTrace();
@@ -754,7 +756,6 @@ public class Game {
 			try {
 				// Phase 2  destroy island
 				Showdestroyable();
-				SpaceEffect.boat.join(70000);
 				Thread.sleep(300000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
@@ -770,6 +771,7 @@ public class Game {
 				//e.printStackTrace();
 				System.out.println("End turn"+Game.turn);
 			}
+			Game.turn++;
 			}
 		});
 			t.start();
@@ -805,12 +807,12 @@ public class Game {
 								
 								try {
 									 tmpo = space.eff.effect(3 , space);
+									 
 								} catch (IOException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
-							
-								if(tmpo != 5) t.interrupt();
+								if(tmpo != 5&&tmpo!= 6 &&tmpo!=7 &&tmpo!=8) t.interrupt();
 							});
 						break;
 					}
@@ -994,6 +996,8 @@ public class Game {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
 							if(sp.n1 + sp.n2 >=3) continue;
+							if(space.boat!=null&&sp.boat!=null) continue;
+							if(space.boat!=null&&sp.type!=1) continue;
 							sp.bg.setStroke(Color.RED);
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
@@ -1032,6 +1036,8 @@ public class Game {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
 							if(sp.n1 + sp.n2 >=3) continue;
+							if(space.boat!=null&&sp.boat!=null) continue;
+							if(space.boat!=null&&sp.type!=1) continue;
 							sp.bg.setStroke(Color.WHITE);
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
@@ -1062,9 +1068,81 @@ public class Game {
 			}
 		}
 	}
+	public static void showDragonMoveable() {
+		for(Space space : allTile) {
+			if(space.bigO) {
+				space.bg.setStroke(Color.PURPLE);
+				space.setOnMouseClicked(event -> {
+					clearAllSpace();
+					for(Space sp : allTile) {
+						if(!sp.isEmpty()||sp.type!=1) continue;
+						sp.bg.setStroke(Color.PURPLE);
+						sp.setOnMouseClicked(evt -> {
+							clearAllSpace();
+							try {
+								space.deleteObject(new Bigo(space));
+								sp.addObject(new Bigo(sp));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							SpaceEffect.dragon.interrupt();
+							
+						});
+					}
+				});
+			
+			}
+		}
+	}
+	public static void showWhaleMoveable() {
+		int x = 0;
+		for(Space space : allTile) {
+			if(space.pom) x++;
+		}
+		if(x==0) {
+			SpaceEffect.whale.interrupt();
+			return;
+			
+		}
+		for(Space space : allTile) {
+			if(space.pom) {
+				space.bg.setStroke(Color.PURPLE);
+				space.setOnMouseClicked(event -> {
+					clearAllSpace();
+					for(Space sp : allTile) {
+						if(!sp.isEmpty()||sp.type!=1) continue;
+						sp.bg.setStroke(Color.PURPLE);
+						sp.setOnMouseClicked(evt -> {
+							clearAllSpace();
+							try {
+								space.deleteObject(new Bigpom(space));
+								sp.addObject(new Bigpom(sp));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							SpaceEffect.whale.interrupt();
+							
+						});
+					}
+				});
+			
+			}
+		}
+	}
 	public static void showBoatmoveable() {
 		if(Game.turn % 2 == 1) {
 			// p1 turn
+			int x = 0;
+			for(Space space : allTile) {
+				if(space.n1>space.n2&&space.boat!=null) x++;
+			}
+			if(x==0) {
+				SpaceEffect.boat.interrupt();
+				return;
+				
+			}
 			for(Space space : allTile) {
 				if(space.n1 > space.n2 && space.boat!=null) {
 					space.bg.setStroke(Color.RED);
@@ -1085,15 +1163,6 @@ public class Game {
 										e.printStackTrace();
 									}
 								}
-								else {
-									try {
-										space.p1.get(0).moveTo(sp);
-									} catch (IOException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-										
-									}
-								}
 								SpaceEffect.boat.interrupt();
 							});
 						}
@@ -1103,6 +1172,16 @@ public class Game {
 		}
 		else {
 			// p2 turn
+			int x = 0;
+			for(Space space : allTile) {
+				if(space.n2>space.n1&&space.boat!=null) x++;
+			}
+			if(x==0) {
+				//SpaceEffect.showWarningAlert("Oh Fuck, you don't have any boat!", "SKIP TURN", "you have nothing to do");
+				SpaceEffect.boat.interrupt();
+				return;
+				
+			}
 			for(Space space : allTile) {
 				if(space.n2 > space.n1 && space.boat!=null) {
 					space.bg.setStroke(Color.WHITE);
@@ -1123,20 +1202,49 @@ public class Game {
 										e.printStackTrace();
 									}
 								}
-								else {
-									try {
-										space.p2.get(0).moveTo(sp);
-									} catch (IOException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-										
-									}
-								}
+								
 								SpaceEffect.boat.interrupt();
 							});
 						}
 					});
 				}
+			}
+		}
+		
+	}
+	public static void showSharkMoveable() {
+		int x = 0;
+		for(Space space : allTile) {
+			if(space.tu) x++;
+		}
+		if(x==0) {
+			SpaceEffect.shark.interrupt();
+			return;
+			
+		}
+		for(Space space : allTile) {
+			if(space.tu) {
+				space.bg.setStroke(Color.PURPLE);
+				space.setOnMouseClicked(event -> {
+					clearAllSpace();
+					for(Space sp : allTile) {
+						if(!sp.isEmpty()) continue;
+						sp.bg.setStroke(Color.PURPLE);
+						sp.setOnMouseClicked(evt -> {
+							clearAllSpace();
+							try {
+								space.deleteObject(new Bigtu(space));
+								sp.addObject(new Bigtu(sp));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							SpaceEffect.shark.interrupt();
+							
+						});
+					}
+				});
+			
 			}
 		}
 		
@@ -1172,7 +1280,7 @@ public class Game {
 							if((!(sp.bigO || sp.pom || sp.tu)) && sp.type==1) {
 								sp.bg.setStroke(Color.RED);
 								sp.setOnMouseClicked(evt -> {
-									Game.turn++;
+									
 									clearAllSpace();
 									if(space.bigO) {
 										try {
@@ -1243,7 +1351,7 @@ public class Game {
 							if((!(sp.bigO || sp.pom || sp.tu)) && sp.type==1) {
 								sp.bg.setStroke(Color.WHITE);
 								sp.setOnMouseClicked(evt -> {
-									Game.turn++;
+								
 									clearAllSpace();
 									if(space.bigO) {
 										try {

@@ -83,7 +83,7 @@ public class Space extends StackPane {
 	public void addObject(Moveable creature) throws IOException {
 		// TODO
 		if(creature instanceof Meeple ) {
-			if(n1+n2>=3) return;
+			if(n1+n2>3) return;
 			if(((Meeple) creature).getColor()==1) {
 				p1.add(((Meeple) creature));
 				n1++;
@@ -149,6 +149,10 @@ public class Space extends StackPane {
 		}
 		update();
 		
+	}
+	public boolean isEmpty() {
+		if(n1==0&&n2==0&& !bigO && !pom &&boat==null && !tu) return true;
+		return false;
 	}
 	
 	public void update() throws IOException {
