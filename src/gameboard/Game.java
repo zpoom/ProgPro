@@ -15,6 +15,7 @@ import creatures.Bigpom;
 import creatures.Bigtu;
 import creatures.Boat;
 import creatures.Meeple;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -35,7 +36,7 @@ public class Game {
 	private ArrayList<Space> riverTile,allTile;
 	public Game(int player,ArrayList<Player> players) throws IOException {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
-		turn = 1;
+		Game.turn = 1;
 		step = 0;
 		this.playerAmount = player;
 		player1 = new ArrayList<Meeple>();
@@ -719,13 +720,15 @@ public class Game {
 	}
 	public void start() {
 		  t = new Thread(() -> {
+			while(Game.turn < 40) {
 			clearAllSpace();
 			try {
 				showMoveable();
 				Thread.sleep(30000);
 			} catch (InterruptedException e3) {
 				// TODO Auto-generated catch block
-				e3.printStackTrace();
+				//e3.printStackTrace();
+				System.out.println("action1 finished , "+Game.turn);
 			}
 			clearAllSpace();
 			try {
@@ -733,7 +736,8 @@ public class Game {
 				Thread.sleep(30000);
 			} catch (InterruptedException e2) {
 				// TODO Auto-generated catch block
-				e2.printStackTrace();
+				//e2.printStackTrace();
+				System.out.println("action2 finished , "+Game.turn);
 				
 			}
 			clearAllSpace();
@@ -742,7 +746,8 @@ public class Game {
 				Thread.sleep(30000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				//e1.printStackTrace();
+				System.out.println("action3 finished , "+Game.turn);
 			}
 			clearAllSpace();
 			try {
@@ -751,17 +756,23 @@ public class Game {
 				Thread.sleep(300000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				//e1.printStackTrace();
+				System.out.println("phase2 finished , "+Game.turn);
 			}
 			try {
+				// Phase 3 moveMonster
 				moveMonster();
 				Thread.sleep(300000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+				System.out.println("End turn"+Game.turn);
+			}
 			}
 		});
-		t.start();
+			t.start();
+		
+		
 	}
 	public void clearAllSpace() {
 		for(Space x : allTile) {
@@ -974,6 +985,40 @@ public class Game {
 		}
 		else {
 			// p2 turn
+			for(Space space : allTile) {
+				if(space.n2 > 0 || (space.n2 >= space.n1 && space.boat!=null)) {
+					space.bg.setStroke(Color.WHITE);
+					space.setOnMouseClicked(event -> {
+						clearAllSpace();
+						for(Space sp : Game.AllAdj.get(space)) {
+							sp.bg.setStroke(Color.WHITE);
+							sp.setOnMouseClicked(evt -> {
+								clearAllSpace();
+								// move to sp
+								if(space.boat!=null) {
+									// move boat
+									try {
+										space.boat.moveTo(sp);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+								else {
+									try {
+										space.p2.get(0).moveTo(sp);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+										
+									}
+								}
+								t.interrupt();
+							});
+						}
+					});
+				}
+			}
 		}
 	}
 	public void randomPositionBoat() throws IOException{
@@ -1007,6 +1052,7 @@ public class Game {
 							if((!(sp.bigO || sp.pom || sp.tu)) && sp.type==1) {
 								sp.bg.setStroke(Color.RED);
 								sp.setOnMouseClicked(evt -> {
+									Game.turn++;
 									clearAllSpace();
 									if(space.bigO) {
 										try {
@@ -1050,6 +1096,7 @@ public class Game {
 											e.printStackTrace();
 										}
 									}
+									t.interrupt();
 								});
 							}
 							
@@ -1076,6 +1123,7 @@ public class Game {
 							if((!(sp.bigO || sp.pom || sp.tu)) && sp.type==1) {
 								sp.bg.setStroke(Color.WHITE);
 								sp.setOnMouseClicked(evt -> {
+									Game.turn++;
 									clearAllSpace();
 									if(space.bigO) {
 										try {
@@ -1119,6 +1167,7 @@ public class Game {
 											e.printStackTrace();
 										}
 									}
+									t.interrupt();
 								});
 							}
 							
