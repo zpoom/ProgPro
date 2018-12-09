@@ -954,6 +954,7 @@ public class Game {
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
+							if(sp.n1 + sp.n2 >=3) continue;
 							sp.bg.setStroke(Color.RED);
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
@@ -991,6 +992,7 @@ public class Game {
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
+							if(sp.n1 + sp.n2 >=3) continue;
 							sp.bg.setStroke(Color.WHITE);
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();

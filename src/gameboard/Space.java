@@ -148,6 +148,8 @@ public class Space extends StackPane {
 			// only BigO in Space;
 			p1.clear();
 			p2.clear();
+			n1 = 0;
+			n2 = 0;
 			boat = null;
 			Bigo tmp = new Bigo(this);
 			getChildren().add(tmp.dragon);
@@ -157,6 +159,8 @@ public class Space extends StackPane {
 			// only tu here
 			p1.clear();
 			p2.clear();
+			n1 = 0;
+			n2 = 0;
 			Bigtu tmp = new Bigtu(this);
 			getChildren().add(tmp.shark);
 		}
