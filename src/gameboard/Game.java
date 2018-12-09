@@ -29,11 +29,12 @@ public class Game {
 	public Set<Space> tmp;
 	public static int turn;
 	public static int playerAmount;
+	private int tmpo;
 	private ArrayList<Space> startTile;
 	public static int step = -1;
-	public Thread t;
+	public static Thread t;
 	protected ArrayList<Meeple> player1 , player2;
-	private ArrayList<Space> riverTile,allTile;
+	public static ArrayList<Space> riverTile,allTile;
 	public Game(int player,ArrayList<Player> players) throws IOException {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
 		Game.turn = 1;
@@ -753,6 +754,7 @@ public class Game {
 			try {
 				// Phase 2  destroy island
 				Showdestroyable();
+				SpaceEffect.boat.join(70000);
 				Thread.sleep(300000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
@@ -774,7 +776,7 @@ public class Game {
 		
 		
 	}
-	public void clearAllSpace() {
+	public static void clearAllSpace() {
 		for(Space x : allTile) {
 			x.bg.setStroke(Color.BLACK);
 			x.setOnMouseClicked(event -> {});
@@ -792,6 +794,7 @@ public class Game {
 							space.setOnMouseClicked(evt -> {
 								clearAllSpace();
 								space.type = 1;
+								
 							
 									try {
 										space.update();
@@ -800,8 +803,14 @@ public class Game {
 										e.printStackTrace();
 									}
 								
-								space.eff.effect(3);
-								t.interrupt();
+								try {
+									 tmpo = space.eff.effect(3 , space);
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							
+								if(tmpo != 5) t.interrupt();
 							});
 						break;
 					}
@@ -826,8 +835,14 @@ public class Game {
 										e.printStackTrace();
 									}
 								
-								space.eff.effect(2);
-								t.interrupt();
+									try {
+										 tmpo = space.eff.effect(3 , space);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								
+									if(tmpo != 5) t.interrupt();
 							});
 						break;
 					}
@@ -852,8 +867,14 @@ public class Game {
 										e.printStackTrace();
 									}
 								
-								space.eff.effect(4);
-								t.interrupt();
+									try {
+										 tmpo = space.eff.effect(3 , space);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								
+									if(tmpo != 5) t.interrupt();
 							});
 						break;
 					}
@@ -880,8 +901,14 @@ public class Game {
 											e.printStackTrace();
 										}
 									
-									space.eff.effect(3);
-									t.interrupt();
+										try {
+											 tmpo = space.eff.effect(3 , space);
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									
+										if(tmpo != 5) t.interrupt();
 								});
 							break;
 						}
@@ -906,8 +933,14 @@ public class Game {
 											e.printStackTrace();
 										}
 									
-									space.eff.effect(2);
-									t.interrupt();
+										try {
+											 tmpo = space.eff.effect(3 , space);
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									
+										if(tmpo != 5) t.interrupt();
 								});
 							break;
 						}
@@ -932,8 +965,14 @@ public class Game {
 											e.printStackTrace();
 										}
 									
-									space.eff.effect(4);
-									t.interrupt();
+										try {
+											 tmpo = space.eff.effect(3 , space);
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									
+										if(tmpo != 5) t.interrupt();
 								});
 							break;
 						}
@@ -945,7 +984,7 @@ public class Game {
 			
 		}
 	}
-	public void showMoveable() throws InterruptedException {
+	public static void showMoveable() throws InterruptedException {
 		if(Game.turn % 2 == 1) {
 			// p1 turn
 			for(Space space : allTile) {
@@ -1022,6 +1061,85 @@ public class Game {
 				}
 			}
 		}
+	}
+	public static void showBoatmoveable() {
+		if(Game.turn % 2 == 1) {
+			// p1 turn
+			for(Space space : allTile) {
+				if(space.n1 > space.n2 && space.boat!=null) {
+					space.bg.setStroke(Color.RED);
+					space.setOnMouseClicked(event -> {
+						clearAllSpace();
+						for(Space sp : Game.AllAdj.get(space)) {
+							if(sp.n1 + sp.n2 >=3) continue;
+							sp.bg.setStroke(Color.RED);
+							sp.setOnMouseClicked(evt -> {
+								clearAllSpace();
+								// move to sp
+								if(space.boat!=null) {
+									// move boat
+									try {
+										space.boat.moveTo(sp);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+								else {
+									try {
+										space.p1.get(0).moveTo(sp);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+										
+									}
+								}
+								SpaceEffect.boat.interrupt();
+							});
+						}
+					});
+				}
+			}
+		}
+		else {
+			// p2 turn
+			for(Space space : allTile) {
+				if(space.n2 > space.n1 && space.boat!=null) {
+					space.bg.setStroke(Color.WHITE);
+					space.setOnMouseClicked(event -> {
+						clearAllSpace();
+						for(Space sp : Game.AllAdj.get(space)) {
+							if(sp.n1 + sp.n2 >=3) continue;
+							sp.bg.setStroke(Color.WHITE);
+							sp.setOnMouseClicked(evt -> {
+								clearAllSpace();
+								// move to sp
+								if(space.boat!=null) {
+									// move boat
+									try {
+										space.boat.moveTo(sp);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+								else {
+									try {
+										space.p2.get(0).moveTo(sp);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+										
+									}
+								}
+								SpaceEffect.boat.interrupt();
+							});
+						}
+					});
+				}
+			}
+		}
+		
 	}
 	public void randomPositionBoat() throws IOException{
 		ArrayList<Space> temp = new ArrayList<Space>();

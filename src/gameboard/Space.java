@@ -111,7 +111,22 @@ public class Space extends StackPane {
 		update();
 	}
 	// 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
-	
+	public void clearSpace() {
+		n1 = 0;
+		n2 = 0;
+		bigO = false;
+		tu = false;
+		pom = false;
+		boat = null;
+		p1.clear();
+		p2.clear();
+		try {
+			update();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void deleteObject(Moveable creature) throws IOException {
 		if(creature instanceof Meeple ) {
 			if(((Meeple) creature).getColor()==1) {
@@ -235,82 +250,103 @@ public class Space extends StackPane {
 			}
 		}
 		else {
+			
 			if(p1.size()==0&&p2.size()==1) {
 				p2.get(0).setTranslateX(0);
 				p2.get(0).setTranslateY(0);
+				p2.get(0).setRadius(10);
 				getChildren().add(p2.get(0));
 			}
 			else if(p1.size()==1&&p2.size()==0) {
 				p1.get(0).setTranslateX(0);
 				p1.get(0).setTranslateY(0);
+				p1.get(0).setRadius(10);
 				getChildren().add(p1.get(0));
 			}
 			else if(p1.size()==1&&p2.size()==1) {
 				p1.get(0).setTranslateX(+15);
 				p1.get(0).setTranslateY(0);
+				p1.get(0).setRadius(10);
 				getChildren().add(p1.get(0));
 				p2.get(0).setTranslateX(-15);
 				p2.get(0).setTranslateY(0);
+				p2.get(0).setRadius(10);
 				getChildren().add(p2.get(0));
 			}
 			else if(p1.size()==2&&p2.size()==0) {
 				p1.get(0).setTranslateX(+15);
 				p1.get(0).setTranslateY(0);
+				p1.get(0).setRadius(10);
 				getChildren().add(p1.get(0));
 				p1.get(1).setTranslateX(-15);
 				p1.get(1).setTranslateY(0);
+				p1.get(1).setRadius(10);
 				getChildren().add(p1.get(1));
 			}
 			else if(p1.size()==0&&p2.size()==2) {
 				p2.get(0).setTranslateX(+15);
 				p2.get(0).setTranslateY(0);
+				p2.get(0).setRadius(10);
 				getChildren().add(p2.get(0));
 				p2.get(1).setTranslateX(-15);
 				p2.get(1).setTranslateY(0);
+				p2.get(1).setRadius(10);
 				getChildren().add(p2.get(1));
 			}
 			else if(p1.size()==1&&p2.size()==2) {
 				p2.get(0).setTranslateX(+15);
 				p2.get(0).setTranslateY(5);
+				p2.get(0).setRadius(10);
 				getChildren().add(p2.get(0));
 				p2.get(1).setTranslateX(-15);
 				p2.get(1).setTranslateY(5);
+				p2.get(1).setRadius(10);
 				getChildren().add(p2.get(1));
 				p1.get(0).setTranslateX(0);
 				p1.get(0).setTranslateY(-15);
+				p1.get(0).setRadius(10);
 				getChildren().add(p1.get(0));
 			}
 			else if(p1.size()==2&&p2.size()==1) {
 				p2.get(0).setTranslateX(+15);
 				p2.get(0).setTranslateY(5);
+				p2.get(0).setRadius(10);
 				getChildren().add(p2.get(0));
 				p1.get(1).setTranslateX(-15);
 				p1.get(1).setTranslateY(5);
+				p1.get(1).setRadius(10);
 				getChildren().add(p1.get(1));
 				p1.get(0).setTranslateX(0);
 				p1.get(0).setTranslateY(-15);
+				p1.get(0).setRadius(10);
 				getChildren().add(p1.get(0));
 			}
 			else if(p1.size()==3&&p2.size()==0) {
 				p1.get(0).setTranslateX(+15);
 				p1.get(0).setTranslateY(5);
+				p1.get(0).setRadius(10);
 				getChildren().add(p1.get(0));
 				p1.get(1).setTranslateX(-15);
 				p1.get(1).setTranslateY(5);
+				p1.get(1).setRadius(10);
 				getChildren().add(p1.get(1));
 				p1.get(2).setTranslateX(0);
 				p1.get(2).setTranslateY(-15);
+				p1.get(2).setRadius(10);
 				getChildren().add(p1.get(2));
 			}
 			else if(p1.size()==0&&p2.size()==3) {
 				p2.get(0).setTranslateX(+15);
 				p2.get(0).setTranslateY(5);
+				p2.get(0).setRadius(10);
 				getChildren().add(p2.get(0));
 				p2.get(1).setTranslateX(-15);
 				p2.get(1).setTranslateY(5);
+				p2.get(1).setRadius(10);
 				getChildren().add(p2.get(1));
 				p2.get(2).setTranslateX(0);
 				p2.get(2).setTranslateY(-15);
+				p2.get(2).setRadius(10);
 				getChildren().add(p2.get(2));
 			}
 			
