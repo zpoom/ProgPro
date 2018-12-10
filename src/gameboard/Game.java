@@ -873,7 +873,7 @@ public class Game {
 										e.printStackTrace();
 									}
 								
-									if(tmpo != 5) t.interrupt();
+									if(tmpo != 5&&tmpo!= 6 &&tmpo!=7 &&tmpo!=8) t.interrupt();
 							});
 						break;
 					}
@@ -905,7 +905,7 @@ public class Game {
 										e.printStackTrace();
 									}
 								
-									if(tmpo != 5) t.interrupt();
+									if(tmpo != 5&&tmpo!= 6 &&tmpo!=7 &&tmpo!=8) t.interrupt();
 							});
 						break;
 					}
@@ -939,7 +939,7 @@ public class Game {
 											e.printStackTrace();
 										}
 									
-										if(tmpo != 5) t.interrupt();
+										if(tmpo != 5&&tmpo!= 6 &&tmpo!=7 &&tmpo!=8) t.interrupt();
 								});
 							break;
 						}
@@ -971,7 +971,7 @@ public class Game {
 											e.printStackTrace();
 										}
 									
-										if(tmpo != 5) t.interrupt();
+										if(tmpo != 5&&tmpo!= 6 &&tmpo!=7 &&tmpo!=8) t.interrupt();
 								});
 							break;
 						}
@@ -1003,7 +1003,7 @@ public class Game {
 											e.printStackTrace();
 										}
 									
-										if(tmpo != 5) t.interrupt();
+										if(tmpo != 5&&tmpo!= 6 &&tmpo!=7 &&tmpo!=8) t.interrupt();
 								});
 							break;
 						}
@@ -1020,13 +1020,31 @@ public class Game {
 			// p1 turn
 			for(Space space : allTile) {
 				if(space.n1 > 0 || (space.n1 >= space.n2 && space.boat!=null)) {
+					if(space.boat!=null &&space.n1<space.n2) continue;
 					space.bg.setStroke(Color.RED);
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
-							if(sp.n1 + sp.n2 >=3) continue;
+							if(space.type==1 ) {
+								if(sp.type == 5) {
+									sp.bg.setStroke(Color.RED);
+									sp.setOnMouseClicked(evt ->{
+										clearAllSpace();
+										try {
+											sp.deleteObject(space.p1.get(0));
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+										p1.score++;
+										t.interrupt();
+									});
+								}
+								continue;
+							}
+							/*if(sp.n1 + sp.n2 >=3) continue;
 							if(space.boat!=null&&sp.boat!=null) continue;
-							if(space.boat!=null&&sp.type!=1) continue;
+							if(space.boat!=null&&sp.type!=1) continue;*/
 							sp.bg.setStroke(Color.RED);
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
@@ -1059,11 +1077,13 @@ public class Game {
 		else {
 			// p2 turn
 			for(Space space : allTile) {
-				if(space.n2 > 0 || (space.n2 >= space.n1 && space.boat!=null)) {
+				if(space.n2 > 0|| (space.n2 >= space.n1 && space.boat!=null)) {
+					if(space.boat!=null &&space.n1<space.n2) continue;
 					space.bg.setStroke(Color.WHITE);
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
+							if(space.type==1 && sp.type!=1) continue;
 							if(sp.n1 + sp.n2 >=3) continue;
 							if(space.boat!=null&&sp.boat!=null) continue;
 							if(space.boat!=null&&sp.type!=1) continue;
@@ -1165,7 +1185,7 @@ public class Game {
 			// p1 turn
 			int x = 0;
 			for(Space space : allTile) {
-				if(space.n1>space.n2&&space.boat!=null) x++;
+				if(space.n1>=space.n2&&space.boat!=null&&space.n1>0) x++;
 			}
 			if(x==0) {
 				SpaceEffect.boat.interrupt();
@@ -1203,7 +1223,7 @@ public class Game {
 			// p2 turn
 			int x = 0;
 			for(Space space : allTile) {
-				if(space.n2>space.n1&&space.boat!=null) x++;
+				if(space.n2>space.n1&&space.boat!=null&&space.n2>0) x++;
 			}
 			if(x==0) {
 				//SpaceEffect.showWarningAlert("Oh Fuck, you don't have any boat!", "SKIP TURN", "you have nothing to do");
