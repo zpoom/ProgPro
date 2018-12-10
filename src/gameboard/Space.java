@@ -60,7 +60,7 @@ public class Space extends StackPane {
 		else if(t == 2) bg.setFill(Color.GREEN);
 		else if(t == 3) bg.setFill(Color.BURLYWOOD);
 		else if(t == 4) bg.setFill(Color.GREY);
-		else bg.setFill(Color.GOLD);
+		else if(t == 5)bg.setFill(Color.GOLD);
 		DropShadow drop = new DropShadow(1000, Color.WHITE);
 		drop.setInput(new Glow());
 		/*setOnMouseClicked(event ->{
@@ -237,6 +237,7 @@ public class Space extends StackPane {
 		}
 		else if (boat!=null) {
 			int x = 0;
+			boat.boat.setTranslateX(0);
 			getChildren().add(boat.boat);
 			for(int i = 0;i<p1.size();i++) {
 				p1.get(i).setRadius(7);

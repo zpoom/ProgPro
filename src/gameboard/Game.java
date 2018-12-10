@@ -1,5 +1,6 @@
 package gameboard;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +23,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -705,6 +708,16 @@ public class Game {
 		riverTile.add(A86);
 		allTile.addAll(riverTile);
 		allTile.addAll(startTile);
+		allTile.add(G1);
+		allTile.add(G2);
+		allTile.add(G3);
+		allTile.add(G4);
+		String musicFile = "res/Pirate.mp3";     // For example
+
+		Media sound = new Media(new File(musicFile).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.setCycleCount(100);
+		mediaPlayer.play();
 	}
 	public void scoreBoard() {
 		scoreBoardP1 = new StackPane();
@@ -762,6 +775,7 @@ public class Game {
 				//e3.printStackTrace();
 				System.out.println("action1 finished , "+Game.turn);
 			}
+			updateScore();
 			clearAllSpace();
 			try {
 				showMoveable();
@@ -770,8 +784,8 @@ public class Game {
 				// TODO Auto-generated catch block
 				//e2.printStackTrace();
 				System.out.println("action2 finished , "+Game.turn);
-				
 			}
+			updateScore();
 			clearAllSpace();
 			try {
 				showMoveable();
@@ -781,6 +795,7 @@ public class Game {
 				//e1.printStackTrace();
 				System.out.println("action3 finished , "+Game.turn);
 			}
+			updateScore();
 			clearAllSpace();
 			try {
 				// Phase 2  destroy island
@@ -1025,26 +1040,23 @@ public class Game {
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
-							if(space.type==1 ) {
-								if(sp.type == 5) {
-									sp.bg.setStroke(Color.RED);
-									sp.setOnMouseClicked(evt ->{
-										clearAllSpace();
-										try {
-											sp.deleteObject(space.p1.get(0));
-										} catch (IOException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										}
-										p1.score++;
-										t.interrupt();
-									});
-								}
-								continue;
+							if(sp.type == 5) {
+								sp.bg.setStroke(Color.RED);
+								sp.setOnMouseClicked(evt -> {
+									try {
+										space.p1.get(0).moveTo(sp);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									t.interrupt();
+								});
 							}
-							/*if(sp.n1 + sp.n2 >=3) continue;
+							if(space.type==1 && sp.type != 1) continue;
+							if(sp.n1 + sp.n2 >=3) continue;
+							if(space.boat!=null &&space.n1+space.n2 +sp.n1+sp.n2 >3) continue;
 							if(space.boat!=null&&sp.boat!=null) continue;
-							if(space.boat!=null&&sp.type!=1) continue;*/
+							if(space.boat!=null&&sp.type!=1) continue;
 							sp.bg.setStroke(Color.RED);
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
@@ -1078,15 +1090,28 @@ public class Game {
 			// p2 turn
 			for(Space space : allTile) {
 				if(space.n2 > 0|| (space.n2 >= space.n1 && space.boat!=null)) {
-					if(space.boat!=null &&space.n1<space.n2) continue;
+					if(space.boat!=null &&space.n1>space.n2) continue;
 					space.bg.setStroke(Color.WHITE);
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
+							if(sp.type == 5) {
+								sp.bg.setStroke(Color.WHITE);
+								sp.setOnMouseClicked(evt -> {
+									try {
+										space.p2.get(0).moveTo(sp);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									t.interrupt();
+								});
+							}
 							if(space.type==1 && sp.type!=1) continue;
 							if(sp.n1 + sp.n2 >=3) continue;
 							if(space.type==1 && sp.type!=1) continue;
 							if(space.boat!=null&&sp.boat!=null) continue;
+							if(space.boat!=null &&space.n1+space.n2 +sp.n1+sp.n2 >3) continue;
 							if(space.boat!=null&&sp.type!=1) continue;
 							sp.bg.setStroke(Color.WHITE);
 							sp.setOnMouseClicked(evt -> {
@@ -1199,7 +1224,8 @@ public class Game {
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
-							if(sp.n1 + sp.n2 >=3) continue;
+							if(sp.type!=1) continue;
+							if(sp.n1 + sp.n2 +space.n1+space.n2>=3) continue;
 							sp.bg.setStroke(Color.RED);
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
@@ -1238,7 +1264,8 @@ public class Game {
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
-							if(sp.n1 + sp.n2 >=3) continue;
+							if(sp.type!=1) continue;
+							if((sp.n1 + sp.n2 +space.n1+space.n2>=3)) continue;
 							sp.bg.setStroke(Color.WHITE);
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
@@ -1279,6 +1306,7 @@ public class Game {
 					clearAllSpace();
 					for(Space sp : allTile) {
 						if(!sp.isEmpty()) continue;
+						if(sp.type!=1) continue;
 						sp.bg.setStroke(Color.PURPLE);
 						sp.setOnMouseClicked(evt -> {
 							clearAllSpace();
@@ -1303,10 +1331,11 @@ public class Game {
 		ArrayList<Space> temp = new ArrayList<Space>();
 		temp.addAll(riverTile);
 		int x = 0;
-		while(x!=5) {
+		while(x!=4) {
 			Random rd = new Random();
 			int idx = rd.nextInt(temp.size());
 			if(temp.get(idx).boat != null) continue;
+			if(temp.get(idx).bigO) continue;
 			temp.get(idx).addObject(new Boat(temp.get(idx)));
 			x++;
 		}

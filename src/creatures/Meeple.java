@@ -33,6 +33,7 @@ public class Meeple  extends Circle implements Moveable{
 		now.deleteObject(this);
 		if(Game.turn%2==1) Game.p1.score++;
 		else Game.p2.score++;
+		destination.clearSpace();
 		
 		
 	}
