@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import java.io.File;
+
 import gameboard.Game;
 import gameboard.Space;
 import javafx.animation.FadeTransition;
@@ -25,6 +27,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -35,6 +39,7 @@ import javafx.util.Duration;
 import menu.Menu;
 public class Main extends Application {
 	private Menu menu;
+	private static MediaPlayer bgm;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
@@ -50,6 +55,21 @@ public class Main extends Application {
 		primaryStage.show();
 	}
 	public static void main(String[] args) {
+		playBGM();
 		launch(args);
 	}
+	private static void playBGM() {
+		Thread playBGM = new Thread(() ->  {
+			bgm = new MediaPlayer(new Media(new File("res/bgm.mp3").toURI().toString()));
+			bgm.setOnReady(() -> {
+				bgm.setOnEndOfMedia(() -> {
+					bgm.seek(Duration.ZERO);
+				});
+				bgm.play();
+			});
+		});
+		playBGM.start();
+	}
+
 }
+

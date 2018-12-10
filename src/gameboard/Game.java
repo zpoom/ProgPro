@@ -25,6 +25,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -712,12 +713,7 @@ public class Game {
 		allTile.add(G2);
 		allTile.add(G3);
 		allTile.add(G4);
-		String musicFile = "res/Pirate.mp3";     // For example
-
-		Media sound = new Media(new File(musicFile).toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.setCycleCount(100);
-		mediaPlayer.play();
+		
 	}
 	public void scoreBoard() {
 		scoreBoardP1 = new StackPane();
