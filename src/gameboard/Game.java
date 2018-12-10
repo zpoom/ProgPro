@@ -17,6 +17,8 @@ import creatures.Boat;
 import creatures.Meeple;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -32,14 +34,15 @@ public class Game {
 	public Set<Space> tmp;
 	public static int turn;
 	public static int playerAmount; // use for more than 2 player
+	private int tmpo;
 	private ArrayList<Space> startTile;
 	public static int step = -1;
-	public Thread t;
+	public static Thread t;
 	public static Player p1,p2;
 	protected ArrayList<Meeple> player1 , player2;
-	private ArrayList<Space> riverTile,allTile;
 	public StackPane scoreBoardP1,scoreBoardP2;
 	public Text scoreP1,scoreP2;
+	public static ArrayList<Space> riverTile,allTile;
 	public Game(int player,ArrayList<Player> players) throws IOException {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
 		Game.turn = 1;
@@ -214,12 +217,33 @@ public class Game {
 		Space A95 = new Space(1);
 		Space A96 = new Space(1);
 		Space A97 = new Space(1);
+		
+		Space G1 = new Space(5);
+		Space G2 = new Space(5);
+		Space G3 = new Space(5);
+		Space G4 = new Space(5);
+		G1.setOnMouseClicked(event->{
+			if(Game.turn % 2 == 1) p1.score++;
+			else p2.score++;
+		});
+		G2.setOnMouseClicked(event->{
+			if(Game.turn % 2 == 1) p1.score++;
+			else p2.score++;
+		});
+		G3.setOnMouseClicked(event->{
+			if(Game.turn % 2 == 1) p1.score++;
+			else p2.score++;
+		});
+		G4.setOnMouseClicked(event->{
+			if(Game.turn % 2 == 1) p1.score++;
+			else p2.score++;
+		});
 
 		A97.addObject(new Bigo(A97));
 		//new way to collect all adjacent  geb nai game tan la gun
 		AllAdj = new HashMap<Space,Set<Space>>();
 		
-		tmp = new HashSet<Space>(Arrays.asList(A2,A9,A10)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A2,A9,A10,G1)) ;
 		AllAdj.put(A1,tmp);
 		
 		tmp = new HashSet<Space>(Arrays.asList(A1,A3,A10,A9,A11)) ;
@@ -240,10 +264,10 @@ public class Game {
 		tmp = new HashSet<Space>(Arrays.asList(A6,A15,A16,A8)) ;
 		AllAdj.put(A7, tmp);
 		
-		tmp = new HashSet<Space>(Arrays.asList(A7,A16,A17)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A7,A16,A17,G2)) ;
 		AllAdj.put(A8, tmp);
 		
-		tmp = new HashSet<Space>(Arrays.asList(A1,A10,A18)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A1,A10,A18,G1)) ;
 		AllAdj.put(A9, tmp);
 		
 		tmp = new HashSet<Space>(Arrays.asList(A1,A2,A9,A11,A18,A19)) ;
@@ -268,7 +292,7 @@ public class Game {
 		tmp = new HashSet<Space>(Arrays.asList(A7,A8,A15,A17,A24,A25)) ;
 		AllAdj.put(A16, tmp);
 
-		tmp = new HashSet<Space>(Arrays.asList(A8,A16,A25)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A8,A16,A25,G2)) ;
 		AllAdj.put(A17, tmp);
 
 		tmp = new HashSet<Space>(Arrays.asList(A9,A10,A19,A26,A27)) ;
@@ -461,7 +485,7 @@ public class Game {
 		tmp = new HashSet<Space>(Arrays.asList(A79,A71,A72,A89,A88)) ;
 		AllAdj.put(A80, tmp);
 		
-		tmp = new HashSet<Space>(Arrays.asList(A73,A82,A90)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A73,A82,A90,G3)) ;
 		AllAdj.put(A81, tmp);
 		
 		tmp = new HashSet<Space>(Arrays.asList(A81,A73,A74,A90,A83,A91)) ;
@@ -485,10 +509,10 @@ public class Game {
 		tmp = new HashSet<Space>(Arrays.asList(A87,A79,A80,A89,A96,A97)) ;
 		AllAdj.put(A88, tmp);
 		
-		tmp = new HashSet<Space>(Arrays.asList(A88,A80,A97)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A88,A80,A97,G4)) ;
 		AllAdj.put(A89, tmp);
 		
-		tmp = new HashSet<Space>(Arrays.asList(A81,A82,A91)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A81,A82,A91,G3)) ;
 		AllAdj.put(A90, tmp);
 		
 		tmp = new HashSet<Space>(Arrays.asList(A90,A82,A83,A92)) ;
@@ -509,33 +533,13 @@ public class Game {
 		tmp = new HashSet<Space>(Arrays.asList(A95,A87,A88,A97)) ;
 		AllAdj.put(A96, tmp);
 		
-		tmp = new HashSet<Space>(Arrays.asList(A96,A88,A89)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A96,A88,A89,G4)) ;
 		AllAdj.put(A97, tmp);
 		
-		
-		//HBox temp = new HBox();
-		//temp.getChildren().addAll(A54,A55,A56,A57,A58,A59,A60,A61,A62,A63);
-		//hSpace.add(new HBox(A54,A55,A56,A57,A58,A59,A60,A61,A62,A63));
-		/*
-		temp = new HBox();
-		temp.getChildren().addAll(A64,A65,A66,A67,A68,A69,A70,A71,A72);
-		hSpace.add(temp);
-		
-		temp = new HBox();
-		temp.getChildren().addAll(A73,A74,A75,A76,A77,A78,A79,A80);
-		hSpace.add(temp);
-		
-		temp = new HBox();
-		temp.getChildren().addAll(A81,A82,A83,A84,A85,A86,A87,A88,A89);
-		hSpace.add(temp);
-		
-		temp = new HBox();
-		temp.getChildren().addAll(A90,A91,A92,A93,A94,A95,A96,A97);
-		hSpace.add(temp);*/
 		double offY = Space.x/2;
 		hSpace = new HBox();
-		hSpace.getChildren().addAll(A1,A2,A3,A4,A5,A6,A7,A8);
-		hSpace.setTranslateX(Space.x*Math.sqrt(3));
+		hSpace.getChildren().addAll(G1,A1,A2,A3,A4,A5,A6,A7,A8,G2);
+		//hSpace.setTranslateX(Space.x*Math.sqrt(3));
 		vSpace = new VBox();
 		vSpace.getChildren().addAll(hSpace);
 		
@@ -592,9 +596,9 @@ public class Game {
 		vSpace.getChildren().addAll(hSpace);
 		
 		hSpace = new HBox();
-		hSpace.getChildren().addAll(A90,A91,A92,A93,A94,A95,A96,A97);
+		hSpace.getChildren().addAll(G3,A90,A91,A92,A93,A94,A95,A96,A97,G4);
 		hSpace.setTranslateY(-offY*10);
-		hSpace.setTranslateX(Space.x*Math.sqrt(3));
+		//hSpace.setTranslateX(Space.x*Math.sqrt(3));
 		vSpace.getChildren().addAll(hSpace);
 		
 		startTile = new ArrayList<Space>();
@@ -752,7 +756,7 @@ public class Game {
 			clearAllSpace();
 			try {
 				showMoveable();
-				Thread.sleep(30000);
+				Thread.sleep(300000);
 			} catch (InterruptedException e3) {
 				// TODO Auto-generated catch block
 				//e3.printStackTrace();
@@ -761,7 +765,7 @@ public class Game {
 			clearAllSpace();
 			try {
 				showMoveable();
-				Thread.sleep(30000);
+				Thread.sleep(300000);
 			} catch (InterruptedException e2) {
 				// TODO Auto-generated catch block
 				//e2.printStackTrace();
@@ -771,7 +775,7 @@ public class Game {
 			clearAllSpace();
 			try {
 				showMoveable();
-				Thread.sleep(30000);
+				Thread.sleep(300000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				//e1.printStackTrace();
@@ -796,13 +800,14 @@ public class Game {
 				//e.printStackTrace();
 				System.out.println("End turn"+Game.turn);
 			}
+			Game.turn++;
 			}
 		});
 			t.start();
 		
 		
 	}
-	public void clearAllSpace() {
+	public static void clearAllSpace() {
 		for(Space x : allTile) {
 			x.bg.setStroke(Color.BLACK);
 			x.setOnMouseClicked(event -> {});
@@ -820,6 +825,7 @@ public class Game {
 							space.setOnMouseClicked(evt -> {
 								clearAllSpace();
 								space.type = 1;
+								
 							
 									try {
 										space.update();
@@ -828,8 +834,14 @@ public class Game {
 										e.printStackTrace();
 									}
 								
-								space.eff.effect(3);
-								t.interrupt();
+								try {
+									 tmpo = space.eff.effect(3 , space);
+									 
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								if(tmpo != 5&&tmpo!= 6 &&tmpo!=7 &&tmpo!=8) t.interrupt();
 							});
 						break;
 					}
@@ -854,8 +866,14 @@ public class Game {
 										e.printStackTrace();
 									}
 								
-								space.eff.effect(2);
-								t.interrupt();
+									try {
+										 tmpo = space.eff.effect(3 , space);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								
+									if(tmpo != 5) t.interrupt();
 							});
 						break;
 					}
@@ -880,8 +898,14 @@ public class Game {
 										e.printStackTrace();
 									}
 								
-								space.eff.effect(4);
-								t.interrupt();
+									try {
+										 tmpo = space.eff.effect(3 , space);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								
+									if(tmpo != 5) t.interrupt();
 							});
 						break;
 					}
@@ -908,8 +932,14 @@ public class Game {
 											e.printStackTrace();
 										}
 									
-									space.eff.effect(3);
-									t.interrupt();
+										try {
+											 tmpo = space.eff.effect(3 , space);
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									
+										if(tmpo != 5) t.interrupt();
 								});
 							break;
 						}
@@ -934,8 +964,14 @@ public class Game {
 											e.printStackTrace();
 										}
 									
-									space.eff.effect(2);
-									t.interrupt();
+										try {
+											 tmpo = space.eff.effect(3 , space);
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									
+										if(tmpo != 5) t.interrupt();
 								});
 							break;
 						}
@@ -960,8 +996,14 @@ public class Game {
 											e.printStackTrace();
 										}
 									
-									space.eff.effect(4);
-									t.interrupt();
+										try {
+											 tmpo = space.eff.effect(3 , space);
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									
+										if(tmpo != 5) t.interrupt();
 								});
 							break;
 						}
@@ -973,7 +1015,7 @@ public class Game {
 			
 		}
 	}
-	public void showMoveable() throws InterruptedException {
+	public static void showMoveable() throws InterruptedException {
 		if(Game.turn % 2 == 1) {
 			// p1 turn
 			for(Space space : allTile) {
@@ -982,6 +1024,9 @@ public class Game {
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
+							if(sp.n1 + sp.n2 >=3) continue;
+							if(space.boat!=null&&sp.boat!=null) continue;
+							if(space.boat!=null&&sp.type!=1) continue;
 							sp.bg.setStroke(Color.RED);
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
@@ -1019,6 +1064,9 @@ public class Game {
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
+							if(sp.n1 + sp.n2 >=3) continue;
+							if(space.boat!=null&&sp.boat!=null) continue;
+							if(space.boat!=null&&sp.type!=1) continue;
 							sp.bg.setStroke(Color.WHITE);
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
@@ -1048,6 +1096,187 @@ public class Game {
 				}
 			}
 		}
+	}
+	public static void showDragonMoveable() {
+		for(Space space : allTile) {
+			if(space.bigO) {
+				space.bg.setStroke(Color.PURPLE);
+				space.setOnMouseClicked(event -> {
+					clearAllSpace();
+					for(Space sp : allTile) {
+						if(!sp.isEmpty()||sp.type!=1) continue;
+						sp.bg.setStroke(Color.PURPLE);
+						sp.setOnMouseClicked(evt -> {
+							clearAllSpace();
+							try {
+								space.deleteObject(new Bigo(space));
+								sp.addObject(new Bigo(sp));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							SpaceEffect.dragon.interrupt();
+							
+						});
+					}
+				});
+			
+			}
+		}
+	}
+	public static void showWhaleMoveable() {
+		int x = 0;
+		for(Space space : allTile) {
+			if(space.pom) x++;
+		}
+		if(x==0) {
+			SpaceEffect.whale.interrupt();
+			return;
+			
+		}
+		for(Space space : allTile) {
+			if(space.pom) {
+				space.bg.setStroke(Color.PURPLE);
+				space.setOnMouseClicked(event -> {
+					clearAllSpace();
+					for(Space sp : allTile) {
+						if(!sp.isEmpty()||sp.type!=1) continue;
+						sp.bg.setStroke(Color.PURPLE);
+						sp.setOnMouseClicked(evt -> {
+							clearAllSpace();
+							try {
+								space.deleteObject(new Bigpom(space));
+								sp.addObject(new Bigpom(sp));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							SpaceEffect.whale.interrupt();
+							
+						});
+					}
+				});
+			
+			}
+		}
+	}
+	public static void showBoatmoveable() {
+		if(Game.turn % 2 == 1) {
+			// p1 turn
+			int x = 0;
+			for(Space space : allTile) {
+				if(space.n1>space.n2&&space.boat!=null) x++;
+			}
+			if(x==0) {
+				SpaceEffect.boat.interrupt();
+				return;
+				
+			}
+			for(Space space : allTile) {
+				if(space.n1 > space.n2 && space.boat!=null) {
+					space.bg.setStroke(Color.RED);
+					space.setOnMouseClicked(event -> {
+						clearAllSpace();
+						for(Space sp : Game.AllAdj.get(space)) {
+							if(sp.n1 + sp.n2 >=3) continue;
+							sp.bg.setStroke(Color.RED);
+							sp.setOnMouseClicked(evt -> {
+								clearAllSpace();
+								// move to sp
+								if(space.boat!=null) {
+									// move boat
+									try {
+										space.boat.moveTo(sp);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+								SpaceEffect.boat.interrupt();
+							});
+						}
+					});
+				}
+			}
+		}
+		else {
+			// p2 turn
+			int x = 0;
+			for(Space space : allTile) {
+				if(space.n2>space.n1&&space.boat!=null) x++;
+			}
+			if(x==0) {
+				//SpaceEffect.showWarningAlert("Oh Fuck, you don't have any boat!", "SKIP TURN", "you have nothing to do");
+				SpaceEffect.boat.interrupt();
+				return;
+				
+			}
+			for(Space space : allTile) {
+				if(space.n2 > space.n1 && space.boat!=null) {
+					space.bg.setStroke(Color.WHITE);
+					space.setOnMouseClicked(event -> {
+						clearAllSpace();
+						for(Space sp : Game.AllAdj.get(space)) {
+							if(sp.n1 + sp.n2 >=3) continue;
+							sp.bg.setStroke(Color.WHITE);
+							sp.setOnMouseClicked(evt -> {
+								clearAllSpace();
+								// move to sp
+								if(space.boat!=null) {
+									// move boat
+									try {
+										space.boat.moveTo(sp);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+								
+								SpaceEffect.boat.interrupt();
+							});
+						}
+					});
+				}
+			}
+		}
+		
+	}
+	public static void showSharkMoveable() {
+		int x = 0;
+		for(Space space : allTile) {
+			if(space.tu) x++;
+		}
+		if(x==0) {
+			SpaceEffect.shark.interrupt();
+			return;
+			
+		}
+		for(Space space : allTile) {
+			if(space.tu) {
+				space.bg.setStroke(Color.PURPLE);
+				space.setOnMouseClicked(event -> {
+					clearAllSpace();
+					for(Space sp : allTile) {
+						if(!sp.isEmpty()) continue;
+						sp.bg.setStroke(Color.PURPLE);
+						sp.setOnMouseClicked(evt -> {
+							clearAllSpace();
+							try {
+								space.deleteObject(new Bigtu(space));
+								sp.addObject(new Bigtu(sp));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							SpaceEffect.shark.interrupt();
+							
+						});
+					}
+				});
+			
+			}
+		}
+		
 	}
 	public void randomPositionBoat() throws IOException{
 		ArrayList<Space> temp = new ArrayList<Space>();
@@ -1080,7 +1309,7 @@ public class Game {
 							if((!(sp.bigO || sp.pom || sp.tu)) && sp.type==1) {
 								sp.bg.setStroke(Color.RED);
 								sp.setOnMouseClicked(evt -> {
-									Game.turn++;
+									
 									clearAllSpace();
 									if(space.bigO) {
 										try {
@@ -1151,7 +1380,7 @@ public class Game {
 							if((!(sp.bigO || sp.pom || sp.tu)) && sp.type==1) {
 								sp.bg.setStroke(Color.WHITE);
 								sp.setOnMouseClicked(evt -> {
-									Game.turn++;
+								
 									clearAllSpace();
 									if(space.bigO) {
 										try {
@@ -1205,5 +1434,10 @@ public class Game {
 				}
 			}
 		}
+	}
+
+	public void updateScore() {
+		scoreP1.setText(String.format("Score : %d",Game.p1.score));
+		scoreP2.setText(String.format("Score : %d",Game.p2.score));
 	}
 }

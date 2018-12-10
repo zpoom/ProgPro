@@ -57,9 +57,10 @@ public class Space extends StackPane {
 		});
 		type = t;
 		if(t == 1) bg.setFill(Color.TRANSPARENT);
-		if(t == 2) bg.setFill(Color.GREEN);
-		if(t == 3) bg.setFill(Color.BURLYWOOD);
-		if(t == 4) bg.setFill(Color.GREY);
+		else if(t == 2) bg.setFill(Color.GREEN);
+		else if(t == 3) bg.setFill(Color.BURLYWOOD);
+		else if(t == 4) bg.setFill(Color.GREY);
+		else bg.setFill(Color.GOLD);
 		DropShadow drop = new DropShadow(1000, Color.WHITE);
 		drop.setInput(new Glow());
 		/*setOnMouseClicked(event ->{
@@ -83,7 +84,7 @@ public class Space extends StackPane {
 	public void addObject(Moveable creature) throws IOException {
 		// TODO
 		if(creature instanceof Meeple ) {
-			if(n1+n2>=3) return;
+			if(n1+n2>3) return;
 			if(((Meeple) creature).getColor()==1) {
 				p1.add(((Meeple) creature));
 				n1++;
@@ -111,7 +112,22 @@ public class Space extends StackPane {
 		update();
 	}
 	// 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
-	
+	public void clearSpace() {
+		n1 = 0;
+		n2 = 0;
+		bigO = false;
+		tu = false;
+		pom = false;
+		boat = null;
+		p1.clear();
+		p2.clear();
+		try {
+			update();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void deleteObject(Moveable creature) throws IOException {
 		if(creature instanceof Meeple ) {
 			if(((Meeple) creature).getColor()==1) {
@@ -135,6 +151,10 @@ public class Space extends StackPane {
 		update();
 		
 	}
+	public boolean isEmpty() {
+		if(n1==0&&n2==0&& !bigO && !pom &&boat==null && !tu) return true;
+		return false;
+	}
 	
 	public void update() throws IOException {
 		// TODO
@@ -148,6 +168,8 @@ public class Space extends StackPane {
 			// only BigO in Space;
 			p1.clear();
 			p2.clear();
+			n1 = 0;
+			n2 = 0;
 			boat = null;
 			Bigo tmp = new Bigo(this);
 			getChildren().add(tmp.dragon);
@@ -157,6 +179,8 @@ public class Space extends StackPane {
 			// only tu here
 			p1.clear();
 			p2.clear();
+			n1 = 0;
+			n2 = 0;
 			Bigtu tmp = new Bigtu(this);
 			getChildren().add(tmp.shark);
 		}
@@ -231,82 +255,103 @@ public class Space extends StackPane {
 			}
 		}
 		else {
+			
 			if(p1.size()==0&&p2.size()==1) {
 				p2.get(0).setTranslateX(0);
 				p2.get(0).setTranslateY(0);
+				p2.get(0).setRadius(10);
 				getChildren().add(p2.get(0));
 			}
 			else if(p1.size()==1&&p2.size()==0) {
 				p1.get(0).setTranslateX(0);
 				p1.get(0).setTranslateY(0);
+				p1.get(0).setRadius(10);
 				getChildren().add(p1.get(0));
 			}
 			else if(p1.size()==1&&p2.size()==1) {
 				p1.get(0).setTranslateX(+15);
 				p1.get(0).setTranslateY(0);
+				p1.get(0).setRadius(10);
 				getChildren().add(p1.get(0));
 				p2.get(0).setTranslateX(-15);
 				p2.get(0).setTranslateY(0);
+				p2.get(0).setRadius(10);
 				getChildren().add(p2.get(0));
 			}
 			else if(p1.size()==2&&p2.size()==0) {
 				p1.get(0).setTranslateX(+15);
 				p1.get(0).setTranslateY(0);
+				p1.get(0).setRadius(10);
 				getChildren().add(p1.get(0));
 				p1.get(1).setTranslateX(-15);
 				p1.get(1).setTranslateY(0);
+				p1.get(1).setRadius(10);
 				getChildren().add(p1.get(1));
 			}
 			else if(p1.size()==0&&p2.size()==2) {
 				p2.get(0).setTranslateX(+15);
 				p2.get(0).setTranslateY(0);
+				p2.get(0).setRadius(10);
 				getChildren().add(p2.get(0));
 				p2.get(1).setTranslateX(-15);
 				p2.get(1).setTranslateY(0);
+				p2.get(1).setRadius(10);
 				getChildren().add(p2.get(1));
 			}
 			else if(p1.size()==1&&p2.size()==2) {
 				p2.get(0).setTranslateX(+15);
 				p2.get(0).setTranslateY(5);
+				p2.get(0).setRadius(10);
 				getChildren().add(p2.get(0));
 				p2.get(1).setTranslateX(-15);
 				p2.get(1).setTranslateY(5);
+				p2.get(1).setRadius(10);
 				getChildren().add(p2.get(1));
 				p1.get(0).setTranslateX(0);
 				p1.get(0).setTranslateY(-15);
+				p1.get(0).setRadius(10);
 				getChildren().add(p1.get(0));
 			}
 			else if(p1.size()==2&&p2.size()==1) {
 				p2.get(0).setTranslateX(+15);
 				p2.get(0).setTranslateY(5);
+				p2.get(0).setRadius(10);
 				getChildren().add(p2.get(0));
 				p1.get(1).setTranslateX(-15);
 				p1.get(1).setTranslateY(5);
+				p1.get(1).setRadius(10);
 				getChildren().add(p1.get(1));
 				p1.get(0).setTranslateX(0);
 				p1.get(0).setTranslateY(-15);
+				p1.get(0).setRadius(10);
 				getChildren().add(p1.get(0));
 			}
 			else if(p1.size()==3&&p2.size()==0) {
 				p1.get(0).setTranslateX(+15);
 				p1.get(0).setTranslateY(5);
+				p1.get(0).setRadius(10);
 				getChildren().add(p1.get(0));
 				p1.get(1).setTranslateX(-15);
 				p1.get(1).setTranslateY(5);
+				p1.get(1).setRadius(10);
 				getChildren().add(p1.get(1));
 				p1.get(2).setTranslateX(0);
 				p1.get(2).setTranslateY(-15);
+				p1.get(2).setRadius(10);
 				getChildren().add(p1.get(2));
 			}
 			else if(p1.size()==0&&p2.size()==3) {
 				p2.get(0).setTranslateX(+15);
 				p2.get(0).setTranslateY(5);
+				p2.get(0).setRadius(10);
 				getChildren().add(p2.get(0));
 				p2.get(1).setTranslateX(-15);
 				p2.get(1).setTranslateY(5);
+				p2.get(1).setRadius(10);
 				getChildren().add(p2.get(1));
 				p2.get(2).setTranslateX(0);
 				p2.get(2).setTranslateY(-15);
+				p2.get(2).setRadius(10);
 				getChildren().add(p2.get(2));
 			}
 			

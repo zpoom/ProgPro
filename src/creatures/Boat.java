@@ -27,10 +27,10 @@ public class Boat  implements Moveable{
 		
 	}
 	public void moveTo(Space destination) throws IOException {
-		for(int i = 0; i < now.p1.size();i++) {
-			now.p1.get(i).moveTo(destination);
+		for(int j = 0; j <now.n1;j++) {
+			now.p1.get(j).moveTo(destination);
 		}
-		for(int i = 0; i < now.p2.size();i++) {
+		for(int i = 0; i < now.n2;i++) {
 			now.p2.get(i).moveTo(destination);
 		}
 		now.deleteObject(this);
