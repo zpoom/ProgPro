@@ -2,9 +2,6 @@ package gameboard;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import creatures.Bigo;
@@ -12,17 +9,13 @@ import creatures.Bigpom;
 import creatures.Bigtu;
 import creatures.Boat;
 import creatures.Meeple;
-import creatures.Monster;
 import creatures.Moveable;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import menu.Menu;
+
 
 public class Space extends StackPane {
 	public static final double x = 35;

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -15,11 +14,6 @@ import creatures.Bigpom;
 import creatures.Bigtu;
 import creatures.Boat;
 import creatures.Meeple;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Menu;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -27,7 +21,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import main.Main;
 import player.Player;
 
 public class Game {
@@ -36,10 +29,8 @@ public class Game {
 	public static Map<Space,Set<Space> > AllAdj;
 	public Set<Space> tmp;
 	public static int turn;
-	public static int playerAmount; // use for more than 2 player
 	private int tmpo;
 	private ArrayList<Space> startTile;
-	public static int step = -1;
 	public static Thread t;
 	public static Player p1,p2;
 	protected ArrayList<Meeple> player1 , player2;
@@ -50,10 +41,8 @@ public class Game {
 	public Game(int player,ArrayList<Player> players) throws IOException {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
 		Game.turn = 1;
-		step = 0;
 		Game.p1 = players.get(0);
 		Game.p2 = players.get(1);
-		this.playerAmount = player;
 		player1 = new ArrayList<Meeple>();
 		player2 = new ArrayList<Meeple>();
 		riverTile = new ArrayList<Space>();
@@ -713,6 +702,7 @@ public class Game {
 		allTile.add(G2);
 		allTile.add(G3);
 		allTile.add(G4);
+		
 	}
 	public void scoreBoard() {
 		scoreBoardP1 = new StackPane();
@@ -776,7 +766,7 @@ public class Game {
 				showMoveable();
 				Thread.sleep(300000);
 			} catch (InterruptedException e3) {
-				// TODO Auto-generated catch block
+				//  Auto-generated catch block
 				//e3.printStackTrace();
 				System.out.println("action1 finished , "+Game.turn);
 			}
@@ -786,7 +776,7 @@ public class Game {
 				showMoveable();
 				Thread.sleep(300000);
 			} catch (InterruptedException e2) {
-				// TODO Auto-generated catch block
+				//  Auto-generated catch block
 				//e2.printStackTrace();
 				System.out.println("action2 finished , "+Game.turn);
 			}
@@ -796,7 +786,7 @@ public class Game {
 				showMoveable();
 				Thread.sleep(300000);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
+				//  Auto-generated catch block
 				//e1.printStackTrace();
 				System.out.println("action3 finished , "+Game.turn);
 			}
@@ -807,7 +797,7 @@ public class Game {
 				Showdestroyable();
 				Thread.sleep(300000);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
+				//  Auto-generated catch block
 				//e1.printStackTrace();
 				System.out.println("phase2 finished , "+Game.turn);
 			}
@@ -816,7 +806,7 @@ public class Game {
 				moveMonster();
 				Thread.sleep(300000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				//  Auto-generated catch block
 				//e.printStackTrace();
 				System.out.println("End turn"+Game.turn);
 			}
@@ -834,7 +824,6 @@ public class Game {
 		}
 	}
 	public void Showdestroyable() {
-		boolean isAdjWater = false;
 		if(Game.turn %2 == 1) {
 		if(Game.turn<=16) {
 			for(Space space : startTile) {
@@ -850,7 +839,7 @@ public class Game {
 									try {
 										space.update();
 									} catch (IOException e) {
-										// TODO Auto-generated catch block
+										//  Auto-generated catch block
 										e.printStackTrace();
 									}
 								
@@ -858,7 +847,7 @@ public class Game {
 									 tmpo = space.eff.effect(3 , space);
 									 
 								} catch (IOException e) {
-									// TODO Auto-generated catch block
+									//  Auto-generated catch block
 									e.printStackTrace();
 								}
 								if(tmpo != 5&&tmpo!= 6 &&tmpo!=7 &&tmpo!=8) t.interrupt();
@@ -882,14 +871,14 @@ public class Game {
 									try {
 										space.update();
 									} catch (IOException e) {
-										// TODO Auto-generated catch block
+										//  Auto-generated catch block
 										e.printStackTrace();
 									}
 								
 									try {
 										 tmpo = space.eff.effect(3 , space);
 									} catch (IOException e) {
-										// TODO Auto-generated catch block
+										//  Auto-generated catch block
 										e.printStackTrace();
 									}
 								
@@ -914,14 +903,14 @@ public class Game {
 									try {
 										space.update();
 									} catch (IOException e) {
-										// TODO Auto-generated catch block
+										//  Auto-generated catch block
 										e.printStackTrace();
 									}
 								
 									try {
 										 tmpo = space.eff.effect(3 , space);
 									} catch (IOException e) {
-										// TODO Auto-generated catch block
+										//  Auto-generated catch block
 										e.printStackTrace();
 									}
 								
@@ -948,14 +937,14 @@ public class Game {
 										try {
 											space.update();
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 									
 										try {
 											 tmpo = space.eff.effect(3 , space);
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 									
@@ -980,14 +969,14 @@ public class Game {
 										try {
 											space.update();
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 									
 										try {
 											 tmpo = space.eff.effect(3 , space);
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 									
@@ -1012,14 +1001,14 @@ public class Game {
 										try {
 											space.update();
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 									
 										try {
 											 tmpo = space.eff.effect(3 , space);
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 									
@@ -1052,7 +1041,7 @@ public class Game {
 									try {
 										space.p1.get(0).moveTo(sp);
 									} catch (IOException e) {
-										// TODO Auto-generated catch block
+										//  Auto-generated catch block
 										e.printStackTrace();
 									}
 									t.interrupt();
@@ -1060,6 +1049,7 @@ public class Game {
 							}
 							if(space.type==1 && sp.type != 1) continue;
 							if(sp.n1 + sp.n2 >=3) continue;
+							if(space.boat!=null &&space.n1+space.n2 +sp.n1+sp.n2 >3) continue;
 							if(space.boat!=null&&sp.boat!=null) continue;
 							if(space.boat!=null&&sp.type!=1) continue;
 							sp.bg.setStroke(Color.RED);
@@ -1071,7 +1061,7 @@ public class Game {
 									try {
 										space.boat.moveTo(sp);
 									} catch (IOException e) {
-										// TODO Auto-generated catch block
+										//  Auto-generated catch block
 										e.printStackTrace();
 									}
 								}
@@ -1079,7 +1069,7 @@ public class Game {
 									try {
 										space.p1.get(0).moveTo(sp);
 									} catch (IOException e) {
-										// TODO Auto-generated catch block
+										//  Auto-generated catch block
 										e.printStackTrace();
 										
 									}
@@ -1107,7 +1097,7 @@ public class Game {
 									try {
 										space.p2.get(0).moveTo(sp);
 									} catch (IOException e) {
-										// TODO Auto-generated catch block
+										//  Auto-generated catch block
 										e.printStackTrace();
 									}
 									t.interrupt();
@@ -1117,6 +1107,7 @@ public class Game {
 							if(sp.n1 + sp.n2 >=3) continue;
 							if(space.type==1 && sp.type!=1) continue;
 							if(space.boat!=null&&sp.boat!=null) continue;
+							if(space.boat!=null &&space.n1+space.n2 +sp.n1+sp.n2 >3) continue;
 							if(space.boat!=null&&sp.type!=1) continue;
 							sp.bg.setStroke(Color.WHITE);
 							sp.setOnMouseClicked(evt -> {
@@ -1127,7 +1118,7 @@ public class Game {
 									try {
 										space.boat.moveTo(sp);
 									} catch (IOException e) {
-										// TODO Auto-generated catch block
+										//  Auto-generated catch block
 										e.printStackTrace();
 									}
 								}
@@ -1135,7 +1126,7 @@ public class Game {
 									try {
 										space.p2.get(0).moveTo(sp);
 									} catch (IOException e) {
-										// TODO Auto-generated catch block
+										//  Auto-generated catch block
 										e.printStackTrace();
 										
 									}
@@ -1163,7 +1154,7 @@ public class Game {
 								space.deleteObject(new Bigo(space));
 								sp.addObject(new Bigo(sp));
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
+								//  Auto-generated catch block
 								e.printStackTrace();
 							}
 							SpaceEffect.dragon.interrupt();
@@ -1199,7 +1190,7 @@ public class Game {
 								space.deleteObject(new Bigpom(space));
 								sp.addObject(new Bigpom(sp));
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
+								//  Auto-generated catch block
 								e.printStackTrace();
 							}
 							SpaceEffect.whale.interrupt();
@@ -1229,7 +1220,8 @@ public class Game {
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
-							if(sp.n1 + sp.n2 >=3) continue;
+							if(sp.type!=1) continue;
+							if(sp.n1 + sp.n2 +space.n1+space.n2>=3) continue;
 							sp.bg.setStroke(Color.RED);
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
@@ -1239,7 +1231,7 @@ public class Game {
 									try {
 										space.boat.moveTo(sp);
 									} catch (IOException e) {
-										// TODO Auto-generated catch block
+										//  Auto-generated catch block
 										e.printStackTrace();
 									}
 								}
@@ -1268,7 +1260,8 @@ public class Game {
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
-							if(sp.n1 + sp.n2 >=3) continue;
+							if(sp.type!=1) continue;
+							if((sp.n1 + sp.n2 +space.n1+space.n2>=3)) continue;
 							sp.bg.setStroke(Color.WHITE);
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
@@ -1278,7 +1271,7 @@ public class Game {
 									try {
 										space.boat.moveTo(sp);
 									} catch (IOException e) {
-										// TODO Auto-generated catch block
+										//  Auto-generated catch block
 										e.printStackTrace();
 									}
 								}
@@ -1309,6 +1302,7 @@ public class Game {
 					clearAllSpace();
 					for(Space sp : allTile) {
 						if(!sp.isEmpty()) continue;
+						if(sp.type!=1) continue;
 						sp.bg.setStroke(Color.PURPLE);
 						sp.setOnMouseClicked(evt -> {
 							clearAllSpace();
@@ -1316,7 +1310,7 @@ public class Game {
 								space.deleteObject(new Bigtu(space));
 								sp.addObject(new Bigtu(sp));
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
+								//  Auto-generated catch block
 								e.printStackTrace();
 							}
 							SpaceEffect.shark.interrupt();
@@ -1333,10 +1327,11 @@ public class Game {
 		ArrayList<Space> temp = new ArrayList<Space>();
 		temp.addAll(riverTile);
 		int x = 0;
-		while(x!=5) {
+		while(x!=4) {
 			Random rd = new Random();
 			int idx = rd.nextInt(temp.size());
 			if(temp.get(idx).boat != null) continue;
+			if(temp.get(idx).bigO) continue;
 			temp.get(idx).addObject(new Boat(temp.get(idx)));
 			x++;
 		}
@@ -1366,13 +1361,13 @@ public class Game {
 										try {
 											space.deleteObject(new Bigo(space));
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 										try {
 											sp.addObject(new Bigo(sp));
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 									}
@@ -1380,13 +1375,13 @@ public class Game {
 										try {
 											space.deleteObject(new Bigpom(space));
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 										try {
 											sp.addObject(new Bigpom(sp));
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 									}
@@ -1394,13 +1389,13 @@ public class Game {
 										try {
 											space.deleteObject(new Bigtu(space));
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 										try {
 											sp.addObject(new Bigtu(sp));
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 									}
@@ -1437,13 +1432,13 @@ public class Game {
 										try {
 											space.deleteObject(new Bigo(space));
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 										try {
 											sp.addObject(new Bigo(sp));
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 									}
@@ -1451,13 +1446,13 @@ public class Game {
 										try {
 											space.deleteObject(new Bigpom(space));
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 										try {
 											sp.addObject(new Bigpom(sp));
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 									}
@@ -1465,13 +1460,13 @@ public class Game {
 										try {
 											space.deleteObject(new Bigtu(space));
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 										try {
 											sp.addObject(new Bigtu(sp));
 										} catch (IOException e) {
-											// TODO Auto-generated catch block
+											//  Auto-generated catch block
 											e.printStackTrace();
 										}
 									}
