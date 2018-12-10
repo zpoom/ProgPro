@@ -45,11 +45,11 @@ public class Boat  implements Moveable{
 		else {
 			if(Game.turn%2==1) {
 				Game.p1.score++;
-				now.deleteObject(this);
+				now.deleteObject(now.p1.get(0));
 			}
 			else {
 				Game.p2.score++;
-				now.deleteObject(this);
+				now.deleteObject(now.p2.get(0));
 			}
 		}
 	}
