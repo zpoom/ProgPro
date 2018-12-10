@@ -57,9 +57,10 @@ public class Space extends StackPane {
 		});
 		type = t;
 		if(t == 1) bg.setFill(Color.TRANSPARENT);
-		if(t == 2) bg.setFill(Color.GREEN);
-		if(t == 3) bg.setFill(Color.BURLYWOOD);
-		if(t == 4) bg.setFill(Color.GREY);
+		else if(t == 2) bg.setFill(Color.GREEN);
+		else if(t == 3) bg.setFill(Color.BURLYWOOD);
+		else if(t == 4) bg.setFill(Color.GREY);
+		else bg.setFill(Color.GOLD);
 		DropShadow drop = new DropShadow(1000, Color.WHITE);
 		drop.setInput(new Glow());
 		/*setOnMouseClicked(event ->{

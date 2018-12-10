@@ -20,8 +20,11 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import player.Player;
 
 public class Game {
@@ -30,17 +33,22 @@ public class Game {
 	public static Map<Space,Set<Space> > AllAdj;
 	public Set<Space> tmp;
 	public static int turn;
-	public static int playerAmount;
+	public static int playerAmount; // use for more than 2 player
 	private int tmpo;
 	private ArrayList<Space> startTile;
 	public static int step = -1;
 	public static Thread t;
+	public static Player p1,p2;
 	protected ArrayList<Meeple> player1 , player2;
+	public StackPane scoreBoardP1,scoreBoardP2;
+	public Text scoreP1,scoreP2;
 	public static ArrayList<Space> riverTile,allTile;
 	public Game(int player,ArrayList<Player> players) throws IOException {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
 		Game.turn = 1;
 		step = 0;
+		Game.p1 = players.get(0);
+		Game.p2 = players.get(1);
 		this.playerAmount = player;
 		player1 = new ArrayList<Meeple>();
 		player2 = new ArrayList<Meeple>();
@@ -209,12 +217,33 @@ public class Game {
 		Space A95 = new Space(1);
 		Space A96 = new Space(1);
 		Space A97 = new Space(1);
+		
+		Space G1 = new Space(5);
+		Space G2 = new Space(5);
+		Space G3 = new Space(5);
+		Space G4 = new Space(5);
+		G1.setOnMouseClicked(event->{
+			if(Game.turn % 2 == 1) p1.score++;
+			else p2.score++;
+		});
+		G2.setOnMouseClicked(event->{
+			if(Game.turn % 2 == 1) p1.score++;
+			else p2.score++;
+		});
+		G3.setOnMouseClicked(event->{
+			if(Game.turn % 2 == 1) p1.score++;
+			else p2.score++;
+		});
+		G4.setOnMouseClicked(event->{
+			if(Game.turn % 2 == 1) p1.score++;
+			else p2.score++;
+		});
 
 		A97.addObject(new Bigo(A97));
 		//new way to collect all adjacent  geb nai game tan la gun
 		AllAdj = new HashMap<Space,Set<Space>>();
 		
-		tmp = new HashSet<Space>(Arrays.asList(A2,A9,A10)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A2,A9,A10,G1)) ;
 		AllAdj.put(A1,tmp);
 		
 		tmp = new HashSet<Space>(Arrays.asList(A1,A3,A10,A9,A11)) ;
@@ -235,10 +264,10 @@ public class Game {
 		tmp = new HashSet<Space>(Arrays.asList(A6,A15,A16,A8)) ;
 		AllAdj.put(A7, tmp);
 		
-		tmp = new HashSet<Space>(Arrays.asList(A7,A16,A17)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A7,A16,A17,G2)) ;
 		AllAdj.put(A8, tmp);
 		
-		tmp = new HashSet<Space>(Arrays.asList(A1,A10,A18)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A1,A10,A18,G1)) ;
 		AllAdj.put(A9, tmp);
 		
 		tmp = new HashSet<Space>(Arrays.asList(A1,A2,A9,A11,A18,A19)) ;
@@ -263,7 +292,7 @@ public class Game {
 		tmp = new HashSet<Space>(Arrays.asList(A7,A8,A15,A17,A24,A25)) ;
 		AllAdj.put(A16, tmp);
 
-		tmp = new HashSet<Space>(Arrays.asList(A8,A16,A25)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A8,A16,A25,G2)) ;
 		AllAdj.put(A17, tmp);
 
 		tmp = new HashSet<Space>(Arrays.asList(A9,A10,A19,A26,A27)) ;
@@ -456,7 +485,7 @@ public class Game {
 		tmp = new HashSet<Space>(Arrays.asList(A79,A71,A72,A89,A88)) ;
 		AllAdj.put(A80, tmp);
 		
-		tmp = new HashSet<Space>(Arrays.asList(A73,A82,A90)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A73,A82,A90,G3)) ;
 		AllAdj.put(A81, tmp);
 		
 		tmp = new HashSet<Space>(Arrays.asList(A81,A73,A74,A90,A83,A91)) ;
@@ -480,10 +509,10 @@ public class Game {
 		tmp = new HashSet<Space>(Arrays.asList(A87,A79,A80,A89,A96,A97)) ;
 		AllAdj.put(A88, tmp);
 		
-		tmp = new HashSet<Space>(Arrays.asList(A88,A80,A97)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A88,A80,A97,G4)) ;
 		AllAdj.put(A89, tmp);
 		
-		tmp = new HashSet<Space>(Arrays.asList(A81,A82,A91)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A81,A82,A91,G3)) ;
 		AllAdj.put(A90, tmp);
 		
 		tmp = new HashSet<Space>(Arrays.asList(A90,A82,A83,A92)) ;
@@ -504,33 +533,13 @@ public class Game {
 		tmp = new HashSet<Space>(Arrays.asList(A95,A87,A88,A97)) ;
 		AllAdj.put(A96, tmp);
 		
-		tmp = new HashSet<Space>(Arrays.asList(A96,A88,A89)) ;
+		tmp = new HashSet<Space>(Arrays.asList(A96,A88,A89,G4)) ;
 		AllAdj.put(A97, tmp);
 		
-		
-		//HBox temp = new HBox();
-		//temp.getChildren().addAll(A54,A55,A56,A57,A58,A59,A60,A61,A62,A63);
-		//hSpace.add(new HBox(A54,A55,A56,A57,A58,A59,A60,A61,A62,A63));
-		/*
-		temp = new HBox();
-		temp.getChildren().addAll(A64,A65,A66,A67,A68,A69,A70,A71,A72);
-		hSpace.add(temp);
-		
-		temp = new HBox();
-		temp.getChildren().addAll(A73,A74,A75,A76,A77,A78,A79,A80);
-		hSpace.add(temp);
-		
-		temp = new HBox();
-		temp.getChildren().addAll(A81,A82,A83,A84,A85,A86,A87,A88,A89);
-		hSpace.add(temp);
-		
-		temp = new HBox();
-		temp.getChildren().addAll(A90,A91,A92,A93,A94,A95,A96,A97);
-		hSpace.add(temp);*/
 		double offY = Space.x/2;
 		hSpace = new HBox();
-		hSpace.getChildren().addAll(A1,A2,A3,A4,A5,A6,A7,A8);
-		hSpace.setTranslateX(Space.x*Math.sqrt(3));
+		hSpace.getChildren().addAll(G1,A1,A2,A3,A4,A5,A6,A7,A8,G2);
+		//hSpace.setTranslateX(Space.x*Math.sqrt(3));
 		vSpace = new VBox();
 		vSpace.getChildren().addAll(hSpace);
 		
@@ -587,9 +596,9 @@ public class Game {
 		vSpace.getChildren().addAll(hSpace);
 		
 		hSpace = new HBox();
-		hSpace.getChildren().addAll(A90,A91,A92,A93,A94,A95,A96,A97);
+		hSpace.getChildren().addAll(G3,A90,A91,A92,A93,A94,A95,A96,A97,G4);
 		hSpace.setTranslateY(-offY*10);
-		hSpace.setTranslateX(Space.x*Math.sqrt(3));
+		//hSpace.setTranslateX(Space.x*Math.sqrt(3));
 		vSpace.getChildren().addAll(hSpace);
 		
 		startTile = new ArrayList<Space>();
@@ -696,6 +705,26 @@ public class Game {
 		riverTile.add(A86);
 		allTile.addAll(riverTile);
 		allTile.addAll(startTile);
+	}
+	public void scoreBoard() {
+		scoreBoardP1 = new StackPane();
+		scoreBoardP1.setPrefSize(100, 200);
+		Rectangle bgP1 = new Rectangle(100,200);
+		bgP1.setFill(Color.RED);
+		bgP1.setStroke(Color.BLACK);
+		scoreP1 = new Text();
+		scoreP1.setText(String.format("Score : %d",Game.p1.score));
+		scoreBoardP1.getChildren().addAll(bgP1,scoreP1);
+		
+		scoreBoardP2 = new StackPane();
+		scoreBoardP2.setPrefSize(100, 200);
+		Rectangle bgP2 = new Rectangle(100,200);
+		bgP2.setFill(Color.WHITE);
+		bgP2.setStroke(Color.BLACK);
+		scoreP2 = new Text();
+		scoreP2.setText(String.format("Score : %d",Game.p2.score));
+		scoreBoardP2.getChildren().addAll(bgP2,scoreP2);
+		
 	}
 	public void randomPosition1() throws IOException {
 		
@@ -996,10 +1025,26 @@ public class Game {
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
-							if(space.type==1 && sp.type!=1) continue;
-							if(sp.n1 + sp.n2 >=3) continue;
+							if(space.type==1 ) {
+								if(sp.type == 5) {
+									sp.bg.setStroke(Color.RED);
+									sp.setOnMouseClicked(evt ->{
+										clearAllSpace();
+										try {
+											sp.deleteObject(space.p1.get(0));
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+										p1.score++;
+										t.interrupt();
+									});
+								}
+								continue;
+							}
+							/*if(sp.n1 + sp.n2 >=3) continue;
 							if(space.boat!=null&&sp.boat!=null) continue;
-							if(space.boat!=null&&sp.type!=1) continue;
+							if(space.boat!=null&&sp.type!=1) continue;*/
 							sp.bg.setStroke(Color.RED);
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
@@ -1038,6 +1083,7 @@ public class Game {
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
+							if(space.type==1 && sp.type!=1) continue;
 							if(sp.n1 + sp.n2 >=3) continue;
 							if(space.type==1 && sp.type!=1) continue;
 							if(space.boat!=null&&sp.boat!=null) continue;
@@ -1409,5 +1455,10 @@ public class Game {
 				}
 			}
 		}
+	}
+
+	public void updateScore() {
+		scoreP1.setText(String.format("Score : %d",Game.p1.score));
+		scoreP2.setText(String.format("Score : %d",Game.p2.score));
 	}
 }
