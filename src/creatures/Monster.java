@@ -4,7 +4,6 @@ import gameboard.Space;
 
 public class Monster implements Moveable {
 	private  Space now;
-	protected int move;
 	public Monster(Space init) {
 		now = init;
 	}

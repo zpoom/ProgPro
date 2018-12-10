@@ -10,9 +10,7 @@ import javafx.scene.shape.Circle;
 public class Meeple  extends Circle implements Moveable{
 	private int color; // 1 = p1   2 = p2
 	private Space now;
-	public boolean canMove;
 	public Meeple(int color) {
-		canMove = true;
 		this.color = color;
 		setRadius(10);
 		if(color==1) {

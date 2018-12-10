@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="gameboard.Name" project="ProgPro" file="/ProgPro/src/gameboard/Name.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="371" y="470"/>    
+    <position height="-1" width="-1" x="249" y="430"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="creatures.Boat" project="ProgPro" file="/ProgPro/src/creatures/Boat.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="385" y="1662"/>    
+    <position height="137" width="136" x="203" y="1579"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="creatures.Meeple" project="ProgPro" file="/ProgPro/src/creatures/Meeple.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="895" y="1680"/>    
+    <position height="155" width="136" x="713" y="1579"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="gameboard.SpaceEffect" project="ProgPro" 
     file="/ProgPro/src/gameboard/SpaceEffect.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="616" y="1751"/>    
+    <position height="299" width="294" x="379" y="1579"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="gameboard.Space" project="ProgPro" file="/ProgPro/src/gameboard/Space.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="576" y="1376"/>    
+    <position height="335" width="179" x="373" y="1194"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="menu.Menu" project="ProgPro" file="/ProgPro/src/menu/Menu.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="755" y="509"/>    
+    <position height="137" width="126" x="578" y="426"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="creatures.Bigtu" project="ProgPro" file="/ProgPro/src/creatures/Bigtu.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="31" y="1259"/>    
+    <position height="101" width="122" x="-144" y="1194"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="creatures.Bigpom" project="ProgPro" file="/ProgPro/src/creatures/Bigpom.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="194" y="1259"/>    
+    <position height="101" width="124" x="18" y="1194"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="creatures.Monster" project="ProgPro" file="/ProgPro/src/creatures/Monster.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="345" y="677"/>    
+    <position height="101" width="136" x="163" y="603"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <interface id="10" language="java" name="creatures.Moveable" project="ProgPro" 
     file="/ProgPro/src/creatures/Moveable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="385" y="1974"/>    
+    <position height="83" width="136" x="203" y="1918"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </interface>  
   <class id="11" language="java" name="menu.MenuButton" project="ProgPro" file="/ProgPro/src/menu/MenuButton.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="934" y="485"/>    
+    <position height="119" width="131" x="718" y="231"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="gameboard.Game" project="ProgPro" file="/ProgPro/src/gameboard/Game.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="818" y="893"/>    
+    <position height="551" width="205" x="602" y="603"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="player.Player" project="ProgPro" file="/ProgPro/src/player/Player.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="775" y="1277"/>    
+    <position height="137" width="118" x="602" y="1194"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="main.Main" project="ProgPro" file="/ProgPro/src/main/Main.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="556" y="393"/>    
+    <position height="155" width="124" x="554" y="231"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +129,7 @@
   </class>  
   <class id="15" language="java" name="creatures.Bigo" project="ProgPro" file="/ProgPro/src/creatures/Bigo.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="382" y="1259"/>    
+    <position height="101" width="130" x="203" y="1194"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -137,191 +137,191 @@
     </display>  
   </class>  
   <association id="16">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="17" name="eff"/>      
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="17" name="now"/>      
       <multiplicity id="18" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="19">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="20" name="p1"/>      
-      <multiplicity id="21" minimum="0" maximum="2147483647"/>    
+  <realization id="19">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <generalization id="20">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="21">    
+    <bendpoint x="771" y="1194"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="22" name="player2"/>      
+      <multiplicity id="23" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="22">    
+  <association id="24">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="23" name="game"/>      
-      <multiplicity id="24" minimum="0" maximum="1"/>    
+      <attribute id="25" name="game"/>      
+      <multiplicity id="26" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="25">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
-  <association id="26">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="27" name="meeple"/>      
-      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
+  <generalization id="27">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="28">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="29" name="eff"/>      
+      <multiplicity id="30" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="29">    
+  <association id="31">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="32" name="now"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="30" name="p2"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
+      <attribute id="35" name="p1"/>      
+      <multiplicity id="36" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="33" name="now"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="35">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
-  <association id="36">    
+  <association id="37">    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="37" name="allTile"/>      
-      <multiplicity id="38" minimum="0" maximum="2147483647"/>    
+      <attribute id="38" name="tmp"/>      
+      <multiplicity id="39" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="39">    
+  <association id="40">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="40" name="p2"/>      
-      <multiplicity id="41" minimum="0" maximum="2147483647"/>    
+      <attribute id="41" name="justClicked"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="42">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
   <association id="43">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="44" name="meeple"/>      
-      <multiplicity id="45" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="44" name="p2"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="46">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="47" name="boat"/>      
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="47" name="menu"/>      
       <multiplicity id="48" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="49">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="50" name="now"/>      
-      <multiplicity id="51" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="50" name="allTile"/>      
+      <multiplicity id="51" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="52">    
+  <realization id="52">    
+    <bendpoint x="172" y="1194"/>    
+    <bendpoint x="172" y="1579"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="53">    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="53" name="tmp"/>      
-      <multiplicity id="54" minimum="0" maximum="2147483647"/>    
+      <attribute id="54" name="startTile"/>      
+      <multiplicity id="55" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="55">    
+  <generalization id="56">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="57">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="58" name="meeple"/>      
+      <multiplicity id="59" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="60">    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="56" name="startTile"/>      
-      <multiplicity id="57" minimum="0" maximum="2147483647"/>    
+      <attribute id="61" name="riverTile"/>      
+      <multiplicity id="62" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="58">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="59" name="p1"/>      
-      <multiplicity id="60" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="61">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="62" name="riverTile"/>      
-      <multiplicity id="63" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <realization id="63">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
   <association id="64">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="65" name="now"/>      
-      <multiplicity id="66" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="65" name="p2"/>      
+      <multiplicity id="66" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="67">    
-    <bendpoint x="864" y="1209"/>    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="68" name="player2"/>      
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="68" name="p1"/>      
       <multiplicity id="69" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="70">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
-  <generalization id="71">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
-  <association id="72">    
-    <bendpoint x="885" y="1209"/>    
+  <association id="70">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="71" name="boat"/>      
+      <multiplicity id="72" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="73">    
+    <bendpoint x="750" y="1194"/>    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="73" name="player1"/>      
-      <multiplicity id="74" minimum="0" maximum="2147483647"/>    
+      <attribute id="74" name="player1"/>      
+      <multiplicity id="75" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="75">    
+  <association id="76">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="76" name="justClicked"/>      
-      <multiplicity id="77" minimum="0" maximum="1"/>    
+      <attribute id="77" name="meeple"/>      
+      <multiplicity id="78" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="78">    
-    <bendpoint x="286" y="1209"/>    
-    <bendpoint x="286" y="1594"/>    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
   <association id="79">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="80" name="menu"/>      
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="80" name="now"/>      
       <multiplicity id="81" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
