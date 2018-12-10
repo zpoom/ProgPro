@@ -762,6 +762,7 @@ public class Game {
 				//e3.printStackTrace();
 				System.out.println("action1 finished , "+Game.turn);
 			}
+			updateScore();
 			clearAllSpace();
 			try {
 				showMoveable();
@@ -770,8 +771,8 @@ public class Game {
 				// TODO Auto-generated catch block
 				//e2.printStackTrace();
 				System.out.println("action2 finished , "+Game.turn);
-				
 			}
+			updateScore();
 			clearAllSpace();
 			try {
 				showMoveable();
@@ -781,6 +782,7 @@ public class Game {
 				//e1.printStackTrace();
 				System.out.println("action3 finished , "+Game.turn);
 			}
+			updateScore();
 			clearAllSpace();
 			try {
 				// Phase 2  destroy island
@@ -1025,26 +1027,22 @@ public class Game {
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
-							if(space.type==1 ) {
-								if(sp.type == 5) {
-									sp.bg.setStroke(Color.RED);
-									sp.setOnMouseClicked(evt ->{
-										clearAllSpace();
-										try {
-											sp.deleteObject(space.p1.get(0));
-										} catch (IOException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										}
-										p1.score++;
-										t.interrupt();
-									});
-								}
-								continue;
+							if(sp.type == 5) {
+								sp.bg.setStroke(Color.RED);
+								sp.setOnMouseClicked(evt -> {
+									try {
+										space.p1.get(0).moveTo(sp);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									t.interrupt();
+								});
 							}
-							/*if(sp.n1 + sp.n2 >=3) continue;
+							if(space.type==1 && sp.type != 1) continue;
+							if(sp.n1 + sp.n2 >=3) continue;
 							if(space.boat!=null&&sp.boat!=null) continue;
-							if(space.boat!=null&&sp.type!=1) continue;*/
+							if(space.boat!=null&&sp.type!=1) continue;
 							sp.bg.setStroke(Color.RED);
 							sp.setOnMouseClicked(evt -> {
 								clearAllSpace();
