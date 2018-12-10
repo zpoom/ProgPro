@@ -844,7 +844,7 @@ public class Game {
 										e.printStackTrace();
 									}
 								
-									if(tmpo != 5) t.interrupt();
+									if(tmpo != 5&&tmpo!= 6 &&tmpo!=7 &&tmpo!=8) t.interrupt();
 							});
 						break;
 					}
@@ -876,7 +876,7 @@ public class Game {
 										e.printStackTrace();
 									}
 								
-									if(tmpo != 5) t.interrupt();
+									if(tmpo != 5&&tmpo!= 6 &&tmpo!=7 &&tmpo!=8) t.interrupt();
 							});
 						break;
 					}
@@ -910,7 +910,7 @@ public class Game {
 											e.printStackTrace();
 										}
 									
-										if(tmpo != 5) t.interrupt();
+										if(tmpo != 5&&tmpo!= 6 &&tmpo!=7 &&tmpo!=8) t.interrupt();
 								});
 							break;
 						}
@@ -942,7 +942,7 @@ public class Game {
 											e.printStackTrace();
 										}
 									
-										if(tmpo != 5) t.interrupt();
+										if(tmpo != 5&&tmpo!= 6 &&tmpo!=7 &&tmpo!=8) t.interrupt();
 								});
 							break;
 						}
@@ -974,7 +974,7 @@ public class Game {
 											e.printStackTrace();
 										}
 									
-										if(tmpo != 5) t.interrupt();
+										if(tmpo != 5&&tmpo!= 6 &&tmpo!=7 &&tmpo!=8) t.interrupt();
 								});
 							break;
 						}
@@ -1030,7 +1030,7 @@ public class Game {
 		else {
 			// p2 turn
 			for(Space space : allTile) {
-				if(space.n2 > 0 || (space.n2 >= space.n1 && space.boat!=null)) {
+				if(space.n2 > 0|| (space.n2 >= space.n1 && space.boat!=null)) {
 					space.bg.setStroke(Color.WHITE);
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();

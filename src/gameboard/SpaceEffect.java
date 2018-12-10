@@ -79,7 +79,7 @@ public class SpaceEffect {
 			if (effectsSandCount.get(idx)==0) continue;
 			break;
 			}
-			return showEffect(6,space);
+			return showEffect(5,space);
 			
 		}
 		else{
@@ -254,6 +254,7 @@ public class SpaceEffect {
 				}
 				Game.clearAllSpace();
 				Game.t.interrupt();
+			
 				
 			  });
 			shark.start();
@@ -270,6 +271,7 @@ public class SpaceEffect {
 				}
 				Game.clearAllSpace();
 				Game.t.interrupt();
+			
 				
 			  });
 			whale.start();
