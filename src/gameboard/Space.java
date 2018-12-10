@@ -237,6 +237,7 @@ public class Space extends StackPane {
 		}
 		else if (boat!=null) {
 			int x = 0;
+			boat.boat.setTranslateX(0);
 			getChildren().add(boat.boat);
 			for(int i = 0;i<p1.size();i++) {
 				p1.get(i).setRadius(7);

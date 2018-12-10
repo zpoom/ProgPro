@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -26,7 +27,6 @@ public class Menu extends Parent {
 	public static Game game;
 	public Menu() throws IOException {
 		//use VBox as pane to contain each menu page.
-		
 		InputStream is = Files.newInputStream(Paths.get("res/survive_bg.png"));
 		Image img = new Image(is);
 		is.close();
@@ -179,11 +179,11 @@ public class Menu extends Parent {
 			e.printStackTrace();
 		}
 		game.scoreBoard();
-		getChildren().addAll(game.scoreBoardP1,Game.vSpace,game.scoreBoardP2);
-		game.scoreBoardP1.setTranslateX(20);
-		game.scoreBoardP1.setTranslateY(100);
-		game.scoreBoardP2.setTranslateX(1100);
-		game.scoreBoardP2.setTranslateY(100);
+		getChildren().addAll(game.fullScoreBoard1,Game.vSpace,game.fullScoreBoard2);
+		game.fullScoreBoard1.setTranslateX(30);
+		game.fullScoreBoard1.setTranslateY(100);
+		game.fullScoreBoard2.setTranslateX(1000);
+		game.fullScoreBoard2.setTranslateY(100);
 		Game.vSpace.setTranslateX(300);
 		Game.vSpace.setTranslateY(20);
 		game.start();

@@ -16,7 +16,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import main.Main;
 
 public class SpaceEffect {
 	public static ArrayList<Integer> effectsSandCount;
@@ -146,7 +148,21 @@ public class SpaceEffect {
 		}
 		else if(t==4) {
 			// end game ; Show the winner 
-			showWarningAlert("End game", "The winner is!!!!", "");
+			//Text endMessage;
+			if(Game.p1.score > Game.p2.score) {
+				//endMessage = new Text(String.format("%s WON.", Game.p1.getName()));
+				showWarningAlert("End game", "The winner is!!!!", (String)Game.p1.getName());
+			}
+			else if(Game.p1.score < Game.p2.score) {
+				//endMessage = new Text(String.format("%s WON", Game.p2.getName()));
+				showWarningAlert("End game", "The winner is!!!!", (String)Game.p2.getName());
+			}
+			else {
+				//endMessage = new Text("DRAW");
+				showWarningAlert("End game", "DRAW", (String)Game.p1.getName());
+			}
+			//Main.menu.getChildren().addAll(endMessage);
+			System.exit(0);
 			return 4;
 		}
 		else if(t==5) {

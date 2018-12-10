@@ -34,7 +34,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import menu.Menu;
 public class Main extends Application {
-	private Menu menu;
+	public static Menu menu;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		

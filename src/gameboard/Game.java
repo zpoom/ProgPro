@@ -19,12 +19,15 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Menu;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import main.Main;
 import player.Player;
 
 public class Game {
@@ -42,6 +45,7 @@ public class Game {
 	protected ArrayList<Meeple> player1 , player2;
 	public StackPane scoreBoardP1,scoreBoardP2;
 	public Text scoreP1,scoreP2;
+	public VBox fullScoreBoard1,fullScoreBoard2;
 	public static ArrayList<Space> riverTile,allTile;
 	public Game(int player,ArrayList<Player> players) throws IOException {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
@@ -712,22 +716,32 @@ public class Game {
 	}
 	public void scoreBoard() {
 		scoreBoardP1 = new StackPane();
-		scoreBoardP1.setPrefSize(100, 200);
-		Rectangle bgP1 = new Rectangle(100,200);
+		scoreBoardP1.setPrefSize(200, 100);
+		Rectangle bgP1 = new Rectangle(200,100);
 		bgP1.setFill(Color.RED);
 		bgP1.setStroke(Color.BLACK);
 		scoreP1 = new Text();
+		scoreP1.setFill(Color.WHITE);
+		scoreP1.setFont(Font.font(30));
 		scoreP1.setText(String.format("Score : %d",Game.p1.score));
 		scoreBoardP1.getChildren().addAll(bgP1,scoreP1);
+		Name nameP1 = new Name(Game.p1.getName(),1);
+		fullScoreBoard1 = new VBox();
+		fullScoreBoard1.getChildren().addAll(nameP1,scoreBoardP1);
 		
 		scoreBoardP2 = new StackPane();
-		scoreBoardP2.setPrefSize(100, 200);
-		Rectangle bgP2 = new Rectangle(100,200);
+		scoreBoardP2.setPrefSize(200, 100);
+		Rectangle bgP2 = new Rectangle(200,100);
 		bgP2.setFill(Color.WHITE);
 		bgP2.setStroke(Color.BLACK);
 		scoreP2 = new Text();
+		scoreP2.setFill(Color.RED);
+		scoreP2.setFont(Font.font(30));
 		scoreP2.setText(String.format("Score : %d",Game.p2.score));
 		scoreBoardP2.getChildren().addAll(bgP2,scoreP2);
+		Name nameP2 = new Name(Game.p2.getName(),2);
+		fullScoreBoard2 = new VBox();
+		fullScoreBoard2.getChildren().addAll(nameP2,scoreBoardP2);
 		
 	}
 	public void randomPosition1() throws IOException {
@@ -1032,6 +1046,7 @@ public class Game {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
 							if(sp.type == 5) {
+								if(space.n1 <= 0) continue;
 								sp.bg.setStroke(Color.RED);
 								sp.setOnMouseClicked(evt -> {
 									try {
@@ -1086,6 +1101,7 @@ public class Game {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
 							if(sp.type == 5) {
+								if(space.n2 <= 0) continue;
 								sp.bg.setStroke(Color.WHITE);
 								sp.setOnMouseClicked(evt -> {
 									try {
@@ -1470,7 +1486,6 @@ public class Game {
 			}
 		}
 	}
-
 	public void updateScore() {
 		scoreP1.setText(String.format("Score : %d",Game.p1.score));
 		scoreP2.setText(String.format("Score : %d",Game.p2.score));
