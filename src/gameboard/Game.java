@@ -991,10 +991,12 @@ public class Game {
 			// p1 turn
 			for(Space space : allTile) {
 				if(space.n1 > 0 || (space.n1 >= space.n2 && space.boat!=null)) {
+					if(space.boat!=null &&space.n1<space.n2) continue;
 					space.bg.setStroke(Color.RED);
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
+							if(space.type==1 && sp.type!=1) continue;
 							if(sp.n1 + sp.n2 >=3) continue;
 							if(space.boat!=null&&sp.boat!=null) continue;
 							if(space.boat!=null&&sp.type!=1) continue;
@@ -1031,6 +1033,8 @@ public class Game {
 			// p2 turn
 			for(Space space : allTile) {
 				if(space.n2 > 0|| (space.n2 >= space.n1 && space.boat!=null)) {
+					if(space.boat!=null &&space.n1<space.n2) continue;
+					if(space.type==1 && sp.type!=1) continue;
 					space.bg.setStroke(Color.WHITE);
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
@@ -1136,7 +1140,7 @@ public class Game {
 			// p1 turn
 			int x = 0;
 			for(Space space : allTile) {
-				if(space.n1>space.n2&&space.boat!=null) x++;
+				if(space.n1>=space.n2&&space.boat!=null&&space.n1>0) x++;
 			}
 			if(x==0) {
 				SpaceEffect.boat.interrupt();
@@ -1174,7 +1178,7 @@ public class Game {
 			// p2 turn
 			int x = 0;
 			for(Space space : allTile) {
-				if(space.n2>space.n1&&space.boat!=null) x++;
+				if(space.n2>space.n1&&space.boat!=null&&space.n2>0) x++;
 			}
 			if(x==0) {
 				//SpaceEffect.showWarningAlert("Oh Fuck, you don't have any boat!", "SKIP TURN", "you have nothing to do");

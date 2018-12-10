@@ -79,7 +79,7 @@ public class SpaceEffect {
 			if (effectsSandCount.get(idx)==0) continue;
 			break;
 			}
-			return showEffect(5,space);
+			return showEffect(idx,space);
 			
 		}
 		else{
@@ -146,6 +146,7 @@ public class SpaceEffect {
 		}
 		else if(t==4) {
 			// end game ; Show the winner 
+			showWarningAlert("End game", "The winner is!!!!", "");
 			return 4;
 		}
 		else if(t==5) {
