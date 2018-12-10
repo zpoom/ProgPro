@@ -14,9 +14,7 @@ public class Bigpom extends Monster {
 	public Bigpom(Space init) throws IOException {
 		super(init);
 		move = 3;
-		InputStream BigO = Files.newInputStream(Paths.get("res/Whale.png"));
-		Image enternamebg = new Image(BigO);
-		BigO.close();
+		Image enternamebg = new Image(ClassLoader.getSystemResource("Whale.png").toString());
 		whale = new ImageView(enternamebg);
 		whale.setFitHeight(50);
 		whale.setFitWidth(50);

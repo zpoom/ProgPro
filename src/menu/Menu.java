@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -27,9 +26,7 @@ public class Menu extends Parent {
 	public static Game game;
 	public Menu() throws IOException {
 		//use VBox as pane to contain each menu page.
-		InputStream is = Files.newInputStream(Paths.get("res/survive_bg.png"));
-		Image img = new Image(is);
-		is.close();
+		Image img = new Image(ClassLoader.getSystemResource("survive_bg.png").toString());
 		
 		ImageView imgView = new ImageView(img);
 		imgView.setFitWidth(1280);
@@ -51,18 +48,11 @@ public class Menu extends Parent {
 			getChildren().remove(bg);
 			getChildren().remove(choosePlayer);
 			//ping
-			try {
-				InputStream island = Files.newInputStream(Paths.get("res/Namepage.jpeg"));
-				Image enternamebg = new Image(island);
-				island.close();
+				Image enternamebg = new Image(ClassLoader.getSystemResource("Namepage.jpeg").toString());
 				ImageView enterNameview = new ImageView(enternamebg);
 				enterNameview.setFitHeight(720);
 				enterNameview.setFitWidth(1280);
 				getChildren().add(enterNameview);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 			//enterNamePage.setBackground((Paths.get("res/Namepage.jpeg"));
 			//enterNamePage.setTranslateX(125);
 			

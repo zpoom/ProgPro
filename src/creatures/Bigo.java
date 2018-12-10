@@ -14,9 +14,7 @@ public class Bigo extends Monster{
 	public Bigo(Space init) throws IOException {
 		super(init);
 		move = 1;
-		InputStream BigO = Files.newInputStream(Paths.get("res/dragon.png"));
-		Image enternamebg = new Image(BigO);
-		BigO.close();
+		Image enternamebg = new Image(ClassLoader.getSystemResource("dragon.png").toString());
 		dragon = new ImageView(enternamebg);
 		dragon.setFitHeight(50);
 		dragon.setFitWidth(50);

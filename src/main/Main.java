@@ -32,7 +32,7 @@ public class Main extends Application {
 	}
 	private static void playBGM() {
 		Thread playBGM = new Thread(() ->  {
-			bgm = new MediaPlayer(new Media(new File("res/bgm.mp3").toURI().toString()));
+			bgm = new MediaPlayer(new Media(ClassLoader.getSystemResource("bgm.mp3").toString()));
 			bgm.setOnReady(() -> {
 				bgm.setOnEndOfMedia(() -> {
 					bgm.seek(Duration.ZERO);

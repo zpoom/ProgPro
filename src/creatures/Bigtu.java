@@ -14,9 +14,7 @@ public class Bigtu extends Monster {
 	public Bigtu(Space init) throws IOException {
 		super(init);
 		move = 2;
-		InputStream Bigtu = Files.newInputStream(Paths.get("res/shark.png"));
-		Image enternamebg = new Image(Bigtu);
-		Bigtu.close();
+		Image enternamebg = new Image(ClassLoader.getSystemResource("shark.png").toString());
 		shark = new ImageView(enternamebg);
 		shark.setFitHeight(45);
 		shark.setFitWidth(50);

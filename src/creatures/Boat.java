@@ -17,9 +17,8 @@ public class Boat  implements Moveable{
 	public Boat(Space init) throws IOException {
 		now = init;
 		canMove = true;
-		InputStream bt = Files.newInputStream(Paths.get("res/Boat.png"));
-		Image enternamebg = new Image(bt);
-		bt.close();
+		Image enternamebg = new Image(ClassLoader.getSystemResource("Boat.png").toString());
+		
 		boat = new ImageView(enternamebg);
 		boat.setFitHeight(67);
 		boat.setFitWidth(30);
