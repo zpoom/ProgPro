@@ -1034,12 +1034,12 @@ public class Game {
 			for(Space space : allTile) {
 				if(space.n2 > 0|| (space.n2 >= space.n1 && space.boat!=null)) {
 					if(space.boat!=null &&space.n1<space.n2) continue;
-					if(space.type==1 && sp.type!=1) continue;
 					space.bg.setStroke(Color.WHITE);
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
 							if(sp.n1 + sp.n2 >=3) continue;
+							if(space.type==1 && sp.type!=1) continue;
 							if(space.boat!=null&&sp.boat!=null) continue;
 							if(space.boat!=null&&sp.type!=1) continue;
 							sp.bg.setStroke(Color.WHITE);
