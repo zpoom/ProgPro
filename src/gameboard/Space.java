@@ -131,6 +131,24 @@ public class Space extends StackPane {
 	
 	public void update() throws IOException {
 		// TODO
+		int pl1 = 0;
+		int pl2 = 0;
+		for(Space space : Game.allTile) {
+			pl1+=space.n1;
+			pl2+=space.n2;
+		}
+		if(pl1==0) {
+			SpaceEffect.showWarningAlert("End game", "The winner is!!!!", (String)Game.p2.getName());
+			System.exit(0);
+		}
+		else if (pl2==0) {
+			SpaceEffect.showWarningAlert("End game", "The winner is!!!!", (String)Game.p1.getName());
+			System.exit(0);
+		}
+		else if(pl1==0&&pl2==0) {
+			SpaceEffect.showWarningAlert("End game", "DRAW", " ");
+			System.exit(0);
+		}
 		getChildren().clear();
 		if(type == 1) bg.setFill(Color.TRANSPARENT);
 		else if(type == 2) bg.setFill(Color.GREEN);

@@ -154,7 +154,7 @@ public class SpaceEffect {
 			}
 			else {
 				//endMessage = new Text("DRAW");
-				showWarningAlert("End game", "DRAW", (String)Game.p1.getName());
+				showWarningAlert("End game", "DRAW", " ");
 			}
 			//Main.menu.getChildren().addAll(endMessage);
 			System.exit(0);
