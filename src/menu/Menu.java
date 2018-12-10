@@ -22,7 +22,7 @@ import javafx.util.Duration;
 import player.Player;
 
 public class Menu extends Parent {
-	private Text tx1,tx2;
+	private TextField p1Name,p2Name;
 	public static Game game;
 	public Menu() throws IOException {
 		//use VBox as pane to contain each menu page.
@@ -67,15 +67,15 @@ public class Menu extends Parent {
 			//enterNamePage.setTranslateX(125);
 			
 			VBox name = new VBox(30);
-			tx1 = new Text();
+			Text tx1 = new Text();
 			tx1.setFont(Font.font("Papyrus", 40));
 			tx1.setFill(Color.BROWN);
-			tx2 = new Text();
+			Text tx2 = new Text();
 			tx2.setFont(Font.font("Papyrus", 40));
 			tx2.setFill(Color.BROWN);
 			
 			HBox hLine1 = new HBox(20);
-			TextField p1Name = new TextField();
+			p1Name = new TextField();
 			p1Name.setFont(Font.font("Papyrus",40));
 			tx1.setText("PLAYER1'S NAME :");
 			p1Name.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
@@ -84,7 +84,7 @@ public class Menu extends Parent {
 			hLine1.getChildren().addAll(tx1,p1Name);
 			
 			HBox hLine2 = new HBox(20);
-			TextField p2Name = new TextField();
+			p2Name = new TextField();
 			p2Name.setFont(Font.font("Papyrus",40));
 			p2Name.setStyle("-fx-background-color: rgba(0,0, 0, 0);");
 			tx2.setText("PLAYER2'S NAME :");
@@ -164,8 +164,8 @@ public class Menu extends Parent {
 		getChildren().addAll(imgView,bg,menu1);
 	}
 	private void startGame() throws IOException {
-		Player p1 = new Player(tx1.getText());
-		Player p2 = new Player(tx2.getText());
+		Player p1 = new Player(p1Name.getText());
+		Player p2 = new Player(p2Name.getText());
 		ArrayList<Player> temp = new ArrayList<Player>();
 		temp.add(p1);
 		temp.add(p2);
@@ -178,7 +178,12 @@ public class Menu extends Parent {
 		catch(IOException e) {
 			e.printStackTrace();
 		}
-		getChildren().addAll(Game.vSpace);
+		game.scoreBoard();
+		getChildren().addAll(game.scoreBoardP1,Game.vSpace,game.scoreBoardP2);
+		game.scoreBoardP1.setTranslateX(20);
+		game.scoreBoardP1.setTranslateY(100);
+		game.scoreBoardP2.setTranslateX(1100);
+		game.scoreBoardP2.setTranslateY(100);
 		Game.vSpace.setTranslateX(300);
 		Game.vSpace.setTranslateY(20);
 		game.start();

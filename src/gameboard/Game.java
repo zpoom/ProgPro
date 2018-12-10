@@ -18,8 +18,11 @@ import creatures.Meeple;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import player.Player;
 
 public class Game {
@@ -28,16 +31,21 @@ public class Game {
 	public static Map<Space,Set<Space> > AllAdj;
 	public Set<Space> tmp;
 	public static int turn;
-	public static int playerAmount;
+	public static int playerAmount; // use for more than 2 player
 	private ArrayList<Space> startTile;
 	public static int step = -1;
 	public Thread t;
+	public static Player p1,p2;
 	protected ArrayList<Meeple> player1 , player2;
 	private ArrayList<Space> riverTile,allTile;
+	public StackPane scoreBoardP1,scoreBoardP2;
+	public Text scoreP1,scoreP2;
 	public Game(int player,ArrayList<Player> players) throws IOException {
 		// 1 = water , 2 = wild , 3 = sand , 4 = mountain
 		Game.turn = 1;
 		step = 0;
+		Game.p1 = players.get(0);
+		Game.p2 = players.get(1);
 		this.playerAmount = player;
 		player1 = new ArrayList<Meeple>();
 		player2 = new ArrayList<Meeple>();
@@ -693,6 +701,26 @@ public class Game {
 		riverTile.add(A86);
 		allTile.addAll(riverTile);
 		allTile.addAll(startTile);
+	}
+	public void scoreBoard() {
+		scoreBoardP1 = new StackPane();
+		scoreBoardP1.setPrefSize(100, 200);
+		Rectangle bgP1 = new Rectangle(100,200);
+		bgP1.setFill(Color.RED);
+		bgP1.setStroke(Color.BLACK);
+		scoreP1 = new Text();
+		scoreP1.setText(String.format("Score : %d",Game.p1.score));
+		scoreBoardP1.getChildren().addAll(bgP1,scoreP1);
+		
+		scoreBoardP2 = new StackPane();
+		scoreBoardP2.setPrefSize(100, 200);
+		Rectangle bgP2 = new Rectangle(100,200);
+		bgP2.setFill(Color.WHITE);
+		bgP2.setStroke(Color.BLACK);
+		scoreP2 = new Text();
+		scoreP2.setText(String.format("Score : %d",Game.p2.score));
+		scoreBoardP2.getChildren().addAll(bgP2,scoreP2);
+		
 	}
 	public void randomPosition1() throws IOException {
 		
