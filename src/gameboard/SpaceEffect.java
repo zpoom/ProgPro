@@ -206,7 +206,7 @@ public class SpaceEffect {
 			boat = new Thread(() -> {
 				Game.clearAllSpace();
 				try {
-					Game.showBoatmoveable();
+					Game.showBoatMoveAble();
 					Thread.sleep(30000);
 				} catch (InterruptedException e3) {
 					// TODO Auto-generated catch block
@@ -215,7 +215,7 @@ public class SpaceEffect {
 				}
 				Game.clearAllSpace();
 				try {
-					Game.showBoatmoveable();
+					Game.showBoatMoveAble();
 					Thread.sleep(30000);
 				} catch (InterruptedException e3) {
 					// TODO Auto-generated catch block
@@ -224,7 +224,7 @@ public class SpaceEffect {
 				}
 				Game.clearAllSpace();
 				try {
-					Game.showBoatmoveable();
+					Game.showBoatMoveAble();
 					Thread.sleep(30000);
 				} catch (InterruptedException e3) {
 					// TODO Auto-generated catch block
@@ -240,7 +240,7 @@ public class SpaceEffect {
 		else if(n==6) {
 			dragon = new Thread(() -> {
 				Game.clearAllSpace();
-				Game.showDragonMoveable();
+				Game.showDragonMoveAble();
 				System.out.println("Dragon relocate");
 				try {
 					Thread.sleep(30000);
@@ -257,7 +257,7 @@ public class SpaceEffect {
 		else if (n==7) {
 			shark = new Thread(() -> {
 				Game.clearAllSpace();
-				Game.showSharkMoveable();
+				Game.showSharkMoveAble();
 				try {
 					Thread.sleep(30000);
 				} catch (InterruptedException e) {
@@ -274,7 +274,7 @@ public class SpaceEffect {
 		else if (n==8) {
 			whale = new Thread(() -> {
 				Game.clearAllSpace();
-				Game.showWhaleMoveable();
+				Game.showWhaleMoveAble();
 				try {
 					Thread.sleep(30000);
 				} catch (InterruptedException e) {

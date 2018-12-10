@@ -2,7 +2,6 @@ package gameboard;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import creatures.Bigo;
 import creatures.Bigpom;
@@ -19,14 +18,10 @@ import javafx.scene.shape.Polygon;
 
 public class Space extends StackPane {
 	public static final double x = 35;
-	public int type;
 	public SpaceEffect eff;
-	public Map<Integer,Integer> mp;  // 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O
-	public ArrayList<Meeple> meeple;
 	public Polygon bg;
-	public ArrayList<Meeple> p1 ,p2;
-	public int n1,n2;
-	public static Space justClicked;
+	public ArrayList<Meeple> p1 ,p2 ;
+	public int n1,n2,type;
 	public boolean tu,pom,bigO;
 	public Boat boat;
 	
@@ -56,21 +51,6 @@ public class Space extends StackPane {
 		else if(t == 5)bg.setFill(Color.GOLD);
 		DropShadow drop = new DropShadow(1000, Color.WHITE);
 		drop.setInput(new Glow());
-		/*setOnMouseClicked(event ->{
-			Menu.game.gameLoop(this);
-			/*if(Game.step == 0) {
-				justClicked = this;
-				Game.step = 1;
-				for(Space a : Game.AllAdj.get(this)) {
-					a.bg.setFill(Color.WHITE);
-					a.setOnMouseClicked(evt ->{
-						//TODO set onclick for move to this space
-						// move to a
-						
-					});
-				}
-			}
-		});*/
 		getChildren().addAll(bg);	
 	}
 	// 1,2 player; 3=boat; 4 = tu,5 = pom,6 = O

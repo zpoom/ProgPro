@@ -33,7 +33,7 @@ public class Game {
 	private ArrayList<Space> startTile;
 	public static Thread t;
 	public static Player p1,p2;
-	protected ArrayList<Meeple> player1 , player2;
+	private ArrayList<Meeple> player1 , player2;
 	public StackPane scoreBoardP1,scoreBoardP2;
 	public Text scoreP1,scoreP2;
 	public VBox fullScoreBoard1,fullScoreBoard2;
@@ -742,7 +742,7 @@ public class Game {
 			Random rd = new Random();
 			int idx = rd.nextInt(temp.size());
 			temp.get(idx).addObject(player1.get(i));
-			player1.get(i).setInit(temp.get(idx));
+			player1.get(i).setNow(temp.get(idx));
 		}
 		
 	}
@@ -754,7 +754,7 @@ public class Game {
 			Random rd = new Random();
 			int idx = rd.nextInt(temp.size());
 			temp.get(idx).addObject(player2.get(i));
-			player2.get(i).setInit(temp.get(idx));
+			player2.get(i).setNow(temp.get(idx));
 		}
 		
 	}
@@ -763,7 +763,7 @@ public class Game {
 			while(Game.turn < 40) {
 			clearAllSpace();
 			try {
-				showMoveable();
+				showMoveAble();
 				Thread.sleep(300000);
 			} catch (InterruptedException e3) {
 				//  Auto-generated catch block
@@ -773,7 +773,7 @@ public class Game {
 			updateScore();
 			clearAllSpace();
 			try {
-				showMoveable();
+				showMoveAble();
 				Thread.sleep(300000);
 			} catch (InterruptedException e2) {
 				//  Auto-generated catch block
@@ -783,7 +783,7 @@ public class Game {
 			updateScore();
 			clearAllSpace();
 			try {
-				showMoveable();
+				showMoveAble();
 				Thread.sleep(300000);
 			} catch (InterruptedException e1) {
 				//  Auto-generated catch block
@@ -794,7 +794,7 @@ public class Game {
 			clearAllSpace();
 			try {
 				// Phase 2  destroy island
-				Showdestroyable();
+				showDestroyAble();
 				Thread.sleep(300000);
 			} catch (InterruptedException e1) {
 				//  Auto-generated catch block
@@ -823,7 +823,7 @@ public class Game {
 			x.setOnMouseClicked(event -> {});
 		}
 	}
-	public void Showdestroyable() {
+	public void showDestroyAble() {
 		if(Game.turn %2 == 1) {
 		if(Game.turn<=16) {
 			for(Space space : startTile) {
@@ -1024,7 +1024,7 @@ public class Game {
 			
 		}
 	}
-	public static void showMoveable() throws InterruptedException {
+	public static void showMoveAble() throws InterruptedException {
 		if(Game.turn % 2 == 1) {
 			// p1 turn
 			for(Space space : allTile) {
@@ -1139,7 +1139,7 @@ public class Game {
 			}
 		}
 	}
-	public static void showDragonMoveable() {
+	public static void showDragonMoveAble() {
 		for(Space space : allTile) {
 			if(space.bigO) {
 				space.bg.setStroke(Color.PURPLE);
@@ -1166,7 +1166,7 @@ public class Game {
 			}
 		}
 	}
-	public static void showWhaleMoveable() {
+	public static void showWhaleMoveAble() {
 		int x = 0;
 		for(Space space : allTile) {
 			if(space.pom) x++;
@@ -1202,7 +1202,7 @@ public class Game {
 			}
 		}
 	}
-	public static void showBoatmoveable() {
+	public static void showBoatMoveAble() {
 		if(Game.turn % 2 == 1) {
 			// p1 turn
 			int x = 0;
@@ -1285,7 +1285,7 @@ public class Game {
 		}
 		
 	}
-	public static void showSharkMoveable() {
+	public static void showSharkMoveAble() {
 		int x = 0;
 		for(Space space : allTile) {
 			if(space.tu) x++;
