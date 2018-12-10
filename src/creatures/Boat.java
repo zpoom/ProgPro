@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import gameboard.Game;
 import gameboard.Space;
 public class Boat  implements Moveable{
 	public Space now;
@@ -30,6 +31,7 @@ public class Boat  implements Moveable{
 		int t1,t2;
 		t1 = now.n1;
 		t2 = now.n2;
+		if(destination.type!=5) {
 		for(int j = 0; j <t1;j++) {
 			now.p1.get(0).moveTo(destination);
 		}
@@ -39,5 +41,16 @@ public class Boat  implements Moveable{
 		now.deleteObject(this);
 		now = destination;
 		now.addObject(this);
+		}
+		else {
+			if(Game.turn%2==1) {
+				Game.p1.score++;
+				now.deleteObject(now.p1.get(0));
+			}
+			else {
+				Game.p2.score++;
+				now.deleteObject(now.p2.get(0));
+			}
+		}
 	}
 }

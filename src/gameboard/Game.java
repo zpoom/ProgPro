@@ -705,6 +705,10 @@ public class Game {
 		riverTile.add(A86);
 		allTile.addAll(riverTile);
 		allTile.addAll(startTile);
+		allTile.add(G1);
+		allTile.add(G2);
+		allTile.add(G3);
+		allTile.add(G4);
 	}
 	public void scoreBoard() {
 		scoreBoardP1 = new StackPane();
@@ -1076,13 +1080,26 @@ public class Game {
 			// p2 turn
 			for(Space space : allTile) {
 				if(space.n2 > 0|| (space.n2 >= space.n1 && space.boat!=null)) {
-					if(space.boat!=null &&space.n1<space.n2) continue;
+					if(space.boat!=null &&space.n1>space.n2) continue;
 					space.bg.setStroke(Color.WHITE);
 					space.setOnMouseClicked(event -> {
 						clearAllSpace();
 						for(Space sp : Game.AllAdj.get(space)) {
+							if(sp.type == 5) {
+								sp.bg.setStroke(Color.WHITE);
+								sp.setOnMouseClicked(evt -> {
+									try {
+										space.p2.get(0).moveTo(sp);
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									t.interrupt();
+								});
+							}
 							if(space.type==1 && sp.type!=1) continue;
 							if(sp.n1 + sp.n2 >=3) continue;
+							if(space.type==1 && sp.type!=1) continue;
 							if(space.boat!=null&&sp.boat!=null) continue;
 							if(space.boat!=null&&sp.type!=1) continue;
 							sp.bg.setStroke(Color.WHITE);
